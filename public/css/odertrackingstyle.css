@@ -1,0 +1,96 @@
+* {
+    font-family: 'Cantarell', sans-serif;
+font-family: 'Jost', sans-serif;
+font-family: 'Playpen Sans', cursive;
+font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+
+.woocommerce-page-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+li {
+    display: inline;
+    font-size: 1.5em;
+    color: #7e7e7e;
+}
+
+.woocommerce-page-header ul li a {
+    display: inline-block;
+    position: relative;
+    color: #7e7e7e;
+    padding-bottom: 3px;
+}
+
+.woocommerce-page-header ul li a:hover { 
+        color: #ffb300;
+        font-weight: 500;
+    
+}
+.woocommerce-page-header ul li a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: #ffb300;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+  
+  .woocommerce-page-header ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    right: 50%;
+    width: 0%;
+    height: 2px;
+    background-color: #ffb300;
+    transition: width 0.3s ease-in-out, right 0.3s ease-in-out;
+    transform: translateX(50%);
+  }
+  
+  .woocommerce-page-header ul li a:hover::before {
+    width: 60%;
+    left: 0%;
+  }
+  
+  .woocommerce-page-header ul li a:hover::after {
+    width: 60%;
+    right: 0%;
+  }
+a {
+    text-decoration: none;
+}
+.woocommerce {
+    color: #7e808f;
+    margin: auto;
+    max-width: 600px;
+}
+
+.btn-primary {
+    background: #000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #ffb300;
+}
+ .button {
+    width: 100%;
+    line-height: 50px !important;
+    font-weight: 500;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    text-transform: uppercase;
+}
