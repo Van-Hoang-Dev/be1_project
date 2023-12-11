@@ -1,0 +1,35 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+.content-shop{
+  margin-top: 100px;
+}
+
+.categories h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.categories .category-item .active{
+  color: #000;
+  border-bottom: solid 2px #ffb300;
+}
+
+.categories .category-item:hover a{
+  color: #000;
+}
+
+.categories .category-item{
+  padding: 5px;
+}
+
+.categories .category-item a{
+  font-size: 14px;
+  color: #7E7E7E;
+  font-weight: 300;
+}
+
+.categories .category-item a span{
+  margin-left: 10px;
+}
