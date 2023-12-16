@@ -1,3 +1,4 @@
+<?php var_dump($_SESSION["cart"]); ?>
 <div class="cart my-5">
     <div class="container">
         <div class="woocommerce-page-header">
@@ -20,31 +21,34 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php    
+                        foreach($cart as $item):
+                        ?>
                         <tr class="woocommerce-cart-form__cart-item cart_item">
                             <td class="product-thumbnail">
-                                <a href="https://wpbingosite.com/wordpress/arostore/shop/apple-ipad-pro-256gb/"><img width="80" height="80" src="https://wpbingosite.com/wordpress/arostore/wp-content/uploads/2020/12/Product-28-600x600.jpg" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
+                                <a href=""><img width="80" height="80" src="<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
                                 <div class="product-name d-flex justify-content-center fw-bold align-middle">
-                                    <a href="#" class="text-black">Apple iPad Pro 256GB</a>
+                                    <a href="#" class="text-black"><?php echo $item["name"] ?></a>
                                 </div>
                             </td>
 
                             <td class="product-price" data-title="Price">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>200.00</bdi></span>
+                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
                             </td>
                             <td class="product-price" data-title="Price">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span>1</bdi></span>
+                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span><?php echo $item["quantity"] ?></bdi></span>
                             </td>
-                            <p class="subtotal d-none">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>100.00</bdi></span>
-                            </p>
                             </td>
                             <td class="product-subtotal" data-title="Subtotal">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>200.00</bdi></span>
+                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
                             </td>
                             <td class="product-remove">
                                 <a href="#" class="remove fs-3" aria-label="Remove this item" data-product_id="1" data-product_sku="D1117">×</a>
                             </td>
                         </tr>
+                        <?php 
+                            endforeach;
+                        ?>
                         <tr>
                             <td colspan="6" class="actions">
                                 <div class="bottom-cart">
