@@ -502,6 +502,7 @@ header {
     transform: translateY(0);
 }
 
+.product-button .icon button:hover,
 .product-button .icon a:hover {
     background-color: var(--theme-color);
     color: var(--color-white);
@@ -533,6 +534,7 @@ header {
     transform: translateX(-50%) rotate(45deg);
 }
 
+.product-button .icon button,
 .product-button .icon a {
     position: relative;
     z-index: 4;
@@ -544,6 +546,8 @@ header {
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.1);
     border-radius: 5px;
     line-height: 38px;
+    border: none;
+    background-color: #fff;
 }
 
 .product-emtry:hover .product-button .icon:nth-child(odd) {
@@ -921,4 +925,8 @@ header {
 
 .header-desktop .navbar-content .nav-items li:hover a{
     color: var(--theme-color);
+}
+
+.page-item .active{
+	background: #39A7FF;
 }

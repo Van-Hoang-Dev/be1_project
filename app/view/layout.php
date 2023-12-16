@@ -24,6 +24,7 @@
     <!-- link css -->
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/shop.css">
+    <link rel="stylesheet" href="public/css/cartstyle.css">
 </head>
 
 <body>
@@ -38,10 +39,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-md-3">
-                            <a class="nav-link active-color" aria-current="#" href="#">Home</a>
+                            <a class="nav-link active-color" aria-current="index.php" href="#">Home</a>
                         </li>
                         <li class="nav-item px-md-3">
-                            <a class="nav-link" href="#">Shop</a>
+                            <a class="nav-link" href="shop.php">Shop</a>
                         </li>
                         <li class="nav-item px-md-3">
                             <a class="nav-link" href="#">Products</a>

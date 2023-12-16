@@ -8,7 +8,9 @@
                     foreach ($categories as $category) :
                     ?>
                         <div class="category-item">
-                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" class="<?php if(isset($_GET["category_id"])){echo ($_GET["category_id"] == $category["category_id"])?"active":""; }?>"><?php echo $category["name"]; ?><span></span></a>
+                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" class="<?php if (isset($_GET["category_id"])) {
+                                                                                                                echo ($_GET["category_id"] == $category["category_id"]) ? "active" : "";
+                                                                                                            } ?>"><?php echo $category["name"]; ?><span></span></a>
                         </div>
                     <?php
                     endforeach;
@@ -34,11 +36,18 @@
                                     <div class="product-button">
                                         <div class="icon">
                                             <div class="tooltip-content">Add to card</div>
-                                            <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+                                            <form action="cart.php" method="post">
+                                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
+                                                <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
+                                            </form>
+                                            <!-- <a href="#" id="myLink"><i class="fa-solid fa-bag-shopping"></i></a> -->
                                         </div>
                                         <div class="icon">
                                             <div class="tooltip-content">Wishlist</div>
-                                            <a href="#"><i class="fa-regular fa-star"></i></a>
+                                            <form action="cart.php" method="post">
+                                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
+                                                <button type="submit"><i class="fa-regular fa-star"></i></button>
+                                            </form>
                                         </div>
                                         <div class="icon">
                                             <div class="tooltip-content">Compare</div>
@@ -75,6 +84,15 @@
                         ?>
                     </div>
                 </div>
+
+                <!-- Pagination -->
+            <div class="number-page">
+                <ul class="pagination">
+                    <?php 
+                    echo $paginationBar; ?>
+                </ul>
+            </div>
+
             </div>
         </div>
     </div>
