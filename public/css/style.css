@@ -930,3 +930,26 @@ header {
 .page-item .active{
 	background: #39A7FF;
 }
+
+
+/* LOGIN AND REGISTER */
+register_link{
+    display: inline-block;
+}
+
+.modal-footer{
+    display: block;
+}
+
+.login-text{
+    display: inline-block;
+}
+
+.modal-content h1{
+    font-weight: 700;
+}
+
+.modal-content .logo{
+    width: 150px;
+    margin-left: 10px;
+}

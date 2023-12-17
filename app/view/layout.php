@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-md-3">
-                            <a class="nav-link active-color" aria-current="index.php" href="#">Home</a>
+                            <a class="nav-link active-color" aria-current="index.php" href="index.php">Home</a>
                         </li>
                         <li class="nav-item px-md-3">
                             <a class="nav-link" href="shop.php">Shop</a>
@@ -74,18 +74,10 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link icon-header" href="#">
+                        <li class="nav-item px-3">
+                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-regular fa-user"></i>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="wishlist-box">
-                                <a class="nav-link icon-header" href="#">
-                                    <i class="fa-regular fa-star"></i>
-                                </a>
-                                <span class="count-wishlist">0</span>
-                            </div>
                         </li>
                         <li class="nav-item">
                             <div class="cart-box">
@@ -100,14 +92,135 @@
             </div>
         </nav>
     </header>
+
+    <!-- Modal -->
+    <!-- Log in -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-xl-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Welcome to </h1>
+                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="#">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Enter your phone number</label>
+                            <input type="text" class="form-control" id="username" name="phone" placeholder="Phone number*" autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Enter your password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password*">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <input type="submit" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
+                        </div>
+                        <div>
+                            <p class="login-text">Do not have an account ?</p>
+                            <a href="#" class="register_link" data-bs-toggle="modal" data-bs-target="#signinModal" data-bs-whatever="@mdo">Register now!</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Sign in -->
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-xl-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
+                    <img class="logo" src="public/images/logo/Logo.png" alt="">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="register.php" method="post">
+                    <div class="modal-body">
+                        <!-- Information User -->
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="firstname" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="lastname" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="email" class="form-label">Enter your email</label> -->
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username*" required>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="email" class="form-label">Enter your email</label> -->
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email*" required>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="email" class="form-label">Enter your email</label> -->
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number*" required>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="email" class="form-label">Enter your email</label> -->
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Adress*" required>
+                        </div>
+                        <div class="mb-3">
+                            <!-- <label for="password" class="form-label">Enter your password</label> -->
+                            <input type="password" class="form-control" id="password" name="password" placeholder="New password*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <!-- <label for="password" class="form-label">Enter your password</label> -->
+                            <input type="password" class="form-control" id="password_2" name="password_2" placeholder="Comfirm password*" required>
+                        </div>
+
+                        <!-- Choose Gender -->
+                        <div class="mb-3">
+                            Gender
+                            <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" value="1">
+                            <label class="btn" for="male">Male</label>
+
+                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" value="0">
+                            <label class="btn" for="female">Female</label>
+
+                            <input type="radio" class="btn-check" name="gender" id="other" autocomplete="off" value="3">
+                            <label class="btn" for="other">Other</label>
+                        </div>
+
+                        <!-- Remember Infor-->
+                        <div class="col-auto">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <div class="d-grid gap-2 col-6 mx-auto my-3">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#signinModal" data-bs-whatever="@mdo" style="background-color: #42b72a;">Register</button>
+                    </div>
+                        <div class="login">
+                            <p class="login-text">Already have an account?</p>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <!-- End Header -->
     <!-- Begin content -->
-    <?php 
-    if(!empty($slot)) :
+    <?php
+    if (!empty($slot)) :
     ?>
-    <?php echo $slot;?>
+        <?php echo $slot; ?>
 
-    <?php  endif ?>
+    <?php endif ?>
 
     <!-- End content -->
     <!-- Begin Footer -->
@@ -201,6 +314,69 @@
     </footer>
     <!-- Stop Footer -->
 
+
+    <script src="public/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="public/owlcarousel/jquery-3.7.1.min.js"></script>
+    <script src="public/owlcarousel/owl.carousel.min.js"></script>
+    <script src="public/js/app.js"></script>
+    <script>
+        $('.owl-5').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+
+        $('.owl-4').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                700: {
+                    items: 4
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+
+        $('.owl-3').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>

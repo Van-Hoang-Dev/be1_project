@@ -54,7 +54,7 @@
                                 <div class="bottom-cart">
                                     <div class="coupon">
                                         <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
-                                        <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                                        <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply</button>
                                     </div>
                                     <h2><a href="#">Continue Shopping</a></h2>
                                 </div>
