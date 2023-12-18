@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php
-            if (!empty($title)) :
-            ?>
-            <?php echo $title; ?>
-
-        <?php endif ?></title>
+    <title>
+        <?php if (!empty($title)) {
+            echo $title;
+        } ?>
+    </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Link icon for title -->
@@ -45,18 +44,19 @@
                             <a class="nav-link" href="shop.php">Shop</a>
                         </li>
                         <li class="nav-item px-md-3">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
+                        <?php if (isset($_SESSION['account']) && $_SESSION['account']['role'] == 1) : ?>
                         <li class="nav-item px-md-3 dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Blog
+                                Manage
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="#">Manage Categories</a></li>
+                                <li><a class="dropdown-item" href="#">Manage Products</a></li>
                             </ul>
                         </li>
+                        <?php endif ?>
                         <li class="nav-item px-md-3 dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Page
@@ -74,11 +74,22 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
+                        <?php if (!isset($_SESSION['account'])) :?>
                         <li class="nav-item px-3">
                             <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-regular fa-user"></i>
                             </a>
                         </li>
+                        <?php else : ?>
+                            <li class="nav-item px-3">
+                                <span>Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="logout.php">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <?php endif ?>
                         <li class="nav-item">
                             <div class="cart-box">
                                 <a class="nav-link icon-header" href="#">
@@ -103,15 +114,15 @@
                     <img class="logo" src="public/images/logo/Logo.png" alt="logo">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="#">
+                <form method="post" action="login.php">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Enter your phone number</label>
-                            <input type="text" class="form-control" id="username" name="phone" placeholder="Phone number*" autofocus>
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Enter your password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password*">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -172,7 +183,7 @@
 
                         <div class="mb-3">
                             <!-- <label for="password" class="form-label">Enter your password</label> -->
-                            <input type="password" class="form-control" id="password_2" name="password_2" placeholder="Comfirm password*" required>
+                            <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Comfirm password*" required>
                         </div>
 
                         <!-- Choose Gender -->
@@ -181,7 +192,7 @@
                             <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" value="1">
                             <label class="btn" for="male">Male</label>
 
-                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" value="0">
+                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" value="2">
                             <label class="btn" for="female">Female</label>
 
                             <input type="radio" class="btn-check" name="gender" id="other" autocomplete="off" value="3">
@@ -199,9 +210,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                    <div class="d-grid gap-2 col-6 mx-auto my-3">
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#signinModal" data-bs-whatever="@mdo" style="background-color: #42b72a;">Register</button>
-                    </div>
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#signinModal" data-bs-whatever="@mdo" style="background-color: #42b72a;">Register</button>
+                        </div>
                         <div class="login">
                             <p class="login-text">Already have an account?</p>
                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
