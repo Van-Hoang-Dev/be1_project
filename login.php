@@ -5,24 +5,29 @@ spl_autoload_register(function ($classname) {
     require_once "app/models/$classname.php";
 });
 
-$username = "";
+$phone = "";
 $password = "";
 
-if(isset($_POST["username"])){
-    $username = $_POST["username"];
+if(isset($_POST["phone"])){
+    $phone = $_POST["phone"];
 }
 
 if(isset($_POST["password"])){
-    $username = $_POST["password"];
+    $password = $_POST["password"];
 }
 
-//Get user
+
+// Get user
 $userModel = new User();
-$user = $userModel->checkLogin($username);
+$user = $userModel->loginAccount($phone);
 
-if(password_verify($password, $user["password"])){
-  var_dump("Login thanh cong");
+if ($user && password_verify($password, $user["password"])) {
+    
+    var_dump("Login thành công");
+    var_dump($user);
+    $_SESSION['account'] = $user;
+    header('location: index.php');
+} else {
+    var_dump("Login không thành công");
 }
-else{
-    var_dump("Login khong thanh cong");
-}
+

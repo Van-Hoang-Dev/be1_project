@@ -8,7 +8,7 @@ $productModel = new Product();
 $products = $productModel->getAllProduct();
 
 $data = [
-    "title" => "Product management",
+    "title" => "Product Management",
     "slot" => $template->render("blocks/products_management", ["products" => $products])
 ];
 
