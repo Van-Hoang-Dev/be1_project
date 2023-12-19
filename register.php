@@ -27,7 +27,7 @@ if(isset($_POST["username"])){
 }
 
 if(isset($_POST["gender"])){
-    $gender = $_POST["gender"];
+    $gender = intval($_POST["gender"]);
 }
 
 if(isset($_POST["email"])){

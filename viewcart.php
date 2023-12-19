@@ -7,8 +7,6 @@ spl_autoload_register(function ($classname) {
 
 $template = new Template();
 
-session_start();
-
 $data = [
     "title" => "Shop",
     "slot" => $template->render("blocks/cart_layout", ["cart" => $_SESSION["cart"]])

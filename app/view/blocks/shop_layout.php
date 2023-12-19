@@ -8,10 +8,15 @@
                     foreach ($categories as $category) :
                     ?>
                         <div class="category-item">
-                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" class="<?php if (isset($_GET["category_id"])) {
-                                                                                                                echo ($_GET["category_id"] == $category["category_id"]) ? "active" : "";
-                                                                                                            } ?>"><?php echo $category["name"]; ?><span></span></a>
+                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" 
+                            class="<?php 
+                            if (isset($_GET["category_id"])) {
+                            echo ($_GET["category_id"] == $category["category_id"]) ? "active" : "";
+                            } ?>">
+                            <?php echo $category["name"]; ?><span></span>
+                        </a>
                         </div>
+                        
                     <?php
                     endforeach;
                     ?>

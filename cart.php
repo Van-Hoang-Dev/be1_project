@@ -7,7 +7,6 @@ spl_autoload_register(function ($classname) {
 
 $template = new Template();
 
-session_start();
 // Thêm sản phẩm vào giỏ hàng
 if(isset($_POST["add_to_cart"])){
     $productID = $_POST["add_to_cart"];
