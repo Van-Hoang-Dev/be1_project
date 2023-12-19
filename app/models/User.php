@@ -1,5 +1,5 @@
 <?php 
-    class User extends Database{
+    class User extends Database {
         
         // Login Account
         public function loginAccount($username){

@@ -74,22 +74,6 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
-                        <?php if (!isset($_SESSION['account'])) :?>
-                        <li class="nav-item px-3">
-                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-regular fa-user"></i>
-                            </a>
-                        </li>
-                        <?php else : ?>
-                            <li class="nav-item px-3">
-                                <span>Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
-                            </li>
-                            <li class="nav-item px-3">
-                                <a class="nav-link icon-header" href="logout.php">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        <?php endif ?>
                         <li class="nav-item">
                             <div class="cart-box">
                                 <a class="nav-link icon-header" href="#">
@@ -98,6 +82,23 @@
                                 <span class="cart-count">0</span>
                             </div>
                         </li>
+                        <?php if (!isset($_SESSION['account'])) :?>
+                        <li class="nav-item px-3">
+                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-regular fa-user"></i>
+                            </a>
+                        </li>
+                        <?php else : ?>
+                            <li class="nav-item px-3">
+                                <span style="line-height: 20px;">Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="logout.php">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <?php endif ?>
+                        
                     </ul>
                 </div>
             </div>
