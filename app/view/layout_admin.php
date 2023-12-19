@@ -28,20 +28,20 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#"><img class="img-fluid nav-logo" src="../../public/images/logo/Logo.png" alt="Logi"></a>
+                <a class="navbar-brand" href="./../../index"><img class="img-fluid nav-logo" src="../../public/images/logo/Logo.png" alt="Logi"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-md-3">
-                            <a class="nav-link active-color" aria-current="#" href="index.php">Home</a>
+                            <a class="nav-link active-color" aria-current="#" href="../../index">Home</a>
+                        </li>
+                        <li class="nav-item px-md-3">
+                            <a class="nav-link" href="../categories/manage_category">Manage Categories</a>
                         </li>
                         <li class="nav-item px-md-3">
                             <a class="nav-link" href="../products/manage_product">Manage Products</a>
-                        </li>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="../categories/manage_category.php">Manage Categories</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
@@ -50,11 +50,22 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link icon-header" href="#">
+                        <?php if (!isset($_SESSION['account'])) :?>
+                        <li class="nav-item px-3">
+                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-regular fa-user"></i>
                             </a>
                         </li>
+                        <?php else : ?>
+                            <li class="nav-item px-3">
+                                <span style="line-height: 20px;">Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
+                            </li>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="../../logout">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>

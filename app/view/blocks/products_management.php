@@ -1,15 +1,15 @@
 <div class="container">
     <h2 class="my-5 title-center">Product management</h2>
-    <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add prodcut</a>
-    <table class="table table-hover ">
+    <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add Product</a>
+    <table class="table table-hover">
         <thead>
-            <td>Photo</td>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Price</td>
-            <td>Description</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <th>Photo</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             <?php

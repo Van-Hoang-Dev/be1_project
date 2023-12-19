@@ -52,8 +52,8 @@
                                 Manage
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Manage Categories</a></li>
-                                <li><a class="dropdown-item" href="#">Manage Products</a></li>
+                                <li><a class="dropdown-item" href="./admin/categories/manage_category">Manage Categories</a></li>
+                                <li><a class="dropdown-item" href="./admin/products/manage_product">Manage Products</a></li>
                             </ul>
                         </li>
                         <?php endif ?>
@@ -76,7 +76,7 @@
                         </li>
                         <li class="nav-item">
                             <div class="cart-box">
-                                <a class="nav-link icon-header" href="#">
+                                <a class="nav-link icon-header" href="viewcart.php">
                                     <i class="fa-solid fa-bag-shopping"></i>
                                 </a>
                                 <span class="cart-count">0</span>
@@ -94,11 +94,10 @@
                             </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="logout.php">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 </a>
                             </li>
                         <?php endif ?>
-                        
                     </ul>
                 </div>
             </div>

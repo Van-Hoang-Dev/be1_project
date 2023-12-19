@@ -21,15 +21,14 @@ $cart = array(
     "price" => $product["price"],
     "image" =>  $product["image"],
     "quantity" => 1
-
 );
 
-//Kiem tra gio hang da duoc tao hay chua
+// Kiem tra gio hang da duoc tao hay chua
 if(!isset($_SESSION["cart"])){
     $_SESSION["cart"] = [];
 }
 
-//Kiem tra xem san pham da tung co trong gio hang hay chua
+// Kiem tra xem san pham da tung co trong gio hang hay chua
 $product_exists = false;
 foreach ($_SESSION["cart"] as &$item) {
     if($item["id"] == $productID){
@@ -44,4 +43,4 @@ if(!$product_exists){
     array_push($_SESSION["cart"], $cart);
 }
 
-header('location: viewcart.php');
+header('location: viewcart');

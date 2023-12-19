@@ -6,5 +6,5 @@ spl_autoload_register(function ($classname) {
 });
 
 session_unset();
-header('location: index.php');
+header('location: index');
 

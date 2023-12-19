@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="product-button">
                                         <div class="icon">
-                                            <div class="tooltip-content">Add to card</div>
+                                            <div class="tooltip-content">Add to cart</div>
                                             <form action="cart.php" method="post">
                                                 <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
                                                 <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
@@ -77,8 +77,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <span class="cost">$<?php $product["price"] ?>.00</span>
-                                            <!-- <span class="discount">$400.00</span> -->
+                                            <span class="cost">$<?php echo $product["price"] ?>.00</span>
                                         </div>
 
                                     </div>

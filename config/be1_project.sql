@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2023 at 05:05 PM
+-- Generation Time: Dec 19, 2023 at 01:08 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -18,8 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `be1`
+-- Database: `be1_project`
 --
+CREATE DATABASE IF NOT EXISTS `be1_project` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `be1_project`;
 
 -- --------------------------------------------------------
 
@@ -30,10 +32,18 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `cart_products`;
 CREATE TABLE IF NOT EXISTS `cart_products` (
   `cart_id` int NOT NULL AUTO_INCREMENT,
-  `product_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int NOT NULL,
+  `product_id` int NOT NULL,
   `quantity` int NOT NULL,
-  PRIMARY KEY (`cart_id`,`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`cart_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cart_products`
+--
+
+INSERT INTO `cart_products` (`cart_id`, `user_id`, `product_id`, `quantity`) VALUES
+(1, 0, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -135,21 +145,21 @@ CREATE TABLE IF NOT EXISTS `member` (
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` int NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`phone`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`id`, `firstname`, `lastname`, `username`, `gender`, `email`, `phone`, `address`, `password`, `role`) VALUES
-(18, 'Trần Trung', 'Chiến', 'chien', 1, 'chientt.00@gmail.com', '0763324922', 'TP. Hồ Chí Minh', '$2y$10$eHwov5ikNSzll7QZ/uKS0eMTaBZ7edGOs4RXTqm62mcHg3wDN9lmG', 0),
-(20, 'Trần', 'Thư', '123', 2, 'trungchienhz77@gmail.com', '0123', 'hcm', '$2y$10$b4TfPVy/elnqO620RklG4uOpy56wllfzWJjjNypuULfsaiHtXcev6', 0),
-(19, 'Nguyễn Hữu', 'Vinh', 'admin', 1, 'huuvinh123@gmail.com', '0123456789', 'HCM', '$2y$10$.O5FDTfzbEhqr1PHCvvFbO6arvuOicH9E6zic7hf/W3OqrVme4Zei', 1);
+(1, '', '', 'admin', 0, 'zxczxc@gmail.com', '', 'zzzzzzzzzzzz', 'admin', 1),
+(2, '', '', 'hoang', 0, 'hoang@gmail.com', '', 'abc', '12345', 0),
+(4, 'Van', 'Hoang', 'vanhoang', 1, 'hoang@gmail.com', '0825060778', 'HoChiMinhCity', '$2y$10$L6b.ecaCev2raUzGIV1eROadpJfF.PU46mxtBpmP7wbL1ks8t.Lgi', 1);
 
 -- --------------------------------------------------------
 
@@ -285,58 +295,6 @@ CREATE TABLE IF NOT EXISTS `review` (
   `review_date` datetime NOT NULL,
   PRIMARY KEY (`review_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shopping_cart`
---
-
-DROP TABLE IF EXISTS `shopping_cart`;
-CREATE TABLE IF NOT EXISTS `shopping_cart` (
-  `cart_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  PRIMARY KEY (`cart_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` int NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `role_id`) VALUES
-(5, 'chientt', '$2y$10$MgeVqHPXdjD9p0zHjU0Q1.6TdwBnzWVPT5Iiu8awPZ0dao2Xacjxm', 1),
-(3, 'admin', '$2y$10$2clcMy3Mn3mK.mP4mu0JZe21gs/x5Y/6ehz1UElTosRBu7wjbThha', 1),
-(4, 'admin2', '$2y$10$tdJBrDDTq1/FWOpLZFvAz.hOgs7UDn/z0TfnxsdtpAd6ay.xUpzwO', 1),
-(6, 'helo', '$2y$10$IYMCwJ/EIkcp86y5C/GcqO0kJ99pZ6n6GwOB2DBwouBbEjEZFYuZK', 1),
-(7, '123', '$2y$10$0bMDRDMqPO9yn/HaWn9jo.A7A9yiQefdF56AtGc.sInCU8OT0lUfy', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

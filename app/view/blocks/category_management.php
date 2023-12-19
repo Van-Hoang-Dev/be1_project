@@ -3,10 +3,10 @@
     <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add category</a>
     <table class="table table-hover ">
         <thead>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             <?php

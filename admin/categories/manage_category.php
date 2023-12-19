@@ -8,7 +8,7 @@ $template = new Template();
 $categoryModel = new Category();
 $categories = $categoryModel->getAllCategory();
 
-$data = ["title"=>"Add category", 
+$data = ["title"=>"Categories Management", 
         "slot" => $template->render("blocks/category_management", ["categories"=>$categories])];
 
 
