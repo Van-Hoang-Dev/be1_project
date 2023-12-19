@@ -30,7 +30,7 @@ if(!isset($_SESSION["cart"])){
 
 // Kiem tra xem san pham da tung co trong gio hang hay chua
 $product_exists = false;
-foreach ($_SESSION["cart"] as &$item) {
+foreach ($_SESSION["cart"] as $item) {
     if($item["id"] == $productID){
         $item["quantity"]++;
         $product_exists = true;

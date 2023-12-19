@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/shop.css">
     <link rel="stylesheet" href="public/css/cartstyle.css">
+    <link rel="stylesheet" href="./public/css/detail.css">
 </head>
 
 <body>

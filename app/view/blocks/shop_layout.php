@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title">
-                                            <a href="#"><?php echo $product["name"] ?></a>
+                                            <a href="./detail.php?id=<?php echo $product['id'] ?>"><?php echo $product["name"] ?></a>
                                         </h3>
                                         <div class="rating none">
                                             <div class="star-rating none">
