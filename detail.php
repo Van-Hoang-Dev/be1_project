@@ -7,16 +7,17 @@ spl_autoload_register(function ($classname) {
 
 $template = new Template();
 $productModel = new Product();
+$categoryModel = new Category();
 $id = "";
 
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
 }
-
-$product = $productModel->getProductByID($id);
+$product = $productModel->getProductHaveCategoryID($id);
+$category = $categoryModel->getCategoryByID($product['category_id']);
+// var_dump($category);
 $data = [
     "title" => "Product Detail",
-    "slot" => $template->render("blocks/product_detail_layout", ['product' => $product])
+    "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category])
 ];
-// var_dump($product);
 $template->view("layout", $data);

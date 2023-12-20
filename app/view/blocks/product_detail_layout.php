@@ -25,7 +25,7 @@
                       <?php echo $product['description'] ?>
                     </p>
                     <ul>
-                        <li>Category: Headphone</li>
+                        <li>Category: <?php echo $category['name'] ?></li>
                     </ul>
                     <div class="product_option">
                       <div class="d-grid gap-2">

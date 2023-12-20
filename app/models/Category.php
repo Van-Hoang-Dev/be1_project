@@ -6,12 +6,12 @@
             return parent::select($sql);
         }
 
-        //Get category by id
+        //Get category by ID
         public function getCategoryByID($categoryID){
             $sql = parent::$connection->prepare("SELECT * FROM `categories` WHERE category_id = ?");
             $sql->bind_param("i", $categoryID);
             return parent::select($sql)[0];
-         }
+        }
 
         //Add category function
         public function store($categoryName){

@@ -28,7 +28,7 @@ if (isset($_GET["page"])) {
 
 if (isset($_GET["category_id"])) {
     $category_id = $_GET["category_id"];
-    $products = $productModel->getProductByCategoryID($category_id);
+    $products = $productModel->getProductsByCategory($category_id);
 } else {
     //Get pagination bar
     $total = $productModel->getTotalProducts()["COUNT(*)"];
