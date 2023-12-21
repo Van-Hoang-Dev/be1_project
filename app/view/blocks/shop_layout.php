@@ -45,12 +45,11 @@
                                                 <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
                                                 <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
                                             </form>
-                                            <!-- <a href="#" id="myLink"><i class="fa-solid fa-bag-shopping"></i></a> -->
                                         </div>
                                         <div class="icon">
                                             <div class="tooltip-content">Wishlist</div>
-                                            <form action="cart.php" method="post">
-                                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
+                                            <form action="#" method="post">
+                                                <input type="hidden" name="add_to_wishlist" value="<?php echo $product["id"]?>">
                                                 <button type="submit"><i class="fa-regular fa-star"></i></button>
                                             </form>
                                         </div>

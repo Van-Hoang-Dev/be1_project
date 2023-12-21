@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/383/383765.png" type="image/x-icon">
     <!-- Link boostrap -->
     <link rel="stylesheet" href="public/bootstrap-5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <!-- Link fontawsome -->
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
     <!-- Link owlCarousel -->
