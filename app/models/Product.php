@@ -16,6 +16,18 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    // GET PRODUCT BY CATEGORY ID
+    public function getProductsByCategory($id)
+    {
+        // 2. Tạo câu SQL
+        $sql = parent::$connection->prepare('SELECT *
+                                            FROM products
+                                            INNER JOIN category_product
+                                            ON products.id = category_product.product_id
+                                            WHERE category_product.category_id = ?');
+        $sql->bind_param('i', $id);
+        return parent::select($sql);
+    }
 
     //Get product with category by id
     public function getProductWithCategoryByProductID($productID)
@@ -31,13 +43,14 @@ class Product extends Database
     }
 
     //Get Product by categoyID function
-    public function getProductByCategoryID(String $category_id)
+    public function getProductHaveCategoryID($id)
     {
         $sql = parent::$connection->prepare("SELECT * FROM `products` 
-            INNER JOIN category_product ON category_product.product_id = products.id
-            WHERE category_product.category_id = ?;");
-        $sql->bind_param("i", $category_id);
-        return parent::select($sql);
+                                            INNER JOIN category_product 
+                                            ON category_product.product_id = products.id
+                                            WHERE category_product.product_id = ?");
+        $sql->bind_param("i", $id);
+        return parent::select($sql)[0];
     }
 
     //Add producut function

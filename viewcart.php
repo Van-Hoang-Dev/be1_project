@@ -1,15 +1,20 @@
 <?php
 require_once 'config/database.php';
 //Autoloading spl NOT sql
-spl_autoload_register(function ($classname) {
-    require_once "app/models/$classname.php";
-});
+spl_autoload_register(
+    function ($classname) {
+        require_once "app/models/$classname.php";
+    }
+);
 
 $template = new Template();
-
+$cart = "";
+if (isset($cart)) {
+    $cart = $_SESSION['cart'];
+}
 $data = [
-    "title" => "Shop",
-    "slot" => $template->render("blocks/cart_layout", ["cart" => $_SESSION["cart"]])
+    "title" => "Shopping Cart",
+    "slot" => $template->render("blocks/cart_layout", ["cart" => $cart])
 ];
 
 $template->view("layout", $data);

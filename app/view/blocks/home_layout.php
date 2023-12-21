@@ -131,7 +131,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -181,7 +181,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -229,7 +229,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -278,7 +278,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -327,7 +327,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -377,7 +377,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -425,7 +425,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -475,7 +475,7 @@
                 </div>
                 <div class="product-button">
                   <div class="icon">
-                    <div class="tooltip-content">Add to card</div>
+                    <div class="tooltip-content">Add to cart</div>
                     <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                   </div>
                   <div class="icon">
@@ -546,7 +546,7 @@
               </div>
               <div class="product-button">
                 <div class="icon">
-                  <div class="tooltip-content">Add to card</div>
+                  <div class="tooltip-content">Add to cart</div>
                   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="icon">
@@ -596,7 +596,7 @@
               </div>
               <div class="product-button">
                 <div class="icon">
-                  <div class="tooltip-content">Add to card</div>
+                  <div class="tooltip-content">Add to cart</div>
                   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="icon">
@@ -645,7 +645,7 @@
               </div>
               <div class="product-button">
                 <div class="icon">
-                  <div class="tooltip-content">Add to card</div>
+                  <div class="tooltip-content">Add to cart</div>
                   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="icon">
@@ -695,7 +695,7 @@
               </div>
               <div class="product-button">
                 <div class="icon">
-                  <div class="tooltip-content">Add to card</div>
+                  <div class="tooltip-content">Add to cart</div>
                   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="icon">
@@ -743,7 +743,7 @@
               </div>
               <div class="product-button">
                 <div class="icon">
-                  <div class="tooltip-content">Add to card</div>
+                  <div class="tooltip-content">Add to cart</div>
                   <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
                 </div>
                 <div class="icon">
@@ -913,12 +913,12 @@
       <div class="content-logo">
         <div class="owl-4 owl-carousel owl-theme">
             <div class="img-logo">
-              <a href="#">
+              <a href="">
                 <img src="public/images/logo/feedly-logo.png" alt="feedly-logo">
               </a>
             </div>
             <div class="img-logo">
-              <a href="#">
+              <a href="">
                 <img src="public/images/logo/hopin-logo.png" alt="hopin-logo">
               </a>
             </div>
@@ -928,7 +928,7 @@
               </a>
             </div>
             <div class="img-logo">
-              <a href="#">
+              <a href="">
                 <img src="public/images/logo/spotifi-logo.png" alt="spotifi-logo">
               </a>
             </div>

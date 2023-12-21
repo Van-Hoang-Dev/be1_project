@@ -1,0 +1,80 @@
+/* Inport font */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600&family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Signika+Negative&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&family=Signika+Negative&display=swap');
+
+:root {
+  --font-family-base: 'Plus Jakarta Sans', sans-serif;
+  --theme-color: #ffb300;
+  --color-black: #000;
+  --color-white: #fff;
+  --theme-header: #f7f5ef;
+  --color-tag-sale: #2a27e9;
+  --circle-with: 40px;
+  --circle-height: 40px;
+}
+/* body */
+body {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+}
+/*---------------------
+  Breadcrumb
+-----------------------*/
+.breadcrumb-option {
+    padding-top: 60px;
+  }
+  
+  .breadcrumb__text h2 {
+    font-size: 50px;
+    color: #000000;
+    font-weight: 700;
+    font-style: italic;
+    font-family: "Playfair Display", serif;
+  }
+  
+  .breadcrumb__links {
+    text-align: right;
+    padding-top: 15px;
+  }
+  .breadcrumb__links a {
+    font-size: 16px;
+    color: #111111;
+    margin-right: 26px;
+    display: inline-block;
+    position: relative;
+  }
+  .breadcrumb__links a:after {
+    position: absolute;
+    right: -16px;
+    top: 0;
+    content: "|";
+    color: #888888;
+  }
+  .breadcrumb__links span {
+    font-size: 16px;
+    color: #888888;
+    display: inline-block;
+  }
+
+  .product-desc {
+    font-weight: 400;
+    padding-top: 20px;
+    border-top: solid 1px #888;
+  }
+  .btn {
+    text-align: center;
+    line-height: 40px;
+  }
+
+  .btn-dark:hover {
+    background: #ffb300;
+    border: none;
+  }
+  .btn-buy {
+    color: #888;
+  }
+  .btn-buy:hover {
+    background: #ffb300;
+    border: none;
+  }

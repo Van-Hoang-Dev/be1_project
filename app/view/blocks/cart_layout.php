@@ -1,9 +1,15 @@
-<?php var_dump($_SESSION["cart"]); ?>
+<?php
+    // Tính totalPrice
+    $totalPrice = 0;
+    foreach ($cart as $item) {
+        $totalPrice += $item['price'];
+    }
+?>
 <div class="cart my-5">
     <div class="container">
         <div class="woocommerce-page-header">
             <ul>
-                <li class="shopping-cart-link"> <a href="./cart.html">Cart</a></li>
+                <li class="shopping-cart-link"> <a href="./viewcart">Cart</a></li>
                 <li class="checkout-link"><a href="./checkout.html">Checkout</a></li>
                 <li class="order-tracking-link active"><a href="./odertracking.html">Order Tracking</a></li>
             </ul>
@@ -20,6 +26,7 @@
                             <th class="product-remove"></th>
                         </tr>
                     </thead>
+                    <?php if (isset($cart)) : ?>
                     <tbody>
                         <?php    
                         foreach($cart as $item):
@@ -43,7 +50,10 @@
                                 <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
                             </td>
                             <td class="product-remove">
-                                <a href="#" class="remove fs-3" aria-label="Remove this item" data-product_id="1" data-product_sku="D1117">×</a>
+                                <form action="delete-item-cart.php" method="post">
+                                    <input type="hidden" name="idRemove" value="<?php echo $item['id']; ?>">
+                                    <button type="submit" class="btn btn-dark text-white" aria-label="Remove this item">×</button>
+                                </form>
                             </td>
                         </tr>
                         <?php 
@@ -56,11 +66,12 @@
                                         <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
                                         <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply</button>
                                     </div>
-                                    <h2><a href="#">Continue Shopping</a></h2>
+                                    <h2><a href="./shop">Continue Shopping</a></h2>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
+                    <?php endif ?>
                 </table>
             </div>
             <div class="col-xl-4 col-lg-12 col-md-12 col-12">
@@ -70,7 +81,7 @@
                         <div cellspacing="0" class="shop_table shop_table_responsive">
                             <div class="cart-subtotal">
                                 <div class="title">Subtotal</div>
-                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>450.00</bdi></span>
+                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $totalPrice ?>.00</bdi></span>
                                 </div>
                             </div>
                             <div class="order-total">
@@ -78,7 +89,7 @@
                                 <div data-title="Total"><strong>
                                         <span class="woocommerce-Price-amount amount">
                                             <bdi><span class="woocommerce-Price-currencySymbol">$</span>
-                                                450.00</bdi></span></strong>
+                                                <?php echo $totalPrice ?>.00</bdi></span></strong>
                                 </div>
                             </div>
                         </div>
