@@ -129,7 +129,7 @@ a {
 
  .safe-checkout {
   margin-top: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   padding: 40px 25px 25px;
   background: #f8f5f4;
   text-align: center;
@@ -145,7 +145,7 @@ a {
 
 .social-icon {
   display: flex;
-
+  margin-bottom: 50px;
 }
 
 .share-facebook, .share-twitter, .share-linkedin, .share-github, .share-threads, .share-instagram {
