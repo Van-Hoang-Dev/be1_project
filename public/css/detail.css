@@ -20,6 +20,11 @@ body {
   font-weight: 700;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
 /*---------------------
   Breadcrumb
 -----------------------*/
@@ -120,4 +125,33 @@ body {
 
 .related__products__slider {
   text-align: center;
+}
+
+ .safe-checkout {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  padding: 40px 25px 25px;
+  background: #f8f5f4;
+  text-align: center;
+  border-radius: 5px;
+
+
+}
+
+.safe-checkout .title-safe-checkout {
+  color: var(--gray-dark,#000);
+  letter-spacing: 2px;
+}
+
+.social-icon {
+  display: flex;
+
+}
+
+.share-facebook, .share-twitter, .share-linkedin, .share-github, .share-threads, .share-instagram {
+  margin-right: 10px;
+}
+
+.share-facebook:hover, .share-twitter:hover, .share-linkedin:hover, .share-github:hover, .share-threads:hover, .share-instagram:hover { 
+  color: #ffb300;
 }
