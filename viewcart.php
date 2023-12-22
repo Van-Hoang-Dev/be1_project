@@ -12,6 +12,7 @@ $cart = "";
 if (isset($cart)) {
     $cart = $_SESSION['cart'];
 }
+
 $data = [
     "title" => "Shopping Cart",
     "slot" => $template->render("blocks/cart_layout", ["cart" => $cart])

@@ -10,12 +10,11 @@ $template = new Template();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idRemove = isset($_POST['idRemove']) ? $_POST['idRemove'] : '';
     $cart = $_SESSION['cart'];
-    // var_dump($cart);
-    // var_dump($idRemove);
-    foreach ($cart as $index => $item) {
+    $cartModel = new CartModel();
+    foreach ($cart as $key => $item) {
         if ($item['id'] == $idRemove) {
-            unset($cart[$index]);
-           
+            unset($cart[$key]);
+            $cartModel->removeProductFromCart($item['id']);
             $_SESSION['cart'] = $cart;
             break; 
         }

@@ -8,6 +8,7 @@ spl_autoload_register(function ($classname) {
 $template = new Template();
 
 // Thêm sản phẩm vào giỏ hàng
+$productID = "";
 if(isset($_POST["add_to_cart"])){
     $productID = $_POST["add_to_cart"];
 }
@@ -30,7 +31,7 @@ if(!isset($_SESSION["cart"])){
 
 // Kiem tra xem san pham da tung co trong gio hang hay chua
 $product_exists = false;
-foreach ($_SESSION["cart"] as $item) {
+foreach ($_SESSION["cart"] as &$item) {
     if($item["id"] == $productID){
         $item["quantity"]++;
         $product_exists = true;
@@ -41,6 +42,24 @@ foreach ($_SESSION["cart"] as $item) {
 //Neu san pham chua co trong gio hang thi them moi
 if(!$product_exists){
     array_push($_SESSION["cart"], $cart);
+}
+
+//Them cart vao databse
+if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
+    $cartModel = new CartModel();
+
+    $userID = $_SESSION['account']["id"];
+    $quantity = "";
+    foreach ($_SESSION["cart"] as $item) {
+        if($item["id"] == $productID){
+            $quantity = $item["quantity"];
+            break;
+        }
+    }
+    
+    var_dump($userID);
+    var_dump($productID);
+    var_dump($cartModel->addCartToDB($userID, $productID, $quantity));
 }
 
 header('location: viewcart');
