@@ -3,7 +3,9 @@ $recentView = "";
     if (isset($_COOKIE['recentView'])) {
         $recentView = json_decode($_COOKIE['recentView']);
     }
-    var_dump($recentView);
+    // var_dump($_COOKIE);
+
+    // var_dump($recentView);
 ?>
    <div class="breadcrumb-option">
         <div class="container">
@@ -45,11 +47,21 @@ $recentView = "";
                                 <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
                             </div>
                             <div class="mt-4 d-flex">
-                                <div class="wishlist d-flex">
+                                <div class="wishlist d-flex align-items-center">
                                     <div class="icon-wishlist">
-                                        <i class="bi bi-star-fill fs-3"></i>
+                                        <form action="#" method="post">
+                                            <i class="fa-regular fa-star"></i>
+                                        </form>
                                     </div>
-                                    <span class="fs-6">Add to Wishlist</span>
+                                    <span class="fs-6 text-icon">Add to Wishlist</span>
+                                </div>
+                                <div class="compare d-flex align-items-center">
+                                    <div class="icon-compare">
+                                        <form action="#" method="post">
+                                            <i class="fa-solid fa-layer-group"></i>
+                                        </form>
+                                    </div>
+                                    <span class="fs-6 text-icon">Compare</span>
                                 </div>
                             </div>
                         </div>

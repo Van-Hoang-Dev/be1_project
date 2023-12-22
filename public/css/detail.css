@@ -91,15 +91,20 @@ body {
   color: #888;
 }
 
-.icon-wishlist {
+.compare {
+  margin-left: 20px;
+}
+
+.icon-wishlist, .icon-compare {
   color: #b5b3b3;
   border: 2px solid #b5b3b3; 
   border-radius: 10px; 
   padding: 5px 10px; 
+  margin-right: 10px;
   text-align: center; 
 }
 
-.icon-wishlist:hover {
+.wishlist:hover .text-icon, .compare:hover .text-icon, .icon-wishlist:hover, .icon-compare:hover{
   border-color: #ffb300;
   color: #ffb300; 
 }
