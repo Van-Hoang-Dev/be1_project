@@ -13,68 +13,106 @@
   --circle-with: 40px;
   --circle-height: 40px;
 }
+
 /* body */
 body {
   font-family: var(--font-family-base);
   font-weight: 700;
 }
+
 /*---------------------
   Breadcrumb
 -----------------------*/
 .breadcrumb-option {
-    padding-top: 60px;
-  }
-  
-  .breadcrumb__text h2 {
-    font-size: 50px;
-    color: #000000;
-    font-weight: 700;
-    font-style: italic;
-    font-family: "Playfair Display", serif;
-  }
-  
-  .breadcrumb__links {
-    text-align: right;
-    padding-top: 15px;
-  }
-  .breadcrumb__links a {
-    font-size: 16px;
-    color: #111111;
-    margin-right: 26px;
-    display: inline-block;
-    position: relative;
-  }
-  .breadcrumb__links a:after {
-    position: absolute;
-    right: -16px;
-    top: 0;
-    content: "|";
-    color: #888888;
-  }
-  .breadcrumb__links span {
-    font-size: 16px;
-    color: #888888;
-    display: inline-block;
-  }
+  padding-top: 60px;
+}
 
-  .product-desc {
-    font-weight: 400;
-    padding-top: 20px;
-    border-top: solid 1px #888;
-  }
-  .btn {
-    text-align: center;
-    line-height: 40px;
-  }
+.breadcrumb__text h2 {
+  font-size: 50px;
+  color: #000000;
+  font-weight: 700;
+  font-style: italic;
+  font-family: "Playfair Display", serif;
+}
 
-  .btn-dark:hover {
-    background: #ffb300;
-    border: none;
-  }
-  .btn-buy {
-    color: #888;
-  }
-  .btn-buy:hover {
-    background: #ffb300;
-    border: none;
-  }
+.breadcrumb__links {
+  text-align: right;
+  padding-top: 15px;
+}
+
+.breadcrumb__links a {
+  font-size: 16px;
+  color: #111111;
+  margin-right: 26px;
+  display: inline-block;
+  position: relative;
+}
+
+.breadcrumb__links a:after {
+  position: absolute;
+  right: -16px;
+  top: 0;
+  content: "|";
+  color: #888888;
+}
+
+.breadcrumb__links span {
+  font-size: 16px;
+  color: #888888;
+  display: inline-block;
+}
+
+.product-desc {
+  font-weight: 400;
+  padding-top: 20px;
+  border-top: solid 1px #888;
+}
+
+.btn {
+  text-align: center;
+  line-height: 40px;
+}
+
+.btn-dark:hover {
+  background: #ffb300;
+  border: none;
+}
+
+.btn-buy {
+  color: #888;
+}
+
+.btn-buy:hover {
+  background: #ffb300;
+  border: none;
+}
+
+.description {
+  color: #888;
+}
+
+.icon-wishlist {
+  color: #b5b3b3;
+  border: 2px solid #b5b3b3; 
+  border-radius: 10px; 
+  padding: 5px 10px; 
+  text-align: center; 
+}
+
+.icon-wishlist:hover {
+  border-color: #ffb300;
+  color: #ffb300; 
+}
+.related__products__slider.owl-carousel .col-lg-3 {
+  max-width: 100%;
+}
+
+.owl-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.related__products__slider {
+  text-align: center;
+}
