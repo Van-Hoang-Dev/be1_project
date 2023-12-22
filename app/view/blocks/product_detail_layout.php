@@ -3,6 +3,7 @@ $recentView = "";
     if (isset($_COOKIE['recentView'])) {
         $recentView = json_decode($_COOKIE['recentView']);
     }
+    var_dump($recentView);
 ?>
    <div class="breadcrumb-option">
         <div class="container">
@@ -55,6 +56,7 @@ $recentView = "";
                     </div>
                 </div>
             </div>
+            <?php if(isset($_COOKIE['recentView'])) : ?>
             <div class="row">
                 <div class="breadcrumb-option">
                     <div class="container">
@@ -123,6 +125,7 @@ $recentView = "";
                     <?php endif; endforeach; endforeach ?>
                 </div>
             </div>
+            <?php endif ?>
         </div>
     </section>
     <script>
