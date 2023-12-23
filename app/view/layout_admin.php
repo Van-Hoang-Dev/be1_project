@@ -16,6 +16,8 @@
     <!-- Link boostrap -->
     <link rel="stylesheet" href="../../public/bootstrap-5/css/bootstrap.min.css">
     <!-- Link fontawsome -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../public/fontawesome/css/all.min.css">
     <!-- link css -->
     <link rel="stylesheet" href="../../public/css/style.css">
@@ -45,8 +47,8 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link icon-header" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
@@ -58,7 +60,9 @@
                         </li>
                         <?php else : ?>
                             <li class="nav-item px-3">
-                                <span style="line-height: 20px;">Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
+                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
+                                </a>
                             </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="../../logout">
@@ -72,6 +76,31 @@
         </nav>
     </header>
     <!-- End Header -->
+    <!-- Search -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Search </h1>
+                    <img class="logo" src="../../public/images/logo/Logo.png" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../../search">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="key" class="form-label"><i class="bi bi-search fs-3 fw-bolder"></i></label>
+                            <input type="text" class="form-control" id="key" name="key" autofocus>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <button type="submit" class="btn btn-success text-light fw-bolder"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Begin content -->
     <?php 
     if(!empty($slot)) :

@@ -103,7 +103,7 @@ a {
 .icon-wishlist, .icon-compare {
   color: #b5b3b3;
   border: 2px solid #b5b3b3; 
-  border-radius: 10px; 
+  border-radius: 5px; 
   padding: 5px 10px; 
   margin-right: 10px;
   text-align: center; 
@@ -113,6 +113,7 @@ a {
   border-color: #ffb300;
   color: #ffb300; 
 }
+
 .related__products__slider.owl-carousel .col-lg-3 {
   max-width: 100%;
 }

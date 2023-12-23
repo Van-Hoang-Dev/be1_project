@@ -4,7 +4,7 @@ if (isset($_COOKIE['recentView'])) {
     $recentView = json_decode($_COOKIE['recentView']);
 }
 // var_dump($_COOKIE);
-
+// var_dump($products);
 // var_dump($recentView);
 ?>
 <div class="breadcrumb-option">

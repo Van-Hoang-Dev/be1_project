@@ -23,11 +23,9 @@ $user = $userModel->loginAccount($phone);
 
 if ($user && password_verify($password, $user["password"])) {
     
-    var_dump("Login thành công");
-    var_dump($user);
     $_SESSION['account'] = $user;
     header('location: index.php');
 } else {
-    var_dump("Login không thành công");
+    echo "<script>alert('Đăng nhập không thành công!!!'); window.location.href='index.php';</script>";
 }
 

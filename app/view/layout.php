@@ -9,8 +9,9 @@
             echo $title;
         } ?>
     </title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Link icon for title -->
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/383/383765.png" type="image/x-icon">
     <!-- Link boostrap -->
@@ -72,7 +73,7 @@
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link icon-header" href="#">
+                        <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
@@ -92,7 +93,9 @@
                         </li>
                         <?php else : ?>
                             <li class="nav-item px-3">
-                                <span style="line-height: 20px;">Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
+                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
+                                </a>
                             </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="logout.php">
@@ -107,9 +110,34 @@
     </header>
 
     <!-- Modal -->
+    <!-- Search -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Search Product </h1>
+                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="search">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Key</label>
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <input type="submit" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Log in -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen-xl-down">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-4" id="titleModal">Welcome to </h1>
@@ -142,7 +170,7 @@
     </div>
     <!-- Sign in -->
     <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen-xl-down">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
@@ -326,7 +354,6 @@
         </div>
     </footer>
     <!-- Stop Footer -->
-
 
     <script src="public/bootstrap-5/js/bootstrap.bundle.min.js"></script>
     <script src="public/owlcarousel/jquery-3.7.1.min.js"></script>
