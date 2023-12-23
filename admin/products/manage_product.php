@@ -9,7 +9,7 @@ $products = $productModel->getAllProduct();
 
 $data = [
     "title" => "Product Management",
-    "slot" => $template->render("blocks/products_management", ["products" => $products])
+    "slot" => $template->render("blocks/manage/products_management", ["products" => $products])
 ];
 
 $template->view("layout_admin", $data);

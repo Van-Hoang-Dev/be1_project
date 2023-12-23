@@ -7,6 +7,7 @@ $productPrice = "";
 $productDescription = "";
 $productImage = "";
 $categoresID = [];
+$discount_id = [];
 
 if (isset($_POST["id"])) {
     $productID = $_POST["id"];
@@ -27,6 +28,9 @@ if (isset($_POST["image"])) {
 if (isset($_POST["categories"])) {
     $categoriesID = $_POST["categories"];
 }
+if (isset($_POST["discounts"])) {
+    $discount_id = $_POST["discounts"];
+}
 
 // var_dump($productID);
 // var_dump($productName);
@@ -38,6 +42,6 @@ if (isset($_POST["categories"])) {
 
 $productModel = new Product();
 if (!empty($productID) && !empty($productName) &&  !empty($productPrice) && !empty($productDescription) && !empty($productImage) && !empty($categoriesID)) {
-    $productModel->update($productID, $productName, $productPrice, $productDescription, $productImage, $categoriesID);
+    $productModel->update($productID, $productName, $productPrice, $productDescription, $productImage, $categoriesID, $discount_id);
     header('location: manage_product.php');
 }

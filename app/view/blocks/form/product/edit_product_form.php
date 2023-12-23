@@ -40,7 +40,8 @@
             <!-- <img id="boxDisplayImage" alt="" src="" style="width: 200px; margin: 10px 0"> -->
             <input type="text" name="image" id="image" class="formbold-form-input" value="<?php echo $product["image"] ?>" />
         </div>
-
+         
+        <hr>
         <div class="row">
             <?php
             foreach ($categories as $category) :
@@ -62,6 +63,31 @@
             <?php endforeach; ?>
 
         </div>
+
+        <hr>
+        <div class="formbold-mb-3 mt-3">
+            <label for="" class="formbold-form-label"> Vocher </label>
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <?php
+                foreach ($discounts as $discount) :
+                    $productDiscounts = explode(",", $product["discount_id"]);
+                $check = "";
+                foreach($productDiscounts as $productDiscount){
+                    if($discount["discount_id"] == $productDiscount){
+                        $check = "checked";
+                    }
+                }
+                ?>
+
+                    <input type="checkbox" class="btn-check" id="<?php echo $discount["discount_code"] ?>" autocomplete="off" name="discounts[]" value="<?php echo $discount["discount_id"] ?>" <?php echo $check; ?>>
+                    <label class="btn btn-outline-primary" for="<?php echo $discount["discount_code"] ?>"><?php echo $discount["discount_code"] ?></label>
+
+                <?php
+                endforeach
+                ?>
+            </div>
+        </div>
+
         <button type="submit" class="formbold-btn">Edit</button>
         <a href="manage_products.php" class="formbold-btn-outline">Back</a>
     </form>

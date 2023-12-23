@@ -37,11 +37,16 @@
                         <li class="nav-item px-md-3">
                             <a class="nav-link active-color" aria-current="#" href="../../index">Home</a>
                         </li>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="../categories/manage_category">Manage Categories</a>
-                        </li>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="../products/manage_product">Manage Products</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../categories/manage_category">Manage Categories</a></li>
+                                <li><a class="dropdown-item" href="../products/manage_product">Manage Products</a></li>
+                                <li><a class="dropdown-item"  href="../discounts/manage_discount">Manage Vouchers</a></li>
+                                <li><a class="dropdown-item"  href="../inventory/manage_inventory">Manage Inventory</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
@@ -50,12 +55,12 @@
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
-                        <?php if (!isset($_SESSION['account'])) :?>
-                        <li class="nav-item px-3">
-                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-regular fa-user"></i>
-                            </a>
-                        </li>
+                        <?php if (!isset($_SESSION['account'])) : ?>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                            </li>
                         <?php else : ?>
                             <li class="nav-item px-3">
                                 <span style="line-height: 20px;">Hello, <?php echo $_SESSION['account']['lastname'] ?></span>
@@ -73,12 +78,12 @@
     </header>
     <!-- End Header -->
     <!-- Begin content -->
-    <?php 
-    if(!empty($slot)) :
+    <?php
+    if (!empty($slot)) :
     ?>
-    <?php echo $slot;?>
+        <?php echo $slot; ?>
 
-    <?php  endif ?>
+    <?php endif ?>
 
     <!-- End content -->
 
