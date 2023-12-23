@@ -31,3 +31,6 @@ Chức năng bao gồm:
     13. Đặt hàng.............todo
     14. Updload file lên databse............todo
     18. Thông báo xác nhận đơn hàng đến gmail của người dùng........ todo
+
+
+    21. Lịch sử mua hàng.
