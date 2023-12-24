@@ -40,7 +40,7 @@ if (isset($_COOKIE['recentView'])) {
 
 $string =  json_encode($recentViewID);
 
-setcookie('recentView', $string, time() + 120, "/");
+setcookie('recentView', $string, time() + 60, "/");
 
 
 // var_dump($recentView);

@@ -16,6 +16,43 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    // Tìm sản phẩm theo tên
+    public function getProductsByKeyWord($keyword)
+    {
+        // 2. Tạo câu SQL
+        $keyword = "%$keyword%";
+        $sql = parent::$connection->prepare("SELECT * FROM `products` WHERE name LIKE ?");
+        $sql->bind_param('s', $keyword);
+        return parent::select($sql);
+    }
+
+    // Tìm sản phẩm theo giá
+    public function getProductsByPrice($priceS, $priceE)
+    {
+        // 2. Tạo câu SQL
+        $sql = parent::$connection->prepare("SELECT * FROM products
+        WHERE price BETWEEN ? AND ?");
+        $sql->bind_param('ii', $priceS, $priceE);
+        return parent::select($sql);
+    }
+
+    // Lấy tất cả sản phẩm KÈM DANH MỤC
+    //  public function getAllProductsWithCategories()
+    //  {
+    //      // 2. Tạo câu SQL
+    //      $sql = parent::$connection->prepare("SELECT DISTINCT products.*, (
+    //          SELECT GROUP_CONCAT(categories.name,'-',categories.id)
+    //          FROM categories
+    //          INNER JOIN category_product
+    //          ON category_product.category_id =categories.id
+    //          WHERE category_product.product_id = products.id) AS category_name
+    //          FROM `products`
+    //          INNER JOIN category_product
+    //          ON products.id = category_product.product_id");
+
+    //      return parent::select($sql);
+    //  }
+
     // GET PRODUCT BY CATEGORY ID
     public function getProductsByCategory($id)
     {
@@ -199,26 +236,29 @@ class Product extends Database
     //Paginationbar
 
     //Get total product 
-    public function getTotalProducts(){
+    public function getTotalProducts()
+    {
         $sql = parent::$connection->prepare("SELECT COUNT(*) FROM `products`;");
         return parent::select($sql)[0];
     }
 
-    public function getProductWithLimit($curentPage, $perPage){
-        $startRecord = ($curentPage -1) * $perPage;
+    public function getProductWithLimit($curentPage, $perPage)
+    {
+        $startRecord = ($curentPage - 1) * $perPage;
         $sql = parent::$connection->prepare("SELECT * FROM `products` LIMIT ?, ?;");
         $sql->bind_param("ii", $startRecord, $perPage);
         return parent::select($sql);
     }
 
-    public function getPaginationBar($url, $total, $page, $perPage, $offset){
-        if($total < 0){
+    public function getPaginationBar($url, $total, $page, $perPage, $offset)
+    {
+        if ($total < 0) {
             return "";
         }
 
-        $totalLinks = ceil($total/ $perPage);
+        $totalLinks = ceil($total / $perPage);
 
-        if($total <= 1){
+        if ($total <= 1) {
             return "";
         }
 
@@ -227,33 +267,32 @@ class Product extends Database
         $previous = "";
         $next = "";
 
-        if($page > 1){
-            $first = "<li class='page-item'><a class='page-link' href='". $url ."?page=". 1 ."'><<</a></li>&nbsp;&nbsp;";
-			$previous = "<li class='page-item'><a class='page-link' href='".$url."?page=".($page - 1)."'>Previous</a></li>";
+        if ($page > 1) {
+            $first = "<li class='page-item'><a class='page-link' href='" . $url . "?page=" . 1 . "'><<</a></li>&nbsp;&nbsp;";
+            $previous = "<li class='page-item'><a class='page-link' href='" . $url . "?page=" . ($page - 1) . "'>Previous</a></li>";
         }
 
-        if($page < $totalLinks) {
-			$last = "<li class='page-item'><a class='page-link' href='". $url."?page=". $totalLinks ."'>>></a></li>&nbsp;&nbsp;";
-            $next = "<li class='page-item'><a class='page-link' href='".$url."?page=".($page + 1)."'>Next</a></li>&nbsp;&nbsp;";
-		}
+        if ($page < $totalLinks) {
+            $last = "<li class='page-item'><a class='page-link' href='" . $url . "?page=" . $totalLinks . "'>>></a></li>&nbsp;&nbsp;";
+            $next = "<li class='page-item'><a class='page-link' href='" . $url . "?page=" . ($page + 1) . "'>Next</a></li>&nbsp;&nbsp;";
+        }
 
         $from = $page - $offset;
-		$to = $page + $offset;
-		
-		if($from <= 0) {
-			$from = 1;
-		}
-		
-		if($to > $totalLinks) {
-			$to = $totalLinks;
-		}
+        $to = $page + $offset;
+
+        if ($from <= 0) {
+            $from = 1;
+        }
+
+        if ($to > $totalLinks) {
+            $to = $totalLinks;
+        }
 
         $link = "";
-        for($i = $from; $i <= $to; $i++){
-            $link = $link . "<li class='page-item'><a class='page-link ". ($i == $page? "active" : "")."' href='".$url."?page=".$i."'>".$i."</a></li>";
+        for ($i = $from; $i <= $to; $i++) {
+            $link = $link . "<li class='page-item'><a class='page-link " . ($i == $page ? "active" : "") . "' href='" . $url . "?page=" . $i . "'>" . $i . "</a></li>";
         }
 
         return $first . $previous .  $link  . $next . $last;
     }
-
 }

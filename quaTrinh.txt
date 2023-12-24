@@ -14,16 +14,14 @@ Chức năng bao gồm:
     8. Phân trang cho tất cả sản phẩm..............done
     15. Phân quyền cho admin.......................done
 
-    
+
     <--------------------Chiến--------------------->
 
-    6. Tìm kiếm sản  phẩm theo tên......todo
-    7. Tìm kiếm sản phẩm theo giá........todo
-    20. Hiển thị chi tiết sản phẩm........todo
-    10. Hiển thị các sản phẩm đã xem gần đây..........todo
-    5. Duy trì đăng nhập (Sử dụng cooki)..............todo
-
-
+    6. Tìm kiếm sản  phẩm theo tên......done
+    7. Tìm kiếm sản phẩm theo giá........done
+    20. Hiển thị chi tiết sản phẩm........done
+    10. Hiển thị các sản phẩm đã xem gần đây..........done
+    5. Duy trì đăng nhập (Sử dụng cookies)..............todo
 
     <--------------------Hoàng--------------------->
     11. Giảm giá cho sản phẩm (vocher) (Lưu database).........done

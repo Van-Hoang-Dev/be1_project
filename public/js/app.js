@@ -39,3 +39,4 @@ $(".related__products__slider").owlCarousel({
       },
   }
 });
+

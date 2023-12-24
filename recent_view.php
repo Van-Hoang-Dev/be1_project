@@ -5,11 +5,12 @@ spl_autoload_register(function ($className) {
 });
 $template = new Template();
 $productModel = new Product();
-$products = $productModel->getAllProductsWithCategories();
+$products = $productModel->getAllProduct();
 $recentView  =[];
 if (isset($_COOKIE['recentView'])) {
     $recentView = json_decode($_COOKIE['recentView']);
 }
+
 
 $data = [
     'title' => "Recent View",
