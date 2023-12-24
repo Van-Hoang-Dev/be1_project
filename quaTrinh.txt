@@ -17,10 +17,10 @@ Chức năng bao gồm:
 
     <--------------------Chiến--------------------->
 
-    6. Tìm kiếm sản  phẩm theo tên......todo
-    7. Tìm kiếm sản phẩm theo giá........todo
-    20. Hiển thị chi tiết sản phẩm........todo
-    10. Hiển thị các sản phẩm đã xem gần đây..........todo
+    6. Tìm kiếm sản  phẩm theo tên......done
+    7. Tìm kiếm sản phẩm theo giá........done
+    20. Hiển thị chi tiết sản phẩm........done
+    10. Hiển thị các sản phẩm đã xem gần đây..........done
     5. Duy trì đăng nhập (Sử dụng cookies)..............todo
 
     <--------------------Hoàng--------------------->

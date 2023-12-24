@@ -89,13 +89,14 @@
                 </div>
 
                 <!-- Pagination -->
-            <div class="number-page">
-                <ul class="pagination">
-                    <?php 
-                    echo $paginationBar; ?>
-                </ul>
-            </div>
-
+                <?php if(isset($paginationBar)) : ?>
+                <div class="number-page">
+                    <ul class="pagination">
+                        <?php 
+                        echo $paginationBar; ?>
+                    </ul>
+                </div>
+                <?php endif ?>
             </div>
         </div>
     </div>

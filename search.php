@@ -4,22 +4,38 @@ require_once 'config/database.php';
 spl_autoload_register(function ($classname) {
     require_once "app/models/$classname.php";
 });
-
+$template = new Template();
 $key = "";
-
+$priceS = "";
+$priceE = "";
 if(isset($_POST["key"])){
     $key = $_POST["key"];
 }
 
+if(isset($_POST["priceS"])){
+    $priceS = $_POST["priceS"];
+}
+
+if(isset($_POST["priceE"])){
+    $priceE = $_POST["priceE"];
+}
+
+//Get category
+$categorieModel = new Category();
+$categories = $categorieModel->getAllCategory();
 // Get product
 $productModel = new Product();
-$products = $productModel->getProductsByKeyWord($key);
-var_dump($products);
-// if ($user && password_verify($password, $user["password"])) {
-    
-//     $_SESSION['account'] = $user;
-//     header('location: index.php');
-// } else {
-//     echo "<script>alert('Đăng nhập không thành công!!!'); window.location.href='index.php';</script>";
-// }
+if (!is_numeric($priceS) && !is_numeric($priceE)) {
+    $products = $productModel->getProductsByKeyWord($key);
+}
+else {
+    $products = $productModel->getProductsByPrice($priceS, $priceE);
+}
+
+$data = [
+    "title" => "Search",
+    "slot" => $template->render("blocks/shop_layout", ["products" => $products, "categories" => $categories])
+];
+
+$template->view("layout", $data);
 

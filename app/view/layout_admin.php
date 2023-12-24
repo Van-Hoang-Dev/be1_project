@@ -16,13 +16,14 @@
     <!-- Link boostrap -->
     <link rel="stylesheet" href="../../public/bootstrap-5/css/bootstrap.min.css">
     <!-- Link fontawsome -->
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../public/fontawesome/css/all.min.css">
     <!-- link css -->
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
     <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="stylesheet" href="../../public/css/range.css">
 </head>
 
 <body>
@@ -47,17 +48,17 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
+                        <li class="nav-item">
+                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#searchModalByKey">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </a>
                         </li>
-                        <?php if (!isset($_SESSION['account'])) :?>
-                        <li class="nav-item px-3">
-                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-regular fa-user"></i>
-                            </a>
-                        </li>
+                        <?php if (!isset($_SESSION['account'])) : ?>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                            </li>
                         <?php else : ?>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -77,7 +78,7 @@
     </header>
     <!-- End Header -->
     <!-- Search -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+    <div class="modal fade" id="searchModalByKey" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
         <div class=" modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -96,21 +97,102 @@
                         <div class="d-grid gap-2 col-6 mx-auto my-3">
                             <button type="submit" class="btn btn-success text-light fw-bolder"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
                         </div>
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <a class="btn btn-success text-light fw-bolder" href="#" data-bs-toggle="modal" data-bs-target="#searchModalByPrice">
+                                Search price
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="searchModalByPrice" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Search </h1>
+                    <img class="logo" src="../../public/images/logo/Logo.png" alt="logo">
+                    <div class="spinner-border text-success ms-auto" role="status">
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="../../search">
+                    <div class="modal-body just-align-center">
+                        <div class="wrapper">
+                            <header>
+                                <h2>Price Range</h2>
+                            </header>
+                            <div class="price-input">
+                                <div class="field">
+                                    <span>Min</span>
+                                    <input type="number" class="input-min" name="priceS" value="50" readonly>
+                                </div>
+                                <div class="separator">
+                                    -
+                                </div>
+                                <div class="field">
+                                    <span>Max</span>
+                                    <input type="number" class="input-max" name="priceE" value="450" readonly>
+                                </div>
+                            </div>
+                            <div class="slider">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="range-input">
+                                <input type="range" class="range-min" min="0" max="500" value="50" step="10">
+                                <input type="range" class="range-max" min="0" max="500" value="450" step="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <button type="submit" class="btn btn-success text-light fw-bolder"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></button>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <a class="btn btn-success text-light fw-bolder" href="#" data-bs-toggle="modal" data-bs-target="#searchModalByKey">
+                                Search key
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- Begin content -->
-    <?php 
-    if(!empty($slot)) :
+    <?php
+    if (!empty($slot)) :
     ?>
-    <?php echo $slot;?>
+        <?php echo $slot; ?>
 
-    <?php  endif ?>
+    <?php endif ?>
 
+    <script>
+        let priceGap = 50; 
+        const rangeInput = document.querySelectorAll('.range-input input');
+        let priceInput = document.querySelectorAll('.price-input input');
+        let progress = document.querySelector('.slider .progress');
+        
+        rangeInput.forEach(input => {
+            input.addEventListener("input", e => {
+                let minVal = parseInt(rangeInput[0].value);
+                let maxVal = parseInt(rangeInput[1].value);
+                if (maxVal - minVal < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap;
+                    }else {
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    progress.style.left = (minVal/ rangeInput[0].max) * 100 + "%";
+                    progress.style.right = 100 - (maxVal/ rangeInput[1].max) * 100 + "%";
+                }
+            });
+        });
+    </script>
     <!-- End content -->
-
     <script src="../../public/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 </body>
 

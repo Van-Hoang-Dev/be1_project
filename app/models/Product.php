@@ -27,11 +27,12 @@ class Product extends Database
     }
 
     // Tìm sản phẩm theo giá
-    public function getProductsByPrice($price)
+    public function getProductsByPrice($priceS, $priceE)
     {
         // 2. Tạo câu SQL
-        $sql = parent::$connection->prepare("SELECT * FROM `products` WHERE price LIKE ?");
-        $sql->bind_param('i', $price);
+        $sql = parent::$connection->prepare("SELECT * FROM products
+        WHERE price BETWEEN ? AND ?");
+        $sql->bind_param('ii', $priceS, $priceE);
         return parent::select($sql);
     }
 
