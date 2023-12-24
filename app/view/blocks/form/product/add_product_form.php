@@ -11,7 +11,7 @@
         </div>
         <div class="formbold-mb-3">
             <label for="price" class="formbold-form-label"> Price </label>
-            <input type="text" name="price" id="price" class="formbold-form-input" />
+            <input type="number" name="price" id="price" class="formbold-form-input" />
         </div>
         <div class="formbold-mb-3">
             <label for="description" class="formbold-form-label"> Description </label>
@@ -19,7 +19,9 @@
         </div>
         <div class="formbold-mb-3">
             <label for="image" class="formbold-form-label"> Image </label>
-            <input type="file" name="image" id="image" class="formbold-form-input" />
+            <div class="boxDisplayImages my-3" id="boxDisplayImages"></div>
+            <input type="file" name="image[]" id="image" multiple accept="image/*" class="formbold-form-input">
+            <!-- <input type="file" name="image" id="image" class="formbold-form-input" /> -->
         </div>
         <hr>
         <div class="row mt-3">
@@ -58,11 +60,27 @@
 </div>
 </div>
 <script type="text/javascript">
-    let image = document.getElementById("image");
-    let boxDisplayImage = document.getElementById("boxDisplayImage");
+    // let image = document.getElementById("image");
+    // let boxDisplayImages = document.getElementById("boxDisplayImages");
 
-    image.addEventListener("input", (e) => {
-        boxDisplayImage.src = URL.createObjectURL(e.target.files[0]);
-        console.log(URL.createObjectURL(e.target.files[0]));
-    })
+    // image.addEventListener("input", (e) => {
+    //     boxDisplayImages.src = URL.createObjectURL(e.target.files[0]);
+    //     console.log(URL.createObjectURL(e.target.files[0]));
+    // })
+    let image = document.getElementById("image");
+    let boxDisplayImages = document.getElementById("boxDisplayImages");
+
+    image.addEventListener("change", (e) => {
+        // Xóa hết các hình đã hiển thị trước đó
+        boxDisplayImages.innerHTML = "";
+
+        // Lặp qua từng file và hiển thị nó
+        for (let i = 0; i < e.target.files.length; i++) {
+            let img = document.createElement("img");
+            img.src = URL.createObjectURL(e.target.files[i]);
+            img.className = "displayedImage";
+            boxDisplayImages.appendChild(img);
+            console.log(URL.createObjectURL(e.target.files[i]));
+        }
+    });
 </script>

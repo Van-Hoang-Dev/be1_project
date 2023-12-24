@@ -75,17 +75,18 @@ class Product extends Database
     }
 
     //Add producut function
-    public function store($productName, $prodcutPrice, $productDescription, $productImage, $categoriesID, $discount_id)
+    public function store($productName, $prodcutPrice, $productDescription, $categoriesID, $discount_id, $productImages)
     {
-        $sql = parent::$connection->prepare("INSERT INTO `products`(`name`, `price`, `description`, `image`) VALUES (?,?,?,?)");
-        $sql->bind_param("siss", $productName, $prodcutPrice, $productDescription, $productImage);
+        $sql = parent::$connection->prepare("INSERT INTO `products`(`name`, `price`, `description`) VALUES (?,?,?)");
+        $sql->bind_param("sis", $productName, $prodcutPrice, $productDescription);
         $sql->execute();
 
         //Lay id cua san pham vua them
         $insertedProduct = parent::$connection->insert_id;
         $value = "";
         $type = "";
-
+        
+        //Them vao bang cateogory_product
         $insertedValues = [];
         foreach ($categoriesID as $category) {
             $value .= '(?,?),';
@@ -97,6 +98,7 @@ class Product extends Database
         $sql->bind_param($type, ...$insertedValues);
         $sql->execute();
         
+        //Them vao bang discount_product
         $value = "";
         $type = "";
         $insertedValues = [];
@@ -107,6 +109,20 @@ class Product extends Database
         }
         $value  =  substr($value, 0, -1);
         $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
+        $sql->bind_param($type, ...$insertedValues);
+        $sql->execute();
+
+        //Them vao bang image
+        $value = "";
+        $type = "";
+        $insertedValues = [];
+        foreach($productImages as $image){
+            $value .= '(?,?),';
+            $type .= 'si';
+            array_push($insertedValues, $image, $insertedProduct);
+        }
+        $value  =  substr($value, 0, -1);
+        $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`) VALUES $value");
         $sql->bind_param($type, ...$insertedValues);
         return $sql->execute();
     }
