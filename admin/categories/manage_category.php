@@ -9,7 +9,7 @@ $categoryModel = new Category();
 $categories = $categoryModel->getAllCategory();
 
 $data = ["title"=>"Categories Management", 
-        "slot" => $template->render("blocks/category_management", ["categories"=>$categories])];
+        "slot" => $template->render("blocks/manage/category_management", ["categories"=>$categories])];
 
 
 $template->view("layout_admin", $data);

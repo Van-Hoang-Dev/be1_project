@@ -40,11 +40,16 @@
                         <li class="nav-item px-md-3">
                             <a class="nav-link active-color" aria-current="#" href="../../index">Home</a>
                         </li>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="../categories/manage_category">Manage Categories</a>
-                        </li>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="../products/manage_product">Manage Products</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="../categories/manage_category">Manage Categories</a></li>
+                                <li><a class="dropdown-item" href="../products/manage_product">Manage Products</a></li>
+                                <li><a class="dropdown-item"  href="../discounts/manage_discount">Manage Vouchers</a></li>
+                                <li><a class="dropdown-item"  href="../inventory/manage_inventory">Manage Inventory</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">

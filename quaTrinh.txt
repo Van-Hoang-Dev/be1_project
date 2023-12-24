@@ -24,9 +24,11 @@ Chức năng bao gồm:
     5. Duy trì đăng nhập (Sử dụng cookies)..............todo
 
     <--------------------Hoàng--------------------->
-
-    11. Giảm giá cho sản phẩm (Lưu database).........todo
-    12. Quản lý sản phẩm tồn kho.............todo
-    13. Đặt hàng.............todo
+    11. Giảm giá cho sản phẩm (vocher) (Lưu database).........done
+    12. Quản lý sản phẩm tồn kho.............done
+    13. Đặt hàng.............do
     14. Updload file lên databse............todo
     18. Thông báo xác nhận đơn hàng đến gmail của người dùng........ todo
+
+
+    21. Lịch sử mua hàng.
