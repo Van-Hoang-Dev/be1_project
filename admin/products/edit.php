@@ -18,7 +18,7 @@ if(isset($_POST["id"])){
 }
 
 $prodcutModel = new Product();
-$product = $prodcutModel->getProductWithCategoryAndDiscountByProductID($productID);
+$product = $prodcutModel->getProductWithCategoryDiscountAndImageByProductID($productID);
 
 $data = [
     "title" => "Edit product",

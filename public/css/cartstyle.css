@@ -16,11 +16,12 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     list-style: none;
     display: flex;
     gap: 50px;
+    margin-bottom: 50px;
 }
 
 .cart li {
     display: inline;
-    font-size: 1.5em;
+    font-size: 18px;
     color: #7e7e7e;
 }
 
@@ -72,36 +73,20 @@ font-family: 'Plus Jakarta Sans', sans-serif;
   .cart a {
     text-decoration: none;
 }
-.cart th {
-    font-weight: 600;
-}
-.cart td {
-    padding: 15px;
-}
-.cart .form-control {
-    padding: 0.8rem;
-}
+
 
 .cart .percent-cart {
     border: 1px dotted #7e7e7e;
 }
 
-.cart table { 
-    text-indent: initial;
-    text-align: center;
-    border: #7e7e7e solid 0.5px;
-    width: 100%;
-    border-collapse: collapse;
-}
 
 .cart .col-xl-8 .col-lg-12 .col-md-12 .col-12 {
     width: 100%;
     overflow: auto;
 }
-.cart .product-thumbnail {
-    padding: 15px;
-    display: flex;
-    margin-left: 30px;
+.cart table td {
+    vertical-align: middle;
+    text-align: center;
 }
 
 .cart .product-name {
@@ -188,6 +173,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 
 .cart .actions {
     padding: 15px;
+    margin-top: 20px;
     vertical-align: middle;
 }
 .cart .bottom-cart {
@@ -197,7 +183,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     flex-wrap: wrap;
 }
 .cart .actions .coupon {
-    flex: 0 0 50%;
+    /* flex: 0 0 50%; */
     display: flex;
 }
 .cart.actions .coupon input {

@@ -37,10 +37,30 @@
             <label for="image" class="formbold-form-label">
                 Image
             </label>
-            <!-- <img id="boxDisplayImage" alt="" src="" style="width: 200px; margin: 10px 0"> -->
-            <input type="text" name="image" id="image" class="formbold-form-input" value="<?php echo $product["image"] ?>" />
+            <div class="boxDisplayImages my-3" id="boxDisplayImages">
+            <?php 
+            $productImages = explode(",", $product["images"]);
+            foreach($productImages as $image):    
+            ?>
+            <img src="../../public/images/content/products/<?php echo $image ?>" alt="<?php echo $product["name"] ?>">
+            <?php endforeach; ?>
+            <hr>
+            </div>
+            <input type="hidden" name="existing_images" value="<?php echo $product["images"] ?>">
+            <input type="file" name="image[]" id="image" multiple accept="image/*" class="formbold-form-input">
         </div>
-         
+        <div class="formbold-mb-3">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="choose_update" id="btnradio1" autocomplete="off" checked value="1">
+                <label class="btn btn-outline-primary" for="btnradio1">Chosse new update</label>
+
+                <input type="radio" class="btn-check" name="choose_update" id="btnradio2" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio2">Keep the both</label>
+               
+                <input type="radio" class="btn-check" name="choose_update" id="btnradio3" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio3">Keep the old</label>
+            </div>
+        </div>
         <hr>
         <div class="row">
             <?php
@@ -95,11 +115,19 @@
 </div>
 <script type="text/javascript">
     let image = document.getElementById("image");
-    let boxDisplayImage = document.getElementById("boxDisplayImage");
-    console.log(image);
+    let boxDisplayImages = document.getElementById("boxDisplayImages");
+    let content = boxDisplayImages.innerHTML;
 
-    image.addEventListener("input", (e) => {
-        boxDisplayImage.src = URL.createObjectURL(e.target.files[0]);
-        console.log(URL.createObjectURL(e.target.files[0]));
-    })
+    image.addEventListener("change", (e) => {
+        // Xóa hết các hình đã hiển thị trước đó
+        boxDisplayImages.innerHTML = content +  "";
+        // Lặp qua từng file và hiển thị nó
+        for (let i = 0; i < e.target.files.length; i++) {
+            let img = document.createElement("img");
+            img.src = URL.createObjectURL(e.target.files[i]);
+            img.className = "displayedImage";
+            boxDisplayImages.appendChild(img);
+            console.log(URL.createObjectURL(e.target.files[i]));
+        }
+    });
 </script>

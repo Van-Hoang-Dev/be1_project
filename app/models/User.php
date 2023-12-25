@@ -18,4 +18,11 @@
             return $sql->execute();
         }
 
+        //Get user by id
+        public function getUserByID($userID){
+            $sql = parent::$connection->prepare("SELECT * FROM `member` WHERE id = ?;");
+            $sql->bind_param("i", $userID);
+            return parent::select($sql)[0];
+        }
+
     }

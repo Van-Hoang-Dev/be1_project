@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+table thead tr th{
+    font-weight: 700;
+    vertical-align: middle;
+}
+
 table tbody tr td{
     font-weight: 300;
     vertical-align: middle;

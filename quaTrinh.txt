@@ -26,8 +26,8 @@ Chức năng bao gồm:
     <--------------------Hoàng--------------------->
     11. Giảm giá cho sản phẩm (vocher) (Lưu database).........done
     12. Quản lý sản phẩm tồn kho.............done
-    13. Đặt hàng.............do
-    14. Updload file lên databse............todo
+    14. Updload file lên databse............done
+    13. Đặt hàng.............todo
     18. Thông báo xác nhận đơn hàng đến gmail của người dùng........ todo
 
 

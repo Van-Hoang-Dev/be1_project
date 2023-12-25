@@ -10,16 +10,17 @@
         <div class="woocommerce-page-header">
             <ul>
                 <li class="shopping-cart-link"> <a href="./viewcart">Cart</a></li>
-                <li class="checkout-link"><a href="./checkout.html">Checkout</a></li>
+                <li class="checkout-link"><a href="checkout.php">Checkout</a></li>
                 <li class="order-tracking-link active"><a href="./odertracking.html">Order Tracking</a></li>
             </ul>
         </div>
         <div class="row">
             <div class="col-xl-8 col-lg-12 col-md-12 col-12">
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th class="product-thumbnail">Product</th>
+                            <th></th>
                             <th class="product-price">Price</th>
                             <th class="product-quantity">Quantity</th>
                             <th class="product-subtotal">Subtotal</th>
@@ -34,9 +35,9 @@
                         <tr class="woocommerce-cart-form__cart-item cart_item">
                             <td class="product-thumbnail">
                                 <a href=""><img width="80" height="80" src="<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
-                                <div class="product-name d-flex justify-content-center fw-bold align-middle">
-                                    <a href="#" class="text-black"><?php echo $item["name"] ?></a>
-                                </div>
+                            </td>
+                            <td>
+                            <a href="#" class="text-black"><?php echo $item["name"] ?></a>
                             </td>
 
                             <td class="product-price" data-title="Price">
@@ -61,10 +62,15 @@
                         ?>
                         <tr>
                             <td colspan="6" class="actions">
+                            <hr>
                                 <div class="bottom-cart">
                                     <div class="coupon">
-                                        <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
-                                        <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply</button>
+                                    <form action="#" class=" d-flex flex-row justify-content-center">
+                            <div class="formbold-mb-3" style="margin: 0;">
+                                <input type="text" name="voucher" id="voucher" class="formbold-form-input"/>
+                            </div>
+                            <button type="submit" class="formbold-btn" style="margin: 0; margin-left: 20px;">Apply voucher</button>
+                        </form>
                                     </div>
                                     <h2><a href="./shop">Continue Shopping</a></h2>
                                 </div>

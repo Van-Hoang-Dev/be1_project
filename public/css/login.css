@@ -2,7 +2,6 @@
   * {
     margin: 0;
     padding: 0;
-    font-weight: 300;
     box-sizing: border-box;
   }
 
@@ -17,10 +16,6 @@
 }
 
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9;
-  }
   .formbold-mb-3 {
     margin-bottom: 15px;
   }
@@ -190,5 +185,6 @@
   border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
+    text-align: center;
 }
 

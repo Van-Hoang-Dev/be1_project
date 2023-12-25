@@ -21,7 +21,7 @@
         public function getCartByProductUser($userID, $productID){
             $sql = parent::$connection->prepare("SELECT * FROM cart_products WHERE user_id = ? AND product_id = ? ");
             $sql->bind_param("ii", $userID, $productID);
-            return parent::select($sql)[0];
+            return parent::select($sql);
         }
 
         //Ham cap nhat  so luong san pham trong gio hang

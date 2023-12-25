@@ -60,13 +60,6 @@
 </div>
 </div>
 <script type="text/javascript">
-    // let image = document.getElementById("image");
-    // let boxDisplayImages = document.getElementById("boxDisplayImages");
-
-    // image.addEventListener("input", (e) => {
-    //     boxDisplayImages.src = URL.createObjectURL(e.target.files[0]);
-    //     console.log(URL.createObjectURL(e.target.files[0]));
-    // })
     let image = document.getElementById("image");
     let boxDisplayImages = document.getElementById("boxDisplayImages");
 

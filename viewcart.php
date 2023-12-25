@@ -8,10 +8,11 @@ spl_autoload_register(
 );
 
 $template = new Template();
-$cart = "";
-if (isset($cart)) {
+$cart = [];
+if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
 }
+
 
 $data = [
     "title" => "Shopping Cart",

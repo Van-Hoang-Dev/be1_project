@@ -100,6 +100,29 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    //Get product with category and discount by id
+    public function getProductWithCategoryDiscountAndImageByProductID($productID)
+    {
+        $sql = parent::$connection->prepare("SELECT products.*, 
+        GROUP_CONCAT(DISTINCT category_product.category_id) as 'category_id',
+        GROUP_CONCAT(DISTINCT discount_product.discount_id) as 'discount_id',
+        GROUP_CONCAT(DISTINCT images.image) as 'images'
+         FROM `products` 
+         INNER JOIN category_product 
+         ON category_product.product_id = products.id 
+         INNER JOIN discount_product 
+         ON discount_product.product_id = products.id
+         INNER JOIN images 
+         ON images.product_id = products.id
+         WHERE id=?
+        
+         GROUP BY
+         products.id, products.name, products.price;");
+
+        $sql->bind_param("i", $productID);
+        return parent::select($sql)[0];
+    }
+
     //Get Product by categoyID function
     public function getProductHaveCategoryID($id)
     {
@@ -165,14 +188,14 @@ class Product extends Database
     }
 
     //Update product function
-    public function update($productID, $productName, $productPrice, $productDescription, $productImage, $categoriesID, $discount_id)
+    public function update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $productImages)
     {
-        $sql = parent::$connection->prepare("UPDATE `products` SET `name`= ?,`price`= ?,`description`= ?,`image`= ? WHERE id=? ;");
-        $sql->bind_param("sissi", $productName, $productPrice, $productDescription, $productImage, $productID);
+        $sql = parent::$connection->prepare("UPDATE `products` SET `name`= ?,`price`= ?,`description`= ?  WHERE id=? ;");
+        $sql->bind_param("sisi", $productName, $productPrice, $productDescription, $productID);
         $sql->execute();
 
 
-        //Category
+        /******************Categoty*************************/
         //Xoa cac dinh muc cu
         $sql = parent::$connection->prepare("DELETE FROM `category_product` WHERE product_id = ?");
         $sql->bind_param("i", $productID);
@@ -193,8 +216,30 @@ class Product extends Database
         $sql->bind_param($type, ...$insertedValues);
         $sql->execute();
 
-        //Discount
-        //Xoa discount cu
+        /******************Images*************************/
+        //Xoa images
+        if(!empty($productImages)){
+            $sql = parent::$connection->prepare("DELETE FROM `images` WHERE product_id= ?");
+            $sql->bind_param("i", $productID);
+            $sql->execute();
+
+            //Them vao bang image
+            $value = "";
+            $type = "";
+            $insertedValues = [];
+            foreach($productImages as $image){
+                $value .= '(?,?),';
+                $type .= 'si';
+                array_push($insertedValues, $image, $productID);
+            }
+            $value  =  substr($value, 0, -1);
+            $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`) VALUES $value");
+            $sql->bind_param($type, ...$insertedValues);
+            $sql->execute();
+        }
+
+        /******************Categoty*************************/
+        //Xoa discount
         $sql = parent::$connection->prepare("DELETE FROM `discount_product` WHERE product_id= ?");
         $sql->bind_param("i", $productID);
         $sql->execute();
@@ -210,8 +255,6 @@ class Product extends Database
         $value  =  substr($value, 0, -1);
         $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
         $sql->bind_param($type, ...$insertedValues);
-
-
         return $sql->execute();
     }
 
@@ -227,9 +270,12 @@ class Product extends Database
         $sql->bind_param("i", $productID);
         $sql->execute();
 
+        $sql = parent::$connection->prepare("DELETE FROM `images` WHERE product_id =?");
+        $sql->bind_param("i", $productID);
+        $sql->execute();
+
         $sql = parent::$connection->prepare("DELETE FROM `products` WHERE id =?");
         $sql->bind_param("i", $productID);
-
         return $sql->execute();
     }
 

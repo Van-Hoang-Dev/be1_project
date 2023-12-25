@@ -43,6 +43,7 @@ foreach ($_SESSION["cart"] as &$item) {
 if(!$product_exists){
     array_push($_SESSION["cart"], $cart);
 }
+var_dump($_SESSION["cart"]);
 
 //Them cart vao databse
 if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
@@ -57,9 +58,7 @@ if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
         }
     }
     
-    var_dump($userID);
-    var_dump($productID);
-    var_dump($cartModel->addCartToDB($userID, $productID, $quantity));
+    $cartModel->addCartToDB($userID, $productID, $quantity);
 }
 
 header('location: viewcart');
