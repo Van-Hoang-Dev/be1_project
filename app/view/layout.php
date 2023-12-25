@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="public/css/range.css">
     <link rel="stylesheet" href="public/css/login.css">
     <link rel="stylesheet" href="public/css/checkoutstyle.css">
+    <link rel="stylesheet" href="public/css/odertrackingstyle.css">
 </head>
 
 <body>
@@ -95,9 +96,12 @@
                             </a>
                         </li>
                         <?php else : ?>
-                            <li class="nav-item px-3">
+                            <li class="nav-item px-3 d-flex">
                                 <a class="nav-link icon-header">
                                     Hello,  <?php echo $_SESSION['account']['lastname'] ?>
+                                </a>
+                                <a class="nav-link icon-header" data-bs-toggle="modal" data-bs-target="#updateInfoModal">
+                                    <i class="bi bi-feather"></i>
                                 </a>
                             </li>
                             <li class="nav-item px-3">
@@ -113,6 +117,55 @@
     </header>
 
     <!-- Modal -->
+    <!-- Reset Infomation -->
+    <?php if (isset($_SESSION['account'])) : ?>
+    <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Reset Infomation </h1>
+                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="reset_info.php">
+                    <div class="modal-body">
+                    <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" value="<?php echo $_SESSION['account']['firstname'] ?>" aria-label="First name" name="firstname">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" value="<?php echo $_SESSION['account']['lastname'] ?>" aria-label="Last name" name="lastname">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['account']['username'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $_SESSION['account']['address'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">New password</label>
+                            <input type="password" class="form-control" id="password"  name="password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid col-6 mx-auto my-3">
+                            <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
     <!-- Search -->
     <div class="modal fade" id="searchModalByKey" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
         <div class=" modal-dialog modal-dialog-centered">
@@ -296,16 +349,6 @@
 
                             <input type="radio" class="btn-check" name="gender" id="other" autocomplete="off" value="3">
                             <label class="btn" for="other">Other</label>
-                        </div>
-
-                        <!-- Remember Info-->
-                        <div class="col-auto">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                                <label class="form-check-label" for="autoSizingCheck">
-                                    Remember me
-                                </label>
-                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

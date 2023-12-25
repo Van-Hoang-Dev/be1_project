@@ -22,34 +22,36 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="woocommerce">
-                    <div class="woocommerce-page-header">
-                        <ul>
-                            <li class="shopping-cart-link"> <a href="./cart.html">Cart</a></li>
-                            <li class="checkout-link"><a href="./checkout.html">Checkout</a></li>
-                            <li class="order-tracking-link active"><a href="./odertracking.html">Order Tracking</a></li>
-                        </ul>
-                    </div>
-                    <form action="./odertracking.html" method="post"
-                        class="woocommerce-form woocommerce-form-track-order track_order">
-                        <p style="padding: 0px 0px 60px;" class="text-black">To track your order please enter your Order ID in the box below and press the "Track" button.
-                            This was given to you on your receipt and in the confirmation email you should have
-                            received.
-                        </p>
-                        <form>
-                            <div class="mt-5 mb-5">
-                                <label for="order-id" class="form-label"><b class="text-black">Order ID</b></label>
-                                <input type="text" class="form-control" id="order-id" name="orderID" placeholder="Found in your order confirmation email." height="30px">
-                            </div>
-                            <div class="mb-5">
-                                <label for="billingEmail" class="form-label"><b class="text-black">Billing Email</b></label>
-                                <input type="password" class="form-control" id="billingEmail" name="billingEmail" placeholder="Email you used during checkout" height="30px">
-                            </div>
-                            <div class="d-grid">
-                                <button class="form-control btn btn-primary button" type="button" height="30px"><b>Track</b></button>
-                              </div>
+                <div class="order-tracking">
+                    <div class="woocommerce">
+                        <div class="woocommerce-page-header">
+                            <ul>
+                                <li class="shopping-cart-link"> <a href="./cart.html">Cart</a></li>
+                                <li class="checkout-link"><a href="./checkout.html">Checkout</a></li>
+                                <li class="order-tracking-link active"><a href="./odertracking.html">Order Tracking</a></li>
+                            </ul>
+                        </div>
+                        <form action="./odertracking.html" method="post"
+                            class="woocommerce-form woocommerce-form-track-order track_order">
+                            <p style="padding: 0px 0px 60px;" class="text-black">To track your order please enter your Order ID in the box below and press the "Track" button.
+                                This was given to you on your receipt and in the confirmation email you should have
+                                received.
+                            </p>
+                            <form>
+                                <div class="mt-5 mb-5">
+                                    <label for="order-id" class="form-label"><b class="text-black">Order ID</b></label>
+                                    <input type="text" class="form-control" id="order-id" name="orderID" placeholder="Found in your order confirmation email." height="30px">
+                                </div>
+                                <div class="mb-5">
+                                    <label for="billingEmail" class="form-label"><b class="text-black">Billing Email</b></label>
+                                    <input type="password" class="form-control" id="billingEmail" name="billingEmail" placeholder="Email you used during checkout" height="30px">
+                                </div>
+                                <div class="d-grid">
+                                    <button class="form-control btn btn-primary button" type="button" height="30px"><b>Track</b></button>
+                                  </div>
+                            </form>
                         </form>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

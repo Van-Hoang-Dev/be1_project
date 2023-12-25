@@ -25,4 +25,12 @@
             return parent::select($sql)[0];
         }
 
+        // Reset Info Account
+        public function resetAccount($firstname, $lastname, $username, $email, $phone, $address, $password){
+            $sql = parent::$connection->prepare("UPDATE member 
+                                                SET `firstname` = ?, `lastname`= ?, `username`= ?, `email` = ?, `address`= ?, `password` =?  
+                                                WHERE `phone`= ?");
+            $sql->bind_param("sssssss", $firstname, $lastname, $username, $email, $address, $password , $phone );
+            return $sql->execute();
+        }
     }
