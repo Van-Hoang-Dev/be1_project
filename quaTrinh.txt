@@ -14,7 +14,6 @@ Chức năng bao gồm:
     8. Phân trang cho tất cả sản phẩm..............done
     15. Phân quyền cho admin.......................done
 
-
     <--------------------Chiến--------------------->
 
     6. Tìm kiếm sản  phẩm theo tên......done
@@ -24,6 +23,7 @@ Chức năng bao gồm:
     5. Duy trì đăng nhập (Sử dụng cookies)..............todo
 
     <--------------------Hoàng--------------------->
+    
     11. Giảm giá cho sản phẩm (vocher) (Lưu database).........done
     12. Quản lý sản phẩm tồn kho.............done
     14. Updload file lên databse............done
