@@ -54,14 +54,8 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <?php if (isset($_SESSION['account']) && $_SESSION['account']['role'] == 1) : ?>
-                        <li class="nav-item px-md-3 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Manage
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./admin/categories/manage_category">Manage Categories</a></li>
-                                <li><a class="dropdown-item" href="./admin/products/manage_product">Manage Products</a></li>
-                            </ul>
+                        <li class="nav-item px-md-3">
+                            <a class="nav-link" href="./admin/products/manage_product">Manage</a>
                         </li>
                         <?php endif ?>
                         <li class="nav-item px-md-3 dropdown">
