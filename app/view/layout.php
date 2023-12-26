@@ -255,17 +255,18 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Enter your phone number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" autofocus>
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus value="<?php if(isset($_COOKIE["member_phone"])) { echo $_COOKIE["member_phone"]; } ?>">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Enter your password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" value="<?php if(isset($_COOKIE["random_password"])) { echo $_COOKIE["random_password"]; } ?>">
                         </div>
                     </div>
-                    <!-- Remember Info-->
+                    <!-- Remember Info -->
                     <div class="col-auto">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                            <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="remember-account" <?php if(isset($_COOKIE["random_selector"])) { ?> checked
+                <?php } ?>>
                             <label class="form-check-label" for="autoSizingCheck">
                                 Remember me
                             </label>
@@ -273,7 +274,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto my-3">
-                            <input type="submit" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
+                            <input type="submit" name="login" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
                         </div>
                         <div>
                             <p class="login-text">Do not have an account ?</p>
@@ -307,28 +308,22 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <!-- <label for="email" class="form-label">Enter your email</label> -->
                             <input type="text" class="form-control" id="username" name="username" placeholder="Username*" required>
                         </div>
                         <div class="mb-3">
-                            <!-- <label for="email" class="form-label">Enter your email</label> -->
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email*" required>
                         </div>
                         <div class="mb-3">
-                            <!-- <label for="email" class="form-label">Enter your email</label> -->
                             <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number*" required>
                         </div>
                         <div class="mb-3">
-                            <!-- <label for="email" class="form-label">Enter your email</label> -->
                             <input type="text" class="form-control" id="address" name="address" placeholder="Adress*" required>
                         </div>
                         <div class="mb-3">
-                            <!-- <label for="password" class="form-label">Enter your password</label> -->
                             <input type="password" class="form-control" id="password" name="password" placeholder="New password*" required>
                         </div>
 
                         <div class="mb-3">
-                            <!-- <label for="password" class="form-label">Enter your password</label> -->
                             <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Comfirm password*" required>
                         </div>
 
@@ -358,17 +353,12 @@
             </div>
         </div>
     </div>
-
-
     <!-- End Header -->
     <!-- Begin content -->
     <?php
     if (!empty($slot)) :
-    ?>
-        <?php echo $slot; ?>
-
-    <?php endif ?>
-
+        echo $slot; 
+    endif ?>
     <!-- End content -->
     <!-- Begin Footer -->
     <footer>
@@ -387,11 +377,10 @@
                                 <input type="email" name="email" placeholder="Your email adress...">
                                 <button type="button">Subscribe</button>
                             </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
-        </div>
         </div>
         <div class="container">
             <div class="footer-info">
