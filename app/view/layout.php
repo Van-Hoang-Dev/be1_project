@@ -96,8 +96,8 @@
                         </li>
                         <?php else : ?>
                             <li class="nav-item px-3">
-                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
+                                <a class="nav-link icon-header">
+                                    Hello,  <?php echo $_SESSION['account']['lastname'] ?>
                                 </a>
                             </li>
                             <li class="nav-item px-3">
@@ -215,6 +215,15 @@
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
+                    <!-- Remember Info-->
+                    <div class="col-auto">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                            <label class="form-check-label" for="autoSizingCheck">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto my-3">
                             <input type="submit" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
@@ -289,7 +298,7 @@
                             <label class="btn" for="other">Other</label>
                         </div>
 
-                        <!-- Remember Infor-->
+                        <!-- Remember Info-->
                         <div class="col-auto">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="autoSizingCheck">
