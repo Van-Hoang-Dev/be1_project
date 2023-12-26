@@ -21,6 +21,13 @@ class Inventory extends Database{
         $sql= parent::$connection->prepare("INSERT INTO `inventory`(`product_id`, `date_add`,`input_quantity`) VALUES (?,?,?)");
         
         $sql->bind_param("isi", $inventoryItem["product_id"], $inventoryItem["date_add"], $inventoryItem["input_quantity"]);
+        $sql->execute();
+
+        $sql = parent::$connection->prepare("UPDATE products SET 
+        products.current_quantity = (SELECT SUM(input_quantity) 
+        FROM inventory WHERE inventory.product_id = products.id 
+        GROUP BY inventory.product_id) WHERE products.id = ?;");
+        $sql->bind_param("i", $inventoryItem["product_id"]);
         return $sql->execute();
     }
 

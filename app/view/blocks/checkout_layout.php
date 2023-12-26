@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <form action="#" method="post" class="checkout woocommerce-checkout pt-5">
+        <form action="order.php" method="post" class="checkout woocommerce-checkout pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8 col-lg-7 col-md-12 col-12">
@@ -41,32 +41,47 @@
                                         <?php
                                         if (!empty($user)) :
                                         ?>
-                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_street_address_field" data-priority="50">
-                                                <label for="billing_street_address" class="">Address&nbsp;
+                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_first_name_field" data-priority="10">
+                                                <label for="billing_first_name" class="">First name&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_street_address" placeholder="House number and street name" id="billing_street_address" value="<?php echo $user["address"] ?>">
+                                                    <input type="text" class="input-text " name="billing_first_name" id="billing_first_name" autocomplete="given-name" required value="<?php echo $user["firstname"] ?>">
                                                 </span>
                                             </p>
-                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_postcode_zip_field" data-priority="70">
+                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_last_name_field" data-priority="20">
+                                                <label for="billing_last_name" class="">Last name&nbsp;
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label><span class="woocommerce-input-wrapper">
+                                                    <input type="text" class="input-text " name="billing_last_name" id="billing_last_name" autocomplete="given-name" required value="<?php echo $user["lastname"] ?>">
+                                                </span>
+                                            </p>
+                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_street_address_field" data-priority="50">
+                                                <label for="billing_street_address" class="">Street address&nbsp;
+                                                    <abbr class="required" title="required">*</abbr>
+                                                </label><span class="woocommerce-input-wrapper">
+                                                    <input type="text" class="input-text " name="billing_street_address" placeholder="House number and street name" id="billing_street_address" value="<?php echo $user["address"] ?>" required>
+                                                </span>
+                                            </p>
+                                            <p class="form-row address-field form-row-wide" id="billing_address_2_field" data-priority="60"><span class="woocommerce-input-wrapper"><input type="text" class="input-text " name="billing_address_2" id="billing_address_2" placeholder="Apartment, suite, unit, etc." value="" autocomplete="address-line2" data-placeholder="Apartment, suite, unit, etc."></span></p>
+                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_postcode_zip_field" data-priority="70" required>
                                                 <label for="billing_postcode_zip" class="">Postcode zip&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_postcode_zip" id="billing_postcode_zip" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_postcode_zip" id="billing_postcode_zip" value="<?php echo $user["postcode_zip"] ?>" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_phone_field" data-priority="10">
                                                 <label for="billing_phone" class="">Phone&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone" value="<?php echo $user["phone"] ?>" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone" value="<?php echo $user["phone"] ?>" autocomplete="given-name" readonly>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_email_address_field" data-priority="10">
                                                 <label for="billing_email_address" class="">Email address&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_email_address" id="billing_email_address" value="<?php echo $user["email"] ?>" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_email_address" id="billing_email_address" value="<?php echo $user["email"] ?>" autocomplete="given-name" readonly>
                                                 </span>
                                             </p>
                                         <?php else : ?>
@@ -74,50 +89,50 @@
                                                 <label for="billing_first_name" class="">First name&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_first_name" id="billing_first_name" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_first_name" id="billing_first_name" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_last_name_field" data-priority="20">
                                                 <label for="billing_last_name" class="">Last name&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_last_name" id="billing_last_name" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_last_name" id="billing_last_name" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_street_address_field" data-priority="50">
                                                 <label for="billing_street_address" class="">Street address&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_street_address" placeholder="House number and street name" id="billing_street_address" value="">
+                                                    <input type="text" class="input-text " name="billing_street_address" placeholder="House number and street name" id="billing_street_address" value="" required>
                                                 </span>
                                             </p>
                                             <p class="form-row address-field form-row-wide" id="billing_address_2_field" data-priority="60"><span class="woocommerce-input-wrapper"><input type="text" class="input-text " name="billing_address_2" id="billing_address_2" placeholder="Apartment, suite, unit, etc." value="" autocomplete="address-line2" data-placeholder="Apartment, suite, unit, etc."></span></p>
-                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_postcode_zip_field" data-priority="70">
+                                            <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_postcode_zip_field" data-priority="70" required>
                                                 <label for="billing_postcode_zip" class="">Postcode zip&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_postcode_zip" id="billing_postcode_zip" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_postcode_zip" id="billing_postcode_zip" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_town_city_field" data-priority="10">
                                                 <label for="billing_town_city" class="">Town / City&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_town_city" id="billing_town_city" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_town_city" id="billing_town_city" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_phone_field" data-priority="10">
                                                 <label for="billing_phone" class="">Phone&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_phone" id="billing_phone" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                             <p class="form-row form-row-first validate-required woocommerce-validated" id="billing_email_address_field" data-priority="10">
                                                 <label for="billing_email_address" class="">Email address&nbsp;
                                                     <abbr class="required" title="required">*</abbr>
                                                 </label><span class="woocommerce-input-wrapper">
-                                                    <input type="text" class="input-text " name="billing_email_address" id="billing_email_address" value="" autocomplete="given-name">
+                                                    <input type="text" class="input-text " name="billing_email_address" id="billing_email_address" value="" autocomplete="given-name" required>
                                                 </span>
                                             </p>
                                         <?php endif; ?>

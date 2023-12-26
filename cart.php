@@ -15,13 +15,15 @@ if(isset($_POST["add_to_cart"])){
 
 $productModel = new Product();
 $product = $productModel->getProductByID($productID);
+$productCurrentQuantity = $productModel->getCurrentQuantityOfProductByProductID($productID);
 
 $cart = array(
     "id" => $product["id"],
     "name" => $product["name"],
     "price" => $product["price"],
     "image" =>  $product["image"],
-    "quantity" => 1
+    "quantity" => 1,
+    "subtotal" => $product["price"]
 );
 
 // Kiem tra gio hang da duoc tao hay chua
@@ -33,8 +35,14 @@ if(!isset($_SESSION["cart"])){
 $product_exists = false;
 foreach ($_SESSION["cart"] as &$item) {
     if($item["id"] == $productID){
+        if($item["quantity"] < $productCurrentQuantity["current_quantity"]){
         $item["quantity"]++;
+        $item["subtotal"] = ($item["price"] * $item["quantity"]);
         $product_exists = true;
+        }
+        else{
+            $item["quantity"] = $productCurrentQuantity["current_quantity"];
+        }
         break;
     }
 }
@@ -43,6 +51,7 @@ foreach ($_SESSION["cart"] as &$item) {
 if(!$product_exists){
     array_push($_SESSION["cart"], $cart);
 }
+
 var_dump($_SESSION["cart"]);
 
 //Them cart vao databse
@@ -51,13 +60,12 @@ if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
 
     $userID = $_SESSION['account']["id"];
     $quantity = "";
-    foreach ($_SESSION["cart"] as $item) {
+    foreach ($_SESSION["cart"] as &$item) {
         if($item["id"] == $productID){
             $quantity = $item["quantity"];
             break;
         }
     }
-    
     $cartModel->addCartToDB($userID, $productID, $quantity);
 }
 

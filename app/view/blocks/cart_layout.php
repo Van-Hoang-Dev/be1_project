@@ -2,7 +2,7 @@
     // Tính totalPrice
     $totalPrice = 0;
     foreach ($cart as $item) {
-        $totalPrice += $item['price'];
+        $totalPrice += $item['subtotal'];
     }
 ?>
 <div class="cart my-5">
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="wc-proceed-to-checkout">
-                            <a href="#" class="checkout-button button alt wc-forward">
+                            <a href="checkout.php" class="checkout-button button alt wc-forward">
                                 Proceed to checkout</a>
                         </div>
                     </div>
