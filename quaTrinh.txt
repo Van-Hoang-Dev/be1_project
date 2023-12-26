@@ -20,7 +20,7 @@ Chức năng bao gồm:
     7. Tìm kiếm sản phẩm theo giá........done
     20. Hiển thị chi tiết sản phẩm........done
     10. Hiển thị các sản phẩm đã xem gần đây..........done
-    5. Duy trì đăng nhập (Sử dụng cookies)..............todo
+    5. Duy trì đăng nhập (Sử dụng cookies)..............done
     22. Đổi mật khẩu.............................todo  
     
 

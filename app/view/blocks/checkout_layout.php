@@ -11,7 +11,7 @@
         <div class="checkout-top">
             <div class="content-left-checkout">
                 <div class="woocommerce-info">
-                    Returning customer? <a href="#" class="showlogin">Click here to login</a></div>
+                    Returning customer? <a class="showlogin" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Click here to login</a></div>
             </div>
             <div class="content-right-checkout">
                 <div class="woocommerce-info">
