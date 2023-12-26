@@ -6,7 +6,6 @@
             <th>Product id</th>
             <th>Product name</th>
             <th>Add date</th>
-            <th>Current quantity</th>
             <th>Input quantity</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -20,7 +19,6 @@
                 <td><?php echo $item["product_id"] ?></td>
                 <td><?php echo $item["name"]; ?></td>
                 <td><?php echo $addDate ?></td>
-                <td><?php echo $item["current_quantity"] ?></td>
                 <td><?php echo $item["input_quantity"] ?></td>
                 <td>
                     <form action="edit.php" method="post">

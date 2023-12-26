@@ -134,6 +134,20 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    //Get current quantity
+    public function getCurrentQuantityOfProductByProductID($productID){
+        $sql = parent::$connection->prepare("SELECT current_quantity FROM products WHERE id = ? ");
+        $sql->bind_param("i", $productID);
+        return parent::select($sql)[0];
+    }
+
+    //Update the current quantity if order
+    public function updateQuantityWhenOrder($productID, $newQuantity){
+        $sql = parent:: $connection->prepare("UPDATE `products` SET `current_quantity`=? WHERE id= ?");
+        $sql->bind_param("ii", $newQuantity, $productID);
+        return $sql->execute();
+    }
+
     //Add producut function
     public function store($productName, $prodcutPrice, $productDescription, $categoriesID, $discount_id, $productImages)
     {
@@ -287,6 +301,7 @@ class Product extends Database
         $sql = parent::$connection->prepare("SELECT COUNT(*) FROM `products`;");
         return parent::select($sql)[0];
     }
+    
 
     public function getProductWithLimit($curentPage, $perPage)
     {
@@ -341,4 +356,5 @@ class Product extends Database
 
         return $first . $previous .  $link  . $next . $last;
     }
+
 }

@@ -8,6 +8,7 @@
             <th>Name</th>
             <th>Price</th>
             <th>Description</th>
+            <th>Current quantiry</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
@@ -22,6 +23,7 @@
                 <td><?php echo $product["name"] ?></td>
                 <td>$<?php echo $product["price"] ?>.00</td>
                 <td><?php echo $product["description"]; ?></td>
+                <td><?php echo $product["current_quantity"]; ?></td>
                 <td>
                     <form action="edit.php" method="post">
                         <button type="submit" class="btn btn-outline-primary" name="id" value="<?php echo $product["id"] ?>" ><i class="fa-regular fa-pen-to-square"></i></button>

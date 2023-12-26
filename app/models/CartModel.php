@@ -5,14 +5,14 @@
             //Kiem tran xem san pham trong gio hang da co hay khong
             $existingProduct = $this->getCartByProductUser($userID, $productID);
 
-            if(isset($existingProduct)){
+            if(!empty($existingProduct)){
                 //Neu san pham ton tai thi tang so luong cho san pham do
                 $this->updateCartQuantity($productID, $quantity);
             }
             else{
                 $sql = parent::$connection->prepare("INSERT INTO `cart_products`(`user_id`, `product_id`, `quantity`) VALUES (?,?,?)");
                 $sql->bind_param("iii", $userID, $productID, $quantity);
-                $sql->execute();
+                return $sql->execute();
             }
         }
 
