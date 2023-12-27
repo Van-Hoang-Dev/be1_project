@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="public/css/login.css">
     <link rel="stylesheet" href="public/css/checkoutstyle.css">
     <link rel="stylesheet" href="public/css/odertrackingstyle.css">
+    <link rel="stylesheet" href="public/css/comment.css">
 </head>
 
 <body>
@@ -54,9 +55,9 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <?php if (isset($_SESSION['account']) && $_SESSION['account']['role'] == 1) : ?>
-                        <li class="nav-item px-md-3">
-                            <a class="nav-link" href="./admin/products/manage_product">Manage</a>
-                        </li>
+                            <li class="nav-item px-md-3">
+                                <a class="nav-link" href="./admin/products/manage_product">Manage</a>
+                            </li>
                         <?php endif ?>
                         <li class="nav-item px-md-3 dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -83,16 +84,16 @@
                                 <span class="cart-count">0</span>
                             </div>
                         </li>
-                        <?php if (!isset($_SESSION['account'])) :?>
-                        <li class="nav-item px-3">
-                            <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa-regular fa-user"></i>
-                            </a>
-                        </li>
+                        <?php if (!isset($_SESSION['account'])) : ?>
+                            <li class="nav-item px-3">
+                                <a class="nav-link icon-header" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                            </li>
                         <?php else : ?>
                             <li class="nav-item px-3 d-flex">
                                 <a class="nav-link icon-header">
-                                    Hello,  <?php echo $_SESSION['account']['lastname'] ?>
+                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
                                 </a>
                                 <a class="nav-link icon-header" data-bs-toggle="modal" data-bs-target="#updateInfoModal">
                                     <i class="bi bi-feather"></i>
@@ -113,52 +114,52 @@
     <!-- Modal -->
     <!-- Reset Infomation -->
     <?php if (isset($_SESSION['account'])) : ?>
-    <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-4" id="titleModal">Reset Infomation </h1>
-                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" action="reset_info.php">
-                    <div class="modal-body">
-                    <div class="mb-3">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text" class="form-control" value="<?php echo $_SESSION['account']['firstname'] ?>" aria-label="First name" name="firstname">
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" value="<?php echo $_SESSION['account']['lastname'] ?>" aria-label="Last name" name="lastname">
+        <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-4" id="titleModal">Reset Infomation </h1>
+                        <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="reset_info.php">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" value="<?php echo $_SESSION['account']['firstname'] ?>" aria-label="First name" name="firstname">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" value="<?php echo $_SESSION['account']['lastname'] ?>" aria-label="Last name" name="lastname">
+                                    </div>
                                 </div>
                             </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['account']['username'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="address" name="address" value="<?php echo $_SESSION['account']['address'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">New password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['account']['username'] ?>">
+                        <div class="modal-footer">
+                            <div class="d-grid col-6 mx-auto my-3">
+                                <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $_SESSION['account']['address'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">New password</label>
-                            <input type="password" class="form-control" id="password"  name="password">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="d-grid col-6 mx-auto my-3">
-                            <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif ?>
     <!-- Search -->
     <div class="modal fade" id="searchModalByKey" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
@@ -255,18 +256,21 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Enter your phone number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" autofocus value="<?php if(isset($_COOKIE["member_phone"])) { echo $_COOKIE["member_phone"]; } ?>">
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus value="<?php if (isset($_COOKIE["member_phone"])) {
+                                                                                                                    echo $_COOKIE["member_phone"];
+                                                                                                                } ?>">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Enter your password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?php if(isset($_COOKIE["random_password"])) { echo $_COOKIE["random_password"]; } ?>">
+                            <input type="password" class="form-control" id="password" name="password" value="<?php if (isset($_COOKIE["random_password"])) {
+                                                                                                                    echo $_COOKIE["random_password"];
+                                                                                                                } ?>">
                         </div>
                     </div>
                     <!-- Remember Info -->
                     <div class="col-auto">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="remember-account" <?php if(isset($_COOKIE["random_selector"])) { ?> checked
-                <?php } ?>>
+                            <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="remember-account" <?php if (isset($_COOKIE["random_selector"])) { ?> checked <?php } ?>>
                             <label class="form-check-label" for="autoSizingCheck">
                                 Remember me
                             </label>
@@ -357,12 +361,12 @@
     <!-- Begin content -->
     <?php
     if (!empty($slot)) :
-        echo $slot; 
+        echo $slot;
     endif ?>
     <!-- End content -->
     <!-- Begin Footer -->
     <footer>
-        <div class="subscribe-box">
+        <div class="subscribe-box mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 d-flex align-items-center justify-content-center">
@@ -450,11 +454,11 @@
     </footer>
     <!-- Stop Footer -->
     <script>
-        let priceGap = 50; 
+        let priceGap = 50;
         const rangeInput = document.querySelectorAll('.range-input input');
         let priceInput = document.querySelectorAll('.price-input input');
         let progress = document.querySelector('.slider .progress');
-        
+
         rangeInput.forEach(input => {
             input.addEventListener("input", e => {
                 let minVal = parseInt(rangeInput[0].value);
@@ -462,14 +466,14 @@
                 if (maxVal - minVal < priceGap) {
                     if (e.target.className === "range-min") {
                         rangeInput[0].value = maxVal - priceGap;
-                    }else {
+                    } else {
                         rangeInput[1].value = minVal + priceGap;
                     }
                 } else {
                     priceInput[0].value = minVal;
                     priceInput[1].value = maxVal;
-                    progress.style.left = (minVal/ rangeInput[0].max) * 100 + "%";
-                    progress.style.right = 100 - (maxVal/ rangeInput[1].max) * 100 + "%";
+                    progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+                    progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
                 }
             });
         });
@@ -535,6 +539,46 @@
                 }
             }
         })
+    </script>
+    <script src="public/ckeditor5/build/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // Editor configuration.
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(handleSampleError);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const starContainer = document.getElementById('star-rating');
+            const stars = starContainer.querySelectorAll('.fa-star');
+            const ratingInput = document.getElementById('rating-input');
+
+            starContainer.addEventListener('click', function(event) {
+                const clickedStar = event.target;
+                if (clickedStar.classList.contains('fa-star')) {
+                    const clickedStarIndex = parseInt(clickedStar.getAttribute('data-star'));
+
+                    // Reset all stars
+                    stars.forEach(star => {
+                        star.classList.remove('fa-solid');
+                        star.classList.add('fa-regular');
+                    });
+
+                    // Highlight clicked stars
+                    for (let i = 0; i < clickedStarIndex; i++) {
+                        stars[i].classList.remove('fa-regular');
+                        stars[i].classList.add('fa-solid');
+                    }
+
+                    // Update input value
+                    ratingInput.value = clickedStarIndex;
+                }
+            });
+        });
     </script>
 </body>
 
