@@ -156,7 +156,9 @@ class Product extends Database
     public function getProductHaveCategoryIDDetail($id)
     {
         $sql = parent::$connection->prepare("SELECT products.*,
-                                              category_product.category_id
+                                              category_product.category_id,
+                                              (SELECT image FROM images 
+                                            WHERE images.product_id = products.id AND images.main = 1) AS 'image' 
                                             FROM `products` 
                                             INNER JOIN category_product 
                                             ON category_product.product_id = products.id

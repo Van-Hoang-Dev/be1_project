@@ -23,7 +23,7 @@ $product = $productModel->getProductHaveCategoryIDDetail($id);
 $category = $categoryModel->getCategoryByID($product['category_id']);
 $products = $productModel->getAllProduct();
 
-// var_dump($category);
+// var_dump($product);
 
 $recentViewID = [];
 if (isset($_COOKIE['recentView'])) {
