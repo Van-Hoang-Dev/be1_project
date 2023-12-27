@@ -8,7 +8,7 @@ if(isset($_SESSION["account"])){
     $userID = $_SESSION["account"]["id"];
 }
 $orderModel = new Order();
-$orders = $orderModel->getAllOrder($userID);
+$orders = $orderModel->getAllOrderByUserID($userID);
 
 // var_dump($orders);
 

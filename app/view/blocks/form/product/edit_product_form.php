@@ -40,7 +40,7 @@
             
             <?php
                 $exitingImage = "";
-                if(!empty($productImages)):
+                if(!empty($product["images"])):
                 $productImages = explode(",", $product["images"]);
                 foreach ($productImages as $image) :
                     $imageItem = explode("-", $image);
@@ -67,7 +67,7 @@
             <div class="boxDisplayImages my-3" id="boxDisplayImages">
                 <?php
                 $exitingImages = "";
-                if(!empty($productImages)):
+                if(!empty($product["images"])):
                 $productImages = explode(",", $product["images"]);
                 foreach ($productImages as $image) :
                     $imageItem = explode("-", $image);

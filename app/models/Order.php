@@ -19,7 +19,9 @@ class Order extends Database{
 
     //Get All order
     public function getAllOrderByOrderCode($order_code){
-        $sql = parent::$connection->prepare("SELECT orders.user_id, orders.order_date, order_details.*, products.*, member.firstname, member.lastname, member.email, member.phone, member.address, member.postcode_zip 
+        $sql = parent::$connection->prepare("SELECT orders.user_id, orders.order_date, order_details.*, products.*, member.firstname, member.lastname, member.email, member.phone, member.address, member.postcode_zip,
+         (SELECT image FROM images 
+        WHERE images.product_id = products.id AND images.main = 1) AS 'image'
         FROM `orders` 
         INNER JOIN order_details ON order_details.order_id = orders.order_id
         INNER JOIN products ON products.id = order_details.product_id
@@ -30,15 +32,27 @@ class Order extends Database{
     }
 
     //Get All order of user
-    public function getAllOrder($userID){
+    public function getAllOrderByUserID($userID){
         $sql = parent::$connection->prepare("SELECT orders.*, products.*, order_details.*, 
         (SELECT image FROM images 
         WHERE images.product_id = products.id AND images.main = 1) AS 'image' 
         FROM `orders` 
-                INNER JOIN order_details ON order_details.order_id = orders.order_id
-                INNER JOIN products ON products.id = order_details.product_id
-                WHERE orders.user_id = ?;");
+        INNER JOIN order_details ON order_details.order_id = orders.order_id
+        INNER JOIN products ON products.id = order_details.product_id
+        WHERE orders.user_id = ?;");
         $sql->bind_param("i", $userID);
+        return parent::select($sql);
+    }
+
+    //Get All order
+    public function getAllOrders(){
+        $sql = parent::$connection->prepare("SELECT orders.*, products.*, order_details.*, 
+        (SELECT image FROM images 
+        WHERE images.product_id = products.id AND images.main = 1) AS 'image' 
+        FROM `orders` 
+        INNER JOIN order_details ON order_details.order_id = orders.order_id
+        INNER JOIN products ON products.id = order_details.product_id)");
+
         return parent::select($sql);
     }
 

@@ -1,15 +1,13 @@
 <div class="container">
-    <h2 class="my-5 title-center">Product management</h2>
+    <h2 class="my-5 title-center">Order management</h2>
     <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add Product</a>
     <table class="table table-hover">
         <thead>
             <th>Photo</th>
-            <th>Id</th>
             <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Current quantiry</th>
-            <th>Edit</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Status</th>
             <th>Delete</th>
         </thead>
         <tbody>
@@ -19,9 +17,8 @@
             ?>
             <tr>
             <td> <img class="img-fluid" style="width:100px" src="../../public/images/content/products/<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>"></td>
-                <td><?php echo $product["id"] ?></td>
                 <td><?php echo $product["name"] ?></td>
-                <td>$<?php echo $product["price"] ?></td>
+                <td>$<?php echo $product["price"] ?>.00</td>
                 <td><?php echo $product["description"]; ?></td>
                 <td><?php echo $product["current_quantity"]; ?></td>
                 <td>

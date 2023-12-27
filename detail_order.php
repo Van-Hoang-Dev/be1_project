@@ -23,7 +23,9 @@ if(isset($_POST["billing_method"])){
 
 $userModel = new User;
 
+if(!empty($orderMethod)){
 $customer =  $userModel->getUserByPhoneOrEmail($orderMethod);
+}
 
 $orderDetails = $orderModel->getAllOrderByOrderCode($ordercode);
 

@@ -30,7 +30,7 @@ class Inventory extends Database
         $sql = parent::$connection->prepare("UPDATE products SET 
         products.current_quantity = current_quantity +
         (SELECT input_quantity
-        FROM inventory WHERE inventory.date_add = ?)
+        FROM inventory WHERE inventory.product_id = products.id AND inventory.date_add = ?)
         WHERE products.id = ?;");
         $sql->bind_param("si", $inventoryItem["date_add"], $inventoryItem["product_id"]);
         return $sql->execute();
