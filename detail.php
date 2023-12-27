@@ -73,7 +73,6 @@ if (isset($_GET['send_review'])) {
 }
 $reviews = $reviewModel->getReviewByIDProduct($id);
 
-
 $data = [
     "title" => "Product Detail",
     "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category, 'products' => $products, 'reviews' => $reviews])

@@ -154,7 +154,7 @@
                                         <div class="cart_item">
                                             <div class="info-product">
                                                 <div class="product-thumble">
-                                                    <img width="600" height="600" src="<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
+                                                    <img width="600" height="600" src="public/images/content/products/<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="">
                                                 </div>
                                                 <div class="product-name">
                                                     <?php echo $item["name"] ?>&nbsp; <strong class="product-quantity">QTY : <?php echo $item["quantity"] ?></strong> </div>

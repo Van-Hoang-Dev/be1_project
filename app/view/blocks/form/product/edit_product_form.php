@@ -39,8 +39,9 @@
             <div class="boxDisplayImage my-3" id="boxDisplayImage">
             
             <?php
-                $productImages = explode(",", $product["images"]);
                 $exitingImage = "";
+                if(!empty($productImages)):
+                $productImages = explode(",", $product["images"]);
                 foreach ($productImages as $image) :
                     $imageItem = explode("-", $image);
                     if ($imageItem[1] == 1) :
@@ -50,6 +51,7 @@
                     <?php
                     endif;
                 endforeach; 
+            endif;
                     ?>
 
             </div>
@@ -64,8 +66,9 @@
             </label>
             <div class="boxDisplayImages my-3" id="boxDisplayImages">
                 <?php
-                $productImages = explode(",", $product["images"]);
                 $exitingImages = "";
+                if(!empty($productImages)):
+                $productImages = explode(",", $product["images"]);
                 foreach ($productImages as $image) :
                     $imageItem = explode("-", $image);
                     if ($imageItem[1] == 0) :
@@ -75,6 +78,7 @@
                     <?php
                     endif;
                 endforeach; 
+            endif;
                     ?>
                     <hr>
                         </div>

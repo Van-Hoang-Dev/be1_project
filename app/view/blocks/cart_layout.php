@@ -34,7 +34,7 @@
                         ?>
                         <tr class="woocommerce-cart-form__cart-item cart_item">
                             <td class="product-thumbnail">
-                                <a href=""><img width="80" height="80" src="<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
+                                <a href=""><img width="80" height="80" src="public/images/content/products/<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
                             </td>
                             <td>
                             <a href="#" class="text-black"><?php echo $item["name"] ?></a>
