@@ -42,7 +42,7 @@
                                             <!-- <div class="onsale">-13%</div> -->
                                         </div>
                                         <div class="product-image">
-                                            <img class="img-fluid" src="<?php echo $product["image"] ?>" alt="<?php echo $product['name'] ?>">
+                                            <img class="img-fluid" src="public/images/content/products/<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>" alt="Mac mini M2 2023">
                                         </div>
                                     </div>
                                     <div class="product-button">

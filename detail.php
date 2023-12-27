@@ -16,12 +16,14 @@ if (!empty($_GET['id'])) {
     $id = $_GET['id'];
 }
 
-$product = $productModel->getProductHaveCategoryID($id);
+$product = $productModel->getProductHaveCategoryIDDetail($id);
 
 
 // var_dump($product);
 $category = $categoryModel->getCategoryByID($product['category_id']);
 $products = $productModel->getAllProduct();
+
+// var_dump($category);
 
 $recentViewID = [];
 if (isset($_COOKIE['recentView'])) {
@@ -70,6 +72,8 @@ if (isset($_GET['send_review'])) {
     $reviewModel->addReview($review);
 }
 $reviews = $reviewModel->getReviewByIDProduct($id);
+
+
 $data = [
     "title" => "Product Detail",
     "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category, 'products' => $products, 'reviews' => $reviews])

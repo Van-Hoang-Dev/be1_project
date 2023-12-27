@@ -29,6 +29,7 @@
                 Input quantity
             </label>
             <input type="number" name="input_quantity" id="input_quantity" class="formbold-form-input" required value="<?php echo $inventoryItem["input_quantity"] ?>" />
+            <input type="hidden" name="old_quantiy" value="<?php echo $inventoryItem["input_quantity"] ?>">
         </div>
         <button type="submit" class="formbold-btn">Update</button>
         <a href="manage_inventory.php" class="formbold-btn-outline">Back</a>

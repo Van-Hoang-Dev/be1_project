@@ -5,7 +5,7 @@
             <ul>
                 <li class="shopping-cart-link"> <a href="viewcart.php">Cart</a></li>
                 <li class="checkout-link"><a href="checkout.php">Checkout</a></li>
-                <li class="order-tracking-link active"><a href="./odertracking.html">Order Tracking</a></li>
+                <li class="order-tracking-link active"><a href="odertracking.php">Order Tracking</a></li>
             </ul>
         </div>
         <div class="checkout-top">

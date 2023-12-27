@@ -217,6 +217,7 @@
         </div>
     </div>
     <!-- Begin content -->
+
     <?php
     if (!empty($slot)) :
     ?>
@@ -251,6 +252,17 @@
     </script>
     <!-- End content -->
     <script src="../../public/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/ckeditor5/build/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+	.create( document.querySelector( '#editor' ), {
+		// Editor configuration.
+	} )
+	.then( editor => {
+		window.editor = editor;
+	} )
+	.catch( handleSampleError );
+    </script>
 </body>
 
 </html>

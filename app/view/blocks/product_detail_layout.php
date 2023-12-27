@@ -23,7 +23,7 @@ if (isset($_COOKIE['recentView'])) {
         <div class="row">
             <div class="col-lg-6">
                 <div class="big_img">
-                    <img src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>" width="500px">
+                    <img src="public/images/content/products/<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>" width="500px">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -210,7 +210,7 @@ if (isset($_COOKIE['recentView'])) {
                                             <div class="onsale">-13%</div>
                                         </div>
                                         <div class="product-image">
-                                            <img class="img-fluid" src="<?php echo $item["image"] ?>" alt="Mac mini M2 2023">
+                                            <img class="img-fluid" src="public/images/content/products/<?php echo $item["image"] ?>" alt="Mac mini M2 2023">
                                         </div>
                                     </div>
                                     <div class="product-button">
