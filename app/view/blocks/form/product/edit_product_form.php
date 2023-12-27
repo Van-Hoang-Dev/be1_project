@@ -109,7 +109,7 @@
         </div>
 
         <button type="submit" class="formbold-btn">Edit</button>
-        <a href="manage_products.php" class="formbold-btn-outline">Back</a>
+        <a href="manage_product.php" class="formbold-btn-outline">Back</a>
     </form>
 </div>
 </div>

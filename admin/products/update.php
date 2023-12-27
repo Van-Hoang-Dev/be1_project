@@ -41,6 +41,11 @@ if (isset($_POST["existing_images"])) {
 }
 
 if ($chooseUpdate == 1) {
+    $target_dir = "../../public/images/content/products/";
+    $imageLinks = explode(",", $existingImages);
+    foreach($imageLinks as $imageLink){
+        unlink($target_dir . $imageLink );
+    }
     $productImages = uploadFile();
 }
 else if ($chooseUpdate == 2) {

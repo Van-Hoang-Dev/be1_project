@@ -108,11 +108,11 @@ class Product extends Database
         GROUP_CONCAT(DISTINCT discount_product.discount_id) as 'discount_id',
         GROUP_CONCAT(DISTINCT images.image) as 'images'
          FROM `products` 
-         INNER JOIN category_product 
+         LEFT JOIN category_product 
          ON category_product.product_id = products.id 
-         INNER JOIN discount_product 
+         LEFT JOIN discount_product 
          ON discount_product.product_id = products.id
-         INNER JOIN images 
+         LEFT JOIN images 
          ON images.product_id = products.id
          WHERE id=?
         
@@ -253,6 +253,7 @@ class Product extends Database
         }
 
         /******************Categoty*************************/
+        if(!empty($discount_id)){
         //Xoa discount
         $sql = parent::$connection->prepare("DELETE FROM `discount_product` WHERE product_id= ?");
         $sql->bind_param("i", $productID);
@@ -269,6 +270,7 @@ class Product extends Database
         $value  =  substr($value, 0, -1);
         $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
         $sql->bind_param($type, ...$insertedValues);
+    }
         return $sql->execute();
     }
 

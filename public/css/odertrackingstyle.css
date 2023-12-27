@@ -12,7 +12,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     align-items: center;
 }
 
-.order-tracking ul {
+/* .order-tracking ul {
     list-style: none;
     display: flex;
     gap: 50px;
@@ -22,7 +22,7 @@ font-family: 'Plus Jakarta Sans', sans-serif;
     display: inline;
     font-size: 1.5em;
     color: #7e7e7e;
-}
+} */
 
 .order-tracking .woocommerce-page-header ul li a {
     display: inline-block;
