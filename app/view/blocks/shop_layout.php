@@ -35,7 +35,7 @@
                                             <!-- <div class="onsale">-13%</div> -->
                                         </div>
                                         <div class="product-image">
-                                            <img class="img-fluid" src="<?php echo $product["image"] ?>" alt="Mac mini M2 2023">
+                                            <img class="img-fluid" src="public/images/content/products/<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>" alt="Mac mini M2 2023">
                                         </div>
                                     </div>
                                     <div class="product-button">
@@ -76,7 +76,7 @@
                                             </div>
                                         </div>
                                         <div class="price">
-                                            <span class="cost">$<?php echo $product["price"] ?>.00</span>
+                                            <span class="cost">$<?php echo $product["price"] ?></span>
                                         </div>
 
                                     </div>

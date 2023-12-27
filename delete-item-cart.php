@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($cart as $key => $item) {
         if ($item['id'] == $idRemove) {
             unset($cart[$key]);
+            $_SESSION["cart-quantity"] = $_SESSION["cart-quantity"] - $item["quantity"];
             $cartModel->removeProductFromCart($item['id']);
             $_SESSION['cart'] = $cart;
             break; 

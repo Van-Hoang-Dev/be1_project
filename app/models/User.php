@@ -11,13 +11,13 @@ class User extends Database
     }
 
     // Register Account
-    public function registerAccount($firstname, $lastname, $username, $gender, $email, $phone, $address, $password)
+    public function registerAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip, $password)
     {
         $hashPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = parent::$connection->prepare("INSERT INTO `member`
-            (`firstname`, `lastname`, `username`, `gender`, `email`, `phone`, `address`, `password`) 
-            VALUES (?,?,?,?,?,?,?,?)");
-        $sql->bind_param("sssissss", $firstname, $lastname, $username, $gender, $email, $phone, $address, $hashPassword);
+            (`firstname`, `lastname`, `email`, `phone`, `address`,  `postcode_zip` , `password`) 
+            VALUES (?,?,?,?,?,?,?)");
+        $sql->bind_param("sssssss", $firstname, $lastname, $email, $phone, $address, $postcode_zip, $hashPassword);
         return $sql->execute();
     }
 
@@ -26,6 +26,14 @@ class User extends Database
     {
         $sql = parent::$connection->prepare("SELECT * FROM `member` WHERE id = ?;");
         $sql->bind_param("i", $userID);
+        return parent::select($sql)[0];
+    }
+
+    //Get user by id
+    public function getUserByPhoneOrEmail($method)
+    {
+        $sql = parent::$connection->prepare("SELECT * FROM `member` WHERE phone = ? OR email =? ;");
+        $sql->bind_param("ss", $method, $method);
         return parent::select($sql)[0];
     }
 
@@ -50,12 +58,12 @@ class User extends Database
     }
 
     // Reset Info Account
-    public function resetAccount($firstname, $lastname, $username, $email, $phone, $address, $password)
+    public function resetAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip ,$password)
     {
         $sql = parent::$connection->prepare("UPDATE member 
-                                                SET `firstname` = ?, `lastname`= ?, `username`= ?, `email` = ?, `address`= ?, `password` =?  
+                                                SET `firstname` = ?, `lastname`= ?, `email` = ?, `address`= ?,`postcode_zip`= ?, `password` =?  
                                                 WHERE `phone`= ?");
-        $sql->bind_param("sssssss", $firstname, $lastname, $username, $email, $address, $password, $phone);
+        $sql->bind_param("sssssss", $firstname, $lastname, $email, $address, $postcode_zip, $password, $phone);
         return $sql->execute();
     }
 

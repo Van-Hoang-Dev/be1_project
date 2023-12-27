@@ -13,7 +13,7 @@ $current_time = time();
 $current_date = date("Y-m-d H:i:s", $current_time);
 
 // Set Cookie expiration 
-$cookie_expiration_time = $current_time + (60*5); 
+$cookie_expiration_time = $current_time +(86400); 
 
 $isLoggedIn = false;
 

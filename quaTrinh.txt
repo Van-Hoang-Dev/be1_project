@@ -21,18 +21,19 @@ Chức năng bao gồm:
     20. Hiển thị chi tiết sản phẩm........done
     10. Hiển thị các sản phẩm đã xem gần đây..........done
     5. Duy trì đăng nhập (Sử dụng cookies)..............done
-    22. Đổi mật khẩu.............................todo  
+    22. Đổi mật khẩu.............................todo 
+    23. Đánh giá sản phẩm (Điều kiện trong detail, người dùng đăng nhập mới có thể đánh giá, comment) 
     
 
     <--------------------Hoàng--------------------->
     
     11. Giảm giá cho sản phẩm (vocher) (Lưu database).........done
     12. Quản lý sản phẩm tồn kho.............done
-    14. Updload file lên databse............done
-    13. Đặt hàng.............todo
+    14. Updload file lên databse............done (Xóa file cũ kkhi update mới hết)
+    13. Đặt hàng.............done (Còn 1 số vấn đề chưa xử lý. Số lượng hàng)
     18. Thông báo xác nhận đơn hàng đến gmail của người dùng........ todo
-    23. Thông tin tài khoản.......................todo
+    23. Thông tin tài khoản......................done
+    21. Lịch sử mua hàng..........................done
 
-    21. Lịch sử mua hàng.
 
     

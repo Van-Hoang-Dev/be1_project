@@ -18,7 +18,7 @@ class Order extends Database{
     }
 
     //Get All order
-    public function getAllOrderByUserID($order_code){
+    public function getAllOrderByOrderCode($order_code){
         $sql = parent::$connection->prepare("SELECT orders.user_id, orders.order_date, order_details.*, products.*, member.firstname, member.lastname, member.email, member.phone, member.address, member.postcode_zip 
         FROM `orders` 
         INNER JOIN order_details ON order_details.order_id = orders.order_id
@@ -26,6 +26,16 @@ class Order extends Database{
         INNER JOIN member ON member.id = orders.user_id
         WHERE order_details.order_code = ?;");
         $sql->bind_param("s", $order_code );
+        return parent::select($sql);
+    }
+
+    //Get All order of user
+    public function getAllOrder($userID){
+        $sql = parent::$connection->prepare("SELECT * FROM `orders` 
+        INNER JOIN order_details ON order_details.order_id = orders.order_id
+        INNER JOIN products ON products.id = order_details.product_id
+        WHERE orders.user_id = ?;");
+        $sql->bind_param("i", $userID);
         return parent::select($sql);
     }
 

@@ -18,7 +18,7 @@
             foreach($products as $product):
             ?>
             <tr>
-            <td> <img class="img-fluid" style="width:100px" src="<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>"></td>
+            <td> <img class="img-fluid" style="width:100px" src="../../public/images/content/products/<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>"></td>
                 <td><?php echo $product["id"] ?></td>
                 <td><?php echo $product["name"] ?></td>
                 <td>$<?php echo $product["price"] ?>.00</td>

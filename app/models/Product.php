@@ -4,14 +4,20 @@ class Product extends Database
     //Get all product function
     public function getAllProduct()
     {
-        $sql = parent::$connection->prepare("SELECT * FROM products;");
+        $sql = parent::$connection->prepare("SELECT products.*,
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM products ORDER BY products.id ASC");
         return parent::select($sql);
     }
 
     //Get product with id
     public function getProductByID($productID)
     {
-        $sql = parent::$connection->prepare("SELECT * FROM products WHERE id=?;");
+        $sql = parent::$connection->prepare("SELECT products.*,
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM products WHERE products.id = ?");
         $sql->bind_param("i", $productID);
         return parent::select($sql)[0];
     }
@@ -57,18 +63,22 @@ class Product extends Database
     public function getProductsByCategory($id)
     {
         // 2. Tạo câu SQL
-        $sql = parent::$connection->prepare('SELECT *
+        $sql = parent::$connection->prepare("SELECT products.*,
+                                            (SELECT image FROM images 
+                                             WHERE images.product_id = products.id AND images.main = 1) AS 'image'
                                             FROM products
                                             INNER JOIN category_product
                                             ON products.id = category_product.product_id
-                                            WHERE category_product.category_id = ?');
+                                            WHERE category_product.category_id = ?");
         $sql->bind_param('i', $id);
         return parent::select($sql);
     }
 
     public function getProductWithCategoryByProductID($productID)
     {
-        $sql = parent::$connection->prepare("SELECT products.*, 
+        $sql = parent::$connection->prepare("SELECT products.*,
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
         GROUP_CONCAT(DISTINCT category_product.category_id) as 'category_id',
          FROM `products` 
          INNER JOIN category_product 
@@ -85,6 +95,8 @@ class Product extends Database
     public function getProductWithCategoryAndDiscountByProductID($productID)
     {
         $sql = parent::$connection->prepare("SELECT products.*, 
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image',
         GROUP_CONCAT(DISTINCT category_product.category_id) as 'category_id',
         GROUP_CONCAT(DISTINCT discount_product.discount_id) as 'discount_id' 
          FROM `products` 
@@ -106,7 +118,7 @@ class Product extends Database
         $sql = parent::$connection->prepare("SELECT products.*, 
         GROUP_CONCAT(DISTINCT category_product.category_id) as 'category_id',
         GROUP_CONCAT(DISTINCT discount_product.discount_id) as 'discount_id',
-        GROUP_CONCAT(DISTINCT images.image) as 'images'
+        GROUP_CONCAT(DISTINCT images.image,'-' ,images.main) as 'images'
          FROM `products` 
          LEFT JOIN category_product 
          ON category_product.product_id = products.id 
@@ -126,7 +138,10 @@ class Product extends Database
     //Get Product by categoyID function
     public function getProductHaveCategoryID($id)
     {
-        $sql = parent::$connection->prepare("SELECT * FROM `products` 
+        $sql = parent::$connection->prepare("SELECT products.*,
+                                            (SELECT image FROM images 
+                                            WHERE images.product_id = products.id AND images.main = 1) AS 'image' 
+                                            FROM `products` 
                                             INNER JOIN category_product 
                                             ON category_product.product_id = products.id
                                             WHERE category_product.product_id = ?");
@@ -135,31 +150,35 @@ class Product extends Database
     }
 
     //Get current quantity
-    public function getCurrentQuantityOfProductByProductID($productID){
+    public function getCurrentQuantityOfProductByProductID($productID)
+    {
         $sql = parent::$connection->prepare("SELECT current_quantity FROM products WHERE id = ? ");
         $sql->bind_param("i", $productID);
         return parent::select($sql)[0];
     }
 
     //Update the current quantity if order
-    public function updateQuantityWhenOrder($productID, $newQuantity){
-        $sql = parent:: $connection->prepare("UPDATE `products` SET `current_quantity`=? WHERE id= ?");
+    public function updateQuantityWhenOrder($productID, $newQuantity)
+    {
+        $sql = parent::$connection->prepare("UPDATE `products` SET `current_quantity`=? WHERE id= ?");
         $sql->bind_param("ii", $newQuantity, $productID);
         return $sql->execute();
     }
 
     //Add producut function
-    public function store($productName, $prodcutPrice, $productDescription, $categoriesID, $discount_id, $productImages)
+    public function store($productName, $prodcutPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages)
     {
+        /******************Product*************************/
         $sql = parent::$connection->prepare("INSERT INTO `products`(`name`, `price`, `description`) VALUES (?,?,?)");
         $sql->bind_param("sis", $productName, $prodcutPrice, $productDescription);
         $sql->execute();
 
+        /******************Categoty*************************/
         //Lay id cua san pham vua them
         $insertedProduct = parent::$connection->insert_id;
         $value = "";
         $type = "";
-        
+
         //Them vao bang cateogory_product
         $insertedValues = [];
         foreach ($categoriesID as $category) {
@@ -171,38 +190,50 @@ class Product extends Database
         $sql = parent::$connection->prepare("INSERT INTO `category_product`(`category_id`, `product_id`) VALUES $value ");
         $sql->bind_param($type, ...$insertedValues);
         $sql->execute();
-        
+
+        /******************Discount*************************/
         //Them vao bang discount_product
-        $value = "";
-        $type = "";
-        $insertedValues = [];
-        foreach($discount_id as $discount){
-            $value .= '(?,?),';
-            $type .= 'ii';
-            array_push($insertedValues, $discount, $insertedProduct);
+        if (!empty($discount_id)) {
+            $value = "";
+            $type = "";
+            $insertedValues = [];
+            foreach ($discount_id as $discount) {
+                $value .= '(?,?),';
+                $type .= 'ii';
+                array_push($insertedValues, $discount, $insertedProduct);
+            }
+            $value  =  substr($value, 0, -1);
+            $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
+            $sql->bind_param($type, ...$insertedValues);
+            $sql->execute();
         }
-        $value  =  substr($value, 0, -1);
-        $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
-        $sql->bind_param($type, ...$insertedValues);
+
+        /******************Images*************************/
+        //Them anh chính vào bang
+        $main = 1;
+        $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`, main) VALUES (?,?,?)");
+        $sql->bind_param("ssi", $main_image, $insertedProduct, $main);
         $sql->execute();
 
         //Them vao bang image
-        $value = "";
-        $type = "";
-        $insertedValues = [];
-        foreach($productImages as $image){
-            $value .= '(?,?),';
-            $type .= 'si';
-            array_push($insertedValues, $image, $insertedProduct);
+        if (!empty($productImages)) {
+            $value = "";
+            $type = "";
+            $insertedValues = [];
+            foreach ($productImages as $image) {
+                $value .= '(?,?),';
+                $type .= 'si';
+                array_push($insertedValues, $image, $insertedProduct);
+            }
+            $value  =  substr($value, 0, -1);
+            $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`) VALUES $value");
+            $sql->bind_param($type, ...$insertedValues);
+            $sql->execute();
         }
-        $value  =  substr($value, 0, -1);
-        $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`) VALUES $value");
-        $sql->bind_param($type, ...$insertedValues);
-        return $sql->execute();
     }
 
     //Update product function
-    public function update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $productImages)
+    public function update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image ,$productImages)
     {
         $sql = parent::$connection->prepare("UPDATE `products` SET `name`= ?,`price`= ?,`description`= ?  WHERE id=? ;");
         $sql->bind_param("sisi", $productName, $productPrice, $productDescription, $productID);
@@ -231,9 +262,22 @@ class Product extends Database
         $sql->execute();
 
         /******************Images*************************/
+        //Sửa chính trong bang
+        if(!empty($main_image)){
+            $sql = parent::$connection->prepare("DELETE FROM `images` WHERE product_id= ? AND main = 1");
+            $sql->bind_param("i", $productID);
+            $sql->execute();
+
+            $main = 1;
+            $sql = parent::$connection->prepare("INSERT INTO `images`(`image`, `product_id`, main) VALUES (?,?,?)");
+            $sql->bind_param("ssi", $main_image, $productID, $main);
+            $sql->execute();
+        }
+
+
         //Xoa images
-        if(!empty($productImages)){
-            $sql = parent::$connection->prepare("DELETE FROM `images` WHERE product_id= ?");
+        if (!empty($productImages)) {
+            $sql = parent::$connection->prepare("DELETE FROM `images` WHERE product_id= ? AND main = 0");
             $sql->bind_param("i", $productID);
             $sql->execute();
 
@@ -241,7 +285,7 @@ class Product extends Database
             $value = "";
             $type = "";
             $insertedValues = [];
-            foreach($productImages as $image){
+            foreach ($productImages as $image) {
                 $value .= '(?,?),';
                 $type .= 'si';
                 array_push($insertedValues, $image, $productID);
@@ -253,24 +297,24 @@ class Product extends Database
         }
 
         /******************Categoty*************************/
-        if(!empty($discount_id)){
-        //Xoa discount
-        $sql = parent::$connection->prepare("DELETE FROM `discount_product` WHERE product_id= ?");
-        $sql->bind_param("i", $productID);
-        $sql->execute();
-        //Them moi 
-        $value = "";
-        $type = "";
-        $insertedValues = [];
-        foreach($discount_id as $discount){
-            $value .= '(?,?),';
-            $type .= 'ii';
-            array_push($insertedValues, $discount, $productID);
+        if (!empty($discount_id)) {
+            //Xoa discount
+            $sql = parent::$connection->prepare("DELETE FROM `discount_product` WHERE product_id= ?");
+            $sql->bind_param("i", $productID);
+            $sql->execute();
+            //Them moi 
+            $value = "";
+            $type = "";
+            $insertedValues = [];
+            foreach ($discount_id as $discount) {
+                $value .= '(?,?),';
+                $type .= 'ii';
+                array_push($insertedValues, $discount, $productID);
+            }
+            $value  =  substr($value, 0, -1);
+            $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
+            $sql->bind_param($type, ...$insertedValues);
         }
-        $value  =  substr($value, 0, -1);
-        $sql = parent::$connection->prepare("INSERT INTO `discount_product` (`discount_id`, `product_id`) VALUES $value");
-        $sql->bind_param($type, ...$insertedValues);
-    }
         return $sql->execute();
     }
 
@@ -303,12 +347,16 @@ class Product extends Database
         $sql = parent::$connection->prepare("SELECT COUNT(*) FROM `products`;");
         return parent::select($sql)[0];
     }
-    
+
 
     public function getProductWithLimit($curentPage, $perPage)
     {
         $startRecord = ($curentPage - 1) * $perPage;
-        $sql = parent::$connection->prepare("SELECT * FROM `products` LIMIT ?, ?;");
+        $sql = parent::$connection->prepare("SELECT products.*,
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM `products`
+         LIMIT ?, ?;");
         $sql->bind_param("ii", $startRecord, $perPage);
         return parent::select($sql);
     }
@@ -358,5 +406,4 @@ class Product extends Database
 
         return $first . $previous .  $link  . $next . $last;
     }
-
 }
