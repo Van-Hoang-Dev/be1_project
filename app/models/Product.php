@@ -153,6 +153,18 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    public function getProductHaveCategoryIDDetail($id)
+    {
+        $sql = parent::$connection->prepare("SELECT products.*,
+                                              category_product.category_id
+                                            FROM `products` 
+                                            INNER JOIN category_product 
+                                            ON category_product.product_id = products.id
+                                            WHERE category_product.product_id = ?");
+        $sql->bind_param("i", $id);
+        return parent::select($sql)[0];
+    }
+
     //Get current quantity
     public function getCurrentQuantityOfProductByProductID($productID)
     {

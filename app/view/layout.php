@@ -71,12 +71,12 @@
                                 <a class="nav-link icon-header" href="viewcart.php">
                                     <i class="fa-solid fa-bag-shopping"></i>
                                 </a>
-                                <?php  
+                                <?php
                                 $quantity = 0;
-                                if(isset($_SESSION["cart-quantity"])){
+                                if (isset($_SESSION["cart-quantity"])) {
                                     $quantity = $_SESSION["cart-quantity"];
                                 }
-                                
+
                                 ?>
                                 <span class="cart-count"><?php echo $quantity ?></span>
                             </div>
@@ -90,13 +90,13 @@
                         <?php else : ?>
                             <li class="nav-item px-3 d-flex">
                                 <a href="user_info.php" class="nav-link icon-header">
-                                    Hello,  <?php echo $_SESSION['account']['lastname'] ?>
+                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
                                 </a>
                                 <a class="nav-link icon-header" data-bs-toggle="modal" data-bs-target="#updateInfoModal">
                                     <i class="bi bi-feather"></i>
                                 </a>
                             </li>
-                        </li>
+                            </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="logout.php">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -133,9 +133,6 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['account']['username'] ?>">
-                            </div>
-                            <div class="mb-3">
                                 <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
                             </div>
                             <div class="mb-3">
@@ -145,30 +142,17 @@
                                 <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
                             </div>
                             <div class="mb-3">
+                                <input type="text" class="form-control" id="postcode_zip" name="postcode_zip" value="<?php echo $_SESSION['account']['postcode_zip'] ?>">
+                            </div>
+                            <div class="mb-3">
                                 <label for="password" class="form-label">New password</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $_SESSION['account']['address'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="postcode_zip" name="postcode_zip" value="<?php echo $_SESSION['account']['postcode_zip'] ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">New password</label>
-                            <input type="password" class="form-control" id="password"  name="password">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="d-grid col-6 mx-auto my-3">
-                            <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
+                            <div class="modal-footer">
+                                <div class="d-grid col-6 mx-auto my-3">
+                                    <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

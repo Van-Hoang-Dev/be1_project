@@ -174,7 +174,7 @@ if (isset($_COOKIE['recentView'])) {
 
                                     <div class="box-text">
                                         <div class="form-group">
-                                            <textarea id="editor" name="content" class="form-control"></textarea>
+                                            <textarea id="editor" name="comment" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <input type="submit" name="send_review" value="Send Comment" class="btn btn-success mt-3">

@@ -6,7 +6,7 @@
           <div class="col-md-4 my-md-auto">
             <h1 class="slide-bar-header">Feel the Sound Apple Home Mini</h1>
             <p class="slide-bar-sub">More powerfull than ever.</p>
-            <a href="#" class="btn-shop-now">Shop now</a>
+            <a href="./shop.php" class="btn-shop-now">Shop now</a>
           </div>
           <div class="col-md-4">
             <div class="slide-bar-box">
