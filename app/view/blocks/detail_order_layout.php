@@ -95,7 +95,7 @@
                 <div class="card-footer border-0 px-4 py-5"
                   style="background-color: #ffb300; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                   <h5 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
-                    paid: <span class="h4 mb-0 ms-2">$1040</span></h5>
+                    paid: <span class="h4 mb-0 ms-2"><?php echo $total ?></span></h5>
                 </div>
               </div>
             </div>

@@ -29,35 +29,36 @@ $cart = array(
 // Kiem tra gio hang da duoc tao hay chua
 if(!isset($_SESSION["cart"])){
     $_SESSION["cart"] = [];
+    $_SESSION["cart-quantity"] = 0;
 }
+var_dump($productCurrentQuantity["current_quantity"]);
 
 // Kiem tra xem san pham da tung co trong gio hang hay chua
 $product_exists = false;
 foreach ($_SESSION["cart"] as &$item) {
     if($item["id"] == $productID){
-        if($item["quantity"] < $productCurrentQuantity["current_quantity"]){
+        if($item["quantity"] < $productCurrentQuantity["current_quantity"] && $productCurrentQuantity["current_quantity"] != 0 ){
         $item["quantity"]++;
+        $_SESSION["cart-quantity"]++;
         $item["subtotal"] = ($item["price"] * $item["quantity"]);
         $product_exists = true;
-        }
-        else{
-            $item["quantity"] = $productCurrentQuantity["current_quantity"];
         }
         break;
     }
 }
 
 //Neu san pham chua co trong gio hang thi them moi
-if(!$product_exists){
+if(!$product_exists && $productCurrentQuantity["current_quantity"] != 0){
     array_push($_SESSION["cart"], $cart);
+    $_SESSION["cart-quantity"]++;
 }
 
 var_dump($_SESSION["cart"]);
+var_dump($_SESSION["cart-quantity"]);
 
 //Them cart vao databse
 if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
     $cartModel = new CartModel();
-
     $userID = $_SESSION['account']["id"];
     $quantity = "";
     foreach ($_SESSION["cart"] as &$item) {
@@ -70,3 +71,4 @@ if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
 }
 
 header('location: viewcart');
+exit;

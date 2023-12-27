@@ -7,10 +7,10 @@ spl_autoload_register(function ($classname) {
 
 $firstname = "";
 $lastname = "";
-$username = "";
-$address = "";
 $email = "";
 $phone = "";
+$address = "";
+$postcode_zip = "";
 $password = "";
 
 if(isset($_POST["firstname"])){
@@ -26,6 +26,10 @@ if(isset($_POST["username"])){
 
 if(isset($_POST["address"])){
     $address = $_POST["address"];
+}
+
+if(isset($_POST["postcode_zip"])){
+    $postcode_zip = $_POST["postcode_zip"];
 }
 
 if(isset($_POST["email"])){
@@ -46,7 +50,7 @@ if(isset($_POST["password"])){
 
 // Get user
 $userModel = new User();
-$user = $userModel->resetAccount($firstname, $lastname, $username, $email, $phone, $address, $password);
+$user = $userModel->resetAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip, $password);
 
 if ($user == true) {
     header('location: index');

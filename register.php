@@ -7,11 +7,10 @@ spl_autoload_register(function ($classname) {
 
 $firstname = "";
 $lastname = "";
-$username = "";
-$gender = "";
 $email = "";
 $phone = "";
 $address ="";
+$postcode_zip ="";
 $password = "";
 
 if(isset($_POST["firstname"])){
@@ -20,14 +19,6 @@ if(isset($_POST["firstname"])){
 
 if(isset($_POST["lastname"])){
     $lastname = $_POST["lastname"];
-}
-
-if(isset($_POST["username"])){
-    $username = $_POST["username"];
-}
-
-if(isset($_POST["gender"])){
-    $gender = intval($_POST["gender"]);
 }
 
 if(isset($_POST["email"])){
@@ -41,6 +32,10 @@ if(isset($_POST["address"])){
     $address = $_POST["address"];
 }
 
+if(isset($_POST["postcode_zip"])){
+    $postcode_zip = $_POST["postcode_zip"];
+}
+
 if (isset($_POST['password'])) {
     if(isset($_POST["repassword"])) {
         $password = ($_POST["password"] == $_POST["repassword"]) ? $_POST["repassword"] : false;   
@@ -50,9 +45,9 @@ if (isset($_POST['password'])) {
 // //Get user
 $userModel = new User();
 $user = "";
-if (!empty($firstname) && !empty($lastname) && !empty($username) && !empty($gender) && !empty($email) && !empty($phone) && !empty($address) && !empty($password)) {
+if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($phone) && !empty($address) && !empty($postcode_zip) && !empty($password)) {
     if ($password != false) {
-        $userModel->registerAccount($firstname, $lastname, $username, $gender, $email, $phone, $address, $password);
+        $userModel->registerAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip, $password);
         $user = $userModel->loginAccount($phone);
         $_SESSION['account'] = $user;
         echo "<script>alert('Đăng kí thành công!!!')</script>";

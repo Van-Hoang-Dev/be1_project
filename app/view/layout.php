@@ -59,16 +59,6 @@
                                 <a class="nav-link" href="./admin/products/manage_product">Manage</a>
                             </li>
                         <?php endif ?>
-                        <li class="nav-item px-md-3 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Page
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -81,7 +71,14 @@
                                 <a class="nav-link icon-header" href="viewcart.php">
                                     <i class="fa-solid fa-bag-shopping"></i>
                                 </a>
-                                <span class="cart-count">0</span>
+                                <?php  
+                                $quantity = 0;
+                                if(isset($_SESSION["cart-quantity"])){
+                                    $quantity = $_SESSION["cart-quantity"];
+                                }
+                                
+                                ?>
+                                <span class="cart-count"><?php echo $quantity ?></span>
                             </div>
                         </li>
                         <?php if (!isset($_SESSION['account'])) : ?>
@@ -92,13 +89,14 @@
                             </li>
                         <?php else : ?>
                             <li class="nav-item px-3 d-flex">
-                                <a class="nav-link icon-header">
-                                    Hello, <?php echo $_SESSION['account']['lastname'] ?>
+                                <a href="user_info.php" class="nav-link icon-header">
+                                    Hello,  <?php echo $_SESSION['account']['lastname'] ?>
                                 </a>
                                 <a class="nav-link icon-header" data-bs-toggle="modal" data-bs-target="#updateInfoModal">
                                     <i class="bi bi-feather"></i>
                                 </a>
                             </li>
+                        </li>
                             <li class="nav-item px-3">
                                 <a class="nav-link icon-header" href="logout.php">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -151,10 +149,26 @@
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <div class="d-grid col-6 mx-auto my-3">
-                                <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
-                            </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="address" name="address" value="<?php echo $_SESSION['account']['address'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="postcode_zip" name="postcode_zip" value="<?php echo $_SESSION['account']['postcode_zip'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">New password</label>
+                            <input type="password" class="form-control" id="password"  name="password">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid col-6 mx-auto my-3">
+                            <input type="submit" class="btn btn-success text-light fw-bolder" value="Update Info">
                         </div>
                     </form>
                 </div>
@@ -291,7 +305,7 @@
     </div>
     <!-- Sign in -->
     <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
@@ -312,9 +326,6 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username*" required>
-                        </div>
-                        <div class="mb-3">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email*" required>
                         </div>
                         <div class="mb-3">
@@ -324,24 +335,14 @@
                             <input type="text" class="form-control" id="address" name="address" placeholder="Adress*" required>
                         </div>
                         <div class="mb-3">
+                            <input type="text" class="form-control" id="postcode_zip" name="postcode_zip" placeholder="postcode zip*" required>
+                        </div>
+                        <div class="mb-3">
                             <input type="password" class="form-control" id="password" name="password" placeholder="New password*" required>
                         </div>
 
                         <div class="mb-3">
                             <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Comfirm password*" required>
-                        </div>
-
-                        <!-- Choose Gender -->
-                        <div class="mb-3">
-                            Gender
-                            <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" value="1">
-                            <label class="btn" for="male">Male</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" value="2">
-                            <label class="btn" for="female">Female</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="other" autocomplete="off" value="3">
-                            <label class="btn" for="other">Other</label>
                         </div>
                     </div>
                     <div class="modal-footer">

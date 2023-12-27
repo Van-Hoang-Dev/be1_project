@@ -7,23 +7,30 @@
         </div>
         <div class="formbold-mb-3">
             <label for="name" class="formbold-form-label"> Name </label>
-            <input type="text" name="name" id="name" class="formbold-form-input" />
+            <input type="text" name="name" id="name" class="formbold-form-input" required />
         </div>
         <div class="formbold-mb-3">
             <label for="price" class="formbold-form-label"> Price </label>
-            <input type="number" name="price" id="price" class="formbold-form-input" />
+            <input type="number" name="price" id="price" class="formbold-form-input" required/>
         </div>
         <div class="formbold-mb-3">
             <label for="description" class="formbold-form-label"> Description </label>
-            <input type="text" name="description" id="description" class="formbold-form-input" />
+            <textarea id="editor" class="form-control" name="description"></textarea>
+        </div>
+        <hr class="my-5">
+        <div class="formbold-mb-3">
+            <label for="main_image" class="formbold-form-label">Main Image </label>
+            <div class="boxDisplayImage my-3" id="boxDisplayImage"></div>
+            <div class="input-group mb-3">
+            <input type="file" name="main_image" id="main_image" class="form-control" required />
+            </div>
         </div>
         <div class="formbold-mb-3">
             <label for="image" class="formbold-form-label"> Image </label>
             <div class="boxDisplayImages my-3" id="boxDisplayImages"></div>
-            <input type="file" name="image[]" id="image" multiple accept="image/*" class="formbold-form-input">
-            <!-- <input type="file" name="image" id="image" class="formbold-form-input" /> -->
+            <input type="file" name="image[]" id="image" multiple accept="image/*" class="form-control">
         </div>
-        <hr>
+        <hr class="my-5">
         <div class="row mt-3">
             <label for="1" class="formbold-form-label"> Category </label>
             <?php
@@ -31,7 +38,7 @@
             ?>
                 <div class="col-md-6">
                     <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="<?php echo $category["category_id"] ?>" name="categories[]" value="<?php echo $category["category_id"] ?>">
+                        <input type="checkbox" class="form-check-input" id="<?php echo $category["category_id"] ?>" name="categories[]" value="<?php echo $category["category_id"]  ?>">
                         <label class="form-check-label" for="<?php echo $category["category_id"] ?>"><?php echo $category["name"] ?></label>
                     </div>
                 </div>
@@ -61,7 +68,19 @@
 </div>
 <script type="text/javascript">
     let image = document.getElementById("image");
+    let main_image = document.getElementById("main_image");
     let boxDisplayImages = document.getElementById("boxDisplayImages");
+    let boxDisplayImage = document.getElementById("boxDisplayImage");
+
+    main_image.addEventListener("change", (e) => {
+        boxDisplayImage.innerHTML = "";
+        let img = document.createElement("img");
+            img.src = URL.createObjectURL(e.target.files[0]);
+            img.className = "displayedImage";
+            boxDisplayImage.appendChild(img);
+            console.log(URL.createObjectURL(e.target.files[0]));
+    });
+
 
     image.addEventListener("change", (e) => {
         // Xóa hết các hình đã hiển thị trước đó

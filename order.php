@@ -62,7 +62,6 @@ $orderID = $orderModel->addOrder($userID);
 //Tao ra ma hoa don
 $order_code = generateInvoiceNumber($orderID);
 
-// $_SESSION["user_order_id"] = $userID;
 //Thông tin của người dùng
 $customer = [
     "userID" => $userID,
@@ -79,8 +78,6 @@ foreach ($bill_items as $key => $bill_item) {
 
     $productQuantity = $productModel->getCurrentQuantityOfProductByProductID($bill_item["id"]);
     $newQuantity = $productQuantity["current_quantity"] - $bill_item["quantity"];
-    var_dump($newQuantity);
-    var_dump($bill_item["id"]);
     $productModel->updateQuantityWhenOrder($bill_item["id"], $newQuantity);
 
     $orderDetail = [
