@@ -27,7 +27,10 @@ class Product extends Database
     {
         // 2. Tạo câu SQL
         $keyword = "%$keyword%";
-        $sql = parent::$connection->prepare("SELECT * FROM `products` WHERE name LIKE ?");
+        $sql = parent::$connection->prepare("SELECT products.*,
+        (SELECT image FROM images 
+        WHERE images.product_id = products.id AND images.main = 1) AS 'image'  
+        FROM `products` WHERE name LIKE ?");
         $sql->bind_param('s', $keyword);
         return parent::select($sql);
     }

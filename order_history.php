@@ -10,6 +10,7 @@ if(isset($_SESSION["account"])){
 $orderModel = new Order();
 $orders = $orderModel->getAllOrder($userID);
 
+// var_dump($orders);
 
 $data = [
     "title" => "User information",

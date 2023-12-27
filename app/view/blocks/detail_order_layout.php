@@ -21,7 +21,7 @@
                     <div class="card-body">
                       <div class="row">
                         <div class="col-md-2">
-                          <img src="<?php echo $orderDetail["image"] ?>"
+                          <img src="public/images/content/products/<?php echo $orderDetail["image"] ?>"
                             class="img-fluid" alt="Phone">
                         </div>
                         <div class="col-md-4 text-center d-flex justify-content-center align-items-center">

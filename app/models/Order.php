@@ -31,10 +31,13 @@ class Order extends Database{
 
     //Get All order of user
     public function getAllOrder($userID){
-        $sql = parent::$connection->prepare("SELECT * FROM `orders` 
-        INNER JOIN order_details ON order_details.order_id = orders.order_id
-        INNER JOIN products ON products.id = order_details.product_id
-        WHERE orders.user_id = ?;");
+        $sql = parent::$connection->prepare("SELECT orders.*, products.*, order_details.*, 
+        (SELECT image FROM images 
+        WHERE images.product_id = products.id AND images.main = 1) AS 'image' 
+        FROM `orders` 
+                INNER JOIN order_details ON order_details.order_id = orders.order_id
+                INNER JOIN products ON products.id = order_details.product_id
+                WHERE orders.user_id = ?;");
         $sql->bind_param("i", $userID);
         return parent::select($sql);
     }

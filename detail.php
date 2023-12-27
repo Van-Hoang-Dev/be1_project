@@ -69,7 +69,6 @@ if (isset($_GET['send_review'])) {
     $reviewModel->addReview($review);
 }
 $reviews = $reviewModel->getReviewByIDProduct($id);
-var_dump($reviews);
 
 $data = [
     "title" => "Product Detail",
