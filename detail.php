@@ -52,12 +52,15 @@ setcookie('recentView', $string, time() + 60, "/");
 if (isset($_GET['send_review'])) {
     $rating = "";
     $comment = "";
+
     if (isset($_GET['rating'])) {
         $rating = $_GET['rating'];
     }
+
     if (isset($_GET['comment'])) {
         $comment = $_GET['comment'];
     }
+
     $review = [
         'product_id' => $id,
         'user_phone' => $_SESSION['account']['phone'],
@@ -67,7 +70,6 @@ if (isset($_GET['send_review'])) {
     $reviewModel->addReview($review);
 }
 $reviews = $reviewModel->getReviewByIDProduct($id);
-
 $data = [
     "title" => "Product Detail",
     "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category, 'products' => $products, 'reviews' => $reviews])
