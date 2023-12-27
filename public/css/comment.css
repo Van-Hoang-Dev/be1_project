@@ -1,0 +1,77 @@
+.comment-box-layout h2 {
+    font-size: 30px;
+}
+
+.comment-box-layout h2 span {
+    color: #ffb300;
+}
+
+.star-rating {
+    color: #ffb300;
+}
+
+.comment-box-layout .box-user .username {
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.comment-box-layout .content-comment {
+    border: 1px solid #ccc;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.content-comment .user-info {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.content-comment .user-info img {
+    border-radius: 999px;
+    width: 100px;
+    height: 100px;
+}
+
+.content-comment .user-info .box-user {
+    margin-left: 30px;
+}
+
+.btn-write-comment:hover {
+    background-color: #ffb300;
+    color: #fff;
+    border: 1px solid #ffb300;
+}
+
+.btn-write-comment {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 15px 25px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: all .3s ease;
+}
+
+.offcanvas-title {
+    border: 1px solid #000;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+.box-text{
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 0 auto;
+}
+.ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }

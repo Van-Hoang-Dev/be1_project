@@ -4,19 +4,26 @@
             <div class="col-3">
                 <div class="categories">
                     <h2>Categories</h2>
+                    <div class="category-item">
+                            <a href="shop.php" class="<?php
+                                                        if (empty($_GET["category_id"])) {
+                                                            echo "active";
+                                                        } ?>">
+                                <span>All Products</span>
+                            </a>
+                        </div>
                     <?php
                     foreach ($categories as $category) :
                     ?>
                         <div class="category-item">
-                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" 
-                            class="<?php 
-                            if (isset($_GET["category_id"])) {
-                            echo ($_GET["category_id"] == $category["category_id"]) ? "active" : "";
-                            } ?>">
-                            <?php echo $category["name"]; ?><span></span>
-                        </a>
+                            <a href="shop.php?category_id=<?php echo $category["category_id"]; ?>" class="<?php
+                                                                                                            if (isset($_GET["category_id"])) {
+                                                                                                                echo ($_GET["category_id"] == $category["category_id"]) ? "active" : "";
+                                                                                                            } ?>">
+                                <span><?php echo $category["name"]; ?></span>
+                            </a>
                         </div>
-                        
+
                     <?php
                     endforeach;
                     ?>
@@ -42,14 +49,14 @@
                                         <div class="icon">
                                             <div class="tooltip-content">Add to cart</div>
                                             <form action="cart.php" method="post">
-                                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"]?>">
+                                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
                                                 <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
                                             </form>
                                         </div>
                                         <div class="icon">
                                             <div class="tooltip-content">Wishlist</div>
                                             <form action="#" method="post">
-                                                <input type="hidden" name="add_to_wishlist" value="<?php echo $product["id"]?>">
+                                                <input type="hidden" name="add_to_wishlist" value="<?php echo $product["id"] ?>">
                                                 <button type="submit"><i class="fa-regular fa-star"></i></button>
                                             </form>
                                         </div>
@@ -89,13 +96,15 @@
                 </div>
 
                 <!-- Pagination -->
-                <?php if(isset($paginationBar)) : ?>
-                <div class="number-page">
-                    <ul class="pagination">
-                        <?php 
-                        echo $paginationBar; ?>
-                    </ul>
-                </div>
+                <?php if (isset($paginationBar)) : ?>
+                    <div class="text-center">
+                        <div class="number-page">
+                            <ul class="pagination">
+                                <?php
+                                echo $paginationBar; ?>
+                            </ul>
+                        </div>
+                    </div>
                 <?php endif ?>
             </div>
         </div>

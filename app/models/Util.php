@@ -41,5 +41,6 @@ class Util {
             setcookie("random_selector", "");
         }
     }
+
 }
 ?>

@@ -9,8 +9,5 @@ session_unset();
 $_SESSION["member_phone"] = "";
 session_destroy();
 
-// clear cookies
-// $util->clearUserCookie();
-
 header('location: index');
 
