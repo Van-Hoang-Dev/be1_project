@@ -6,13 +6,22 @@ spl_autoload_register(function ($classname) {
 });
 
 $template = new Template();
+$productModel = new Product();
 
 // Thêm sản phẩm vào giỏ hàng
 $productID = "";
+
 if (isset($_POST["add_to_cart"])) {
     $productID = $_POST["add_to_cart"];
 }
 $index = "";
+$id = "";
+if(isset($_POST["add_to_cart"])){
+    var_dump($_POST["add_to_cart"]);
+    $productID = $_POST["add_to_cart"];
+    $id = $_POST["add_to_cart"];
+}
+
 if (isset($_POST['index'])) {
     $index = $_POST['index'];
 }
@@ -21,6 +30,7 @@ $productModel = new Product();
 $cartModel = new CartModel();
 
 $product = $productModel->getProductByID($productID);
+var_dump($product);
 $productCurrentQuantity = $productModel->getCurrentQuantityOfProductByProductID($productID);
 
 $cart = array(
@@ -61,9 +71,6 @@ if (!$product_exists && $productCurrentQuantity["current_quantity"] != 0) {
     $_SESSION["cart-quantity"]++;
 }
 
-// var_dump($_SESSION["cart"]);
-// var_dump($_SESSION["cart-quantity"]);
-
 //Them cart vao databse
 if (isset($_SESSION['account']) && isset($_SESSION["cart"])) {
     $userID = $_SESSION['account']["id"];
@@ -78,8 +85,8 @@ if (isset($_SESSION['account']) && isset($_SESSION["cart"])) {
    
 }
 if ($index == 1) {
-    header('location: shop');
+    header('location: shop.php');
 } else {
-    header('location: detail?id='.$productID);
+    header('location: detail.php?id='.$productID);
 }
 exit;
