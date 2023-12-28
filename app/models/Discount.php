@@ -46,4 +46,34 @@ class Discount extends Database
         $sql->bind_param("i", $discount_id);
         return parent::select($sql)[0];
     }
+
+    public function getDiscountByCode($discount_code){
+        $sql= parent::$connection->prepare("SELECT * FROM `discounts` INNER JOIN discount_product ON discount_product.discount_id = discounts.discount_id WHERE discount_code = ?;");
+        $sql->bind_param("s", $discount_code);
+        return parent::select($sql);
+    }
+
+    public function checkProductHaveDiscount($discount_code, $product_id){
+        $sql= parent::$connection->prepare("SELECT * FROM `discounts` 
+        INNER JOIN discount_product  ON discount_product.discount_id = discounts.discount_id
+        WHERE discount_code = ? AND discount_product.product_id = ?;");
+        $sql->bind_param("si", $discount_code, $product_id);
+        
+        $result = parent::select($sql)[0];
+        if(!empty($result)){
+            return $result;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public function updateDiscountStatus($product_id){
+        $sql = parent::$connection->prepare("UPDATE `cart_products` SET `discount_status`= 1 WHERE product_id = ?");
+        $sql->bind_param("i", $product_id);
+        return $sql->execute();
+    }
+
+
+
 }

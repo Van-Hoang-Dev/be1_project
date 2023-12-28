@@ -1,6 +1,24 @@
 <?php
 class Review extends Database {
 
+    //Get all review
+    public function getAllReviews(){
+        $sql = parent::$connection->prepare("SELECT review.*, member.firstname, member.lastname, member.email, products.name ,
+        (SELECT image FROM images 
+        WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM `review`
+        LEFT JOIN member ON member.phone = review.user_phone
+        LEFT JOIN products ON products.id = review.product_id;");
+        return parent::select($sql);
+    }
+
+    //Delete review
+    public function deleteReview($review_id){
+        $sql = parent::$connection->prepare("DELETE FROM `review` WHERE review_id = ?");
+        $sql->bind_param("i", $review_id);
+        return $sql->execute();
+    }
+
     // Add review 
     public function addReview($review)
     {

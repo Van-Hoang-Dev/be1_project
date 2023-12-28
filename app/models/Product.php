@@ -39,7 +39,10 @@ class Product extends Database
     public function getProductsByPrice($priceS, $priceE)
     {
         // 2. Tạo câu SQL
-        $sql = parent::$connection->prepare("SELECT * FROM products
+        $sql = parent::$connection->prepare("SELECT *, 
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM products
         WHERE price BETWEEN ? AND ?");
         $sql->bind_param('ii', $priceS, $priceE);
         return parent::select($sql);

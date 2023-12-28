@@ -34,7 +34,7 @@ $orderDetails = $orderModel->getAllOrderByOrderCode($ordercode);
 
 $data = [
     "title" => "Detail Order",
-    "slot" => $template->render("blocks/detail_order_layout", ["orderDetails"=>$orderDetails, "customer"=> $customer])
+    "slot" => $template->render("blocks/detail_order_layout", ["orderDetails"=>$orderDetails, "customer"=> $customer, "order_code"=>$ordercode])
 ];
 $template->view("layout", $data);
 

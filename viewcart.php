@@ -9,6 +9,9 @@ spl_autoload_register(
 
 $template = new Template();
 $cart = [];
+
+// var_dump($_SESSION["cart"]);
+
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
 }
