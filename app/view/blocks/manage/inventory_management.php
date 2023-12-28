@@ -1,6 +1,6 @@
 <div class="container">
     <h2 class="my-5 title-center">Inventory management</h2>
-    <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add discount</a>
+    <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add Inventory</a>
     <table class="table table-hover ">
         <thead>
             <th>Product id</th>

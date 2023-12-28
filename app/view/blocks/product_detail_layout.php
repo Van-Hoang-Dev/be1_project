@@ -39,7 +39,11 @@ if (isset($_COOKIE['recentView'])) {
                         </ul>
                         <div class="product_option">
                             <div class="d-grid gap-2">
-                                <a href="#" class="btn btn-dark mb-3 btn-buy text-light">Add to cart</a>
+                                <form action="cart" method="post">
+                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
+                                <input type="hidden" name="index" value="2">
+                                <button type="submit" class="btn btn-dark mb-3 btn-buy text-light">Add to cart</button>
+                                </form>
                                 <a href="#" class="btn btn-outline-dark btn-buy text-dark">Buy now</a>
                             </div>
                             <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
@@ -88,7 +92,7 @@ if (isset($_COOKIE['recentView'])) {
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <form action="detail.php" method="get">
+                                <form action="detail.php" method="post">
                                     <div class="d-flex">
                                         <p>Your rating: </p>
                                         <div class="star-rating ms-3" id="star-rating">
@@ -139,8 +143,8 @@ if (isset($_COOKIE['recentView'])) {
                                             }
                                         } ?>
                                     </div>
-                                    <p class="username"><?php echo $item['lastname'] ?></p>
-                                    <p><?php echo $item['review_date'] ?></p>
+                                    <p class="username"><?php echo $item['firstname'].' '.$item['lastname'] ?></p>
+                                    <p><?php echo  $item['review_date'] ?></p>
                                 </div>
                             </div>
                             <div class="commnet-content-box">
@@ -158,7 +162,7 @@ if (isset($_COOKIE['recentView'])) {
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
-                                <form action="detail.php" method="get">
+                                <form action="detail.php" method="post">
                                     <div class="d-flex">
                                         <p>Your rating: </p>
                                         <div class="star-rating ms-3" id="star-rating">
@@ -188,7 +192,7 @@ if (isset($_COOKIE['recentView'])) {
             </div>
         </div>
         <?php endif ?>
-        <!-- Related -->
+        <!-- Related Product -->
         <?php if (isset($_COOKIE['recentView'])) : ?>
             <div class="row">
                 <div class="breadcrumb-option">
@@ -207,7 +211,7 @@ if (isset($_COOKIE['recentView'])) {
                                 <div class="product-emtry">
                                     <div class="product-thumb">
                                         <div class="product-label">
-                                            <div class="onsale">-13%</div>
+                                            <!-- <div class="onsale">-13%</div> -->
                                         </div>
                                         <div class="product-image">
                                             <img class="img-fluid" src="public/images/content/products/<?php echo $item["image"] ?>" alt="Mac mini M2 2023">

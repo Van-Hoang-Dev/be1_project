@@ -32,7 +32,7 @@ class Review extends Database {
     // Lay review cho 1 san pham
     public function getReviewByIDProduct($productID)
     {
-        $sql = parent::$connection->prepare("SELECT review.*, `member`.lastname 
+        $sql = parent::$connection->prepare("SELECT review.*, `member`.lastname, `member`.firstname
                                             FROM `review`
                                             INNER JOIN member ON
                                             `review`.user_phone = `member`.phone

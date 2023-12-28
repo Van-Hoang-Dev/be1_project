@@ -12,6 +12,10 @@ $productID = "";
 if (isset($_POST["add_to_cart"])) {
     $productID = $_POST["add_to_cart"];
 }
+$index = "";
+if (isset($_POST['index'])) {
+    $index = $_POST['index'];
+}
 
 $productModel = new Product();
 $cartModel = new CartModel();
@@ -73,5 +77,9 @@ if (isset($_SESSION['account']) && isset($_SESSION["cart"])) {
     }
    
 }
-
-header('location: viewcart.php');
+if ($index == 1) {
+    header('location: shop');
+} else {
+    header('location: detail?id='.$productID);
+}
+exit;

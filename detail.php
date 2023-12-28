@@ -12,12 +12,11 @@ $reviewModel = new Review();
 
 $product = "";
 $id = "";
-if (!empty($_GET['id'])) {
-    $id = $_GET['id'];
+if (!empty($_POST['id'])) {
+    $id = $_POST['id'];
 }
 
 $product = $productModel->getProductHaveCategoryIDDetail($id);
-
 
 // var_dump($product);
 $category = $categoryModel->getCategoryByID($product['category_id']);
@@ -51,16 +50,16 @@ $string =  json_encode($recentViewID);
 setcookie('recentView', $string, time() + 60, "/");
 
 // Review
-if (isset($_GET['send_review'])) {
+if (isset($_POST['send_review'])) {
     $rating = "";
     $comment = "";
 
-    if (isset($_GET['rating'])) {
-        $rating = $_GET['rating'];
+    if (isset($_POST['rating'])) {
+        $rating = $_POST['rating'];
     }
 
-    if (isset($_GET['comment'])) {
-        $comment = $_GET['comment'];
+    if (isset($_POST['comment'])) {
+        $comment = $_POST['comment'];
     }
 
     $review = [

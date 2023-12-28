@@ -13,12 +13,11 @@ class User extends Database
         $sql->bind_param("i", $user_id);
         return $sql->execute();
     }
-
     // Login Account
-    public function loginAccount($username)
+    public function loginAccount($phone)
     {
         $sql = parent::$connection->prepare("SELECT * FROM `member` WHERE phone = ?");
-        $sql->bind_param("s", $username);
+        $sql->bind_param("s", $phone);
         return parent::select($sql)[0];
     }
 
@@ -49,7 +48,7 @@ class User extends Database
         return parent::select($sql)[0];
     }
 
-    //User order 
+    //Add user order 
     public function addUserOrder($userOrder)
     {
         $userOerderExisting = $this->checkCustomer($userOrder["email"], $userOrder["phone"]);
@@ -73,57 +72,28 @@ class User extends Database
     public function resetAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip ,$password)
     {
         $sql = parent::$connection->prepare("UPDATE member 
-                                                SET `firstname` = ?, `lastname`= ?, `email` = ?, `address`= ?,`postcode_zip`= ?, `password` =?  
-                                                WHERE `phone`= ?");
+                                            SET `firstname` = ?, `lastname`= ?, `email` = ?, `address`= ?,`postcode_zip`= ?, `password` =?  
+                                            WHERE `phone`= ?");
         $sql->bind_param("sssssss", $firstname, $lastname, $email, $address, $postcode_zip, $password, $phone);
         return $sql->execute();
     }
 
-    public function getTokenByPhoneNumber($phone, $expired)
+    // Get token
+    public function getToken($token)
     {
-        $sql = parent::$connection->prepare("SELECT * FROM token_auth_tb WHERE `phone` = ? AND `is_expired` = ?");
-        $sql->bind_param("si", $phone, $expired);
+        $sql = parent::$connection->prepare("SELECT * FROM member WHERE `token` = ?");
+        $sql->bind_param("s", $token);
         return parent::select($sql)[0];
     }
 
-    public function markAsExpired($tokenId)
+    // Update token
+    public function addToken($phone, $token)
     {
         $sql = parent::$connection->prepare(
-            "UPDATE token_auth_tb SET is_expired = 1 WHERE id = ?"
+            "UPDATE member SET token = ? WHERE phone = ?"
         );
-        $sql->bind_param("i", $tokenId);
+        $sql->bind_param("ss", $token, $phone);
         return $sql->execute();
-    }
-
-    public function insertToken($phone, $random_password_hash, $random_selector_hash, $expiry_date)
-    {
-        $sql = parent::$connection->prepare(
-            "INSERT INTO token_auth_tb (`phone`, `password_hash`, `selector_hash`, `expiry_date`) VALUES (?, ?, ?, ?)"
-        );
-        $sql->bind_param('ssss', $phone, $random_password_hash, $random_selector_hash, $expiry_date);
-
-        // Thực hiện câu lệnh SQL và kiểm tra lỗi
-        if ($sql->execute()) {
-            return true; // Thành công
-        } else {
-            // Xử lý lỗi
-            echo "Error: " . $sql->error;
-            return false;
-        }
-    }
-
-
-    public function clearUserCookie()
-    {
-        if (isset($_COOKIE["member_phone"])) {
-            setcookie("member_login", "");
-        }
-        if (isset($_COOKIE["random_password"])) {
-            setcookie("random_password", "");
-        }
-        if (isset($_COOKIE["random_selector"])) {
-            setcookie("random_selector", "");
-        }
     }
 
     //Check customer was in database
