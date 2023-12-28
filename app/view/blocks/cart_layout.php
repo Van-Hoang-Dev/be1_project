@@ -1,9 +1,9 @@
 <?php
-    // Tính totalPrice
-    $totalPrice = 0;
-    foreach ($cart as $item) {
-        $totalPrice += $item['subtotal'];
-    }
+// Tính totalPrice
+$totalPrice = 0;
+foreach ($cart as $item) {
+    $totalPrice += $item['subtotal'];
+}
 ?>
 <div class="cart my-5">
     <div class="container">
@@ -40,43 +40,43 @@
                             <a href="./detail.php?id=<?php echo $item['id'] ?>" class="text-black"><?php echo $item["name"] ?></a>
                             </td>
 
-                            <td class="product-price" data-title="Price">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
-                            </td>
-                            <td class="product-price" data-title="Price">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span><?php echo $item["quantity"] ?></bdi></span>
-                            </td>
-                            </td>
-                            <td class="product-subtotal" data-title="Subtotal">
-                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
-                            </td>
-                            <td class="product-remove">
-                                <form action="delete-item-cart.php" method="post">
-                                    <input type="hidden" name="idRemove" value="<?php echo $item['id']; ?>">
-                                    <button type="submit" class="btn btn-dark text-white" aria-label="Remove this item">×</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php 
+                                    <td class="product-price" data-title="Price">
+                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
+                                    </td>
+                                    <td class="product-price" data-title="Price">
+                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span><?php echo $item["quantity"] ?></bdi></span>
+                                    </td>
+                                    </td>
+                                    <td class="product-subtotal" data-title="Subtotal">
+                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($item["subtotal"], 2, '.', ','); ?></bdi></span>
+                                    </td>
+                                    <td class="product-remove">
+                                        <form action="delete-item-cart.php" method="post">
+                                            <input type="hidden" name="idRemove" value="<?php echo $item['id']; ?>">
+                                            <button type="submit" class="btn btn-dark text-white" aria-label="Remove this item">×</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php
                             endforeach;
-                        ?>
-                        <tr>
-                            <td colspan="6" class="actions">
-                            <hr>
-                                <div class="bottom-cart">
-                                    <div class="coupon">
-                                    <form action="#" class=" d-flex flex-row justify-content-center">
-                            <div class="formbold-mb-3" style="margin: 0;">
-                                <input type="text" name="voucher" id="voucher" class="formbold-form-input"/>
-                            </div>
-                            <button type="submit" class="formbold-btn" style="margin: 0; margin-left: 20px;">Apply voucher</button>
-                        </form>
+                            ?>
+                            <tr>
+                                <td colspan="6" class="actions">
+                                    <hr>
+                                    <div class="bottom-cart">
+                                        <div class="coupon">
+                                            <form action="discount.php" method="post" class=" d-flex flex-row justify-content-center">
+                                                <div class="formbold-mb-3" style="margin: 0;">
+                                                    <input type="text" name="discount_code" id="discount_code" class="formbold-form-input" />
+                                                </div>
+                                                <button type="submit" class="formbold-btn" style="margin: 0; margin-left: 20px;">Apply voucher</button>
+                                            </form>
+                                        </div>
+                                        <h2><a href="./shop">Continue Shopping</a></h2>
                                     </div>
-                                    <h2><a href="./shop">Continue Shopping</a></h2>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                                </td>
+                            </tr>
+                        </tbody>
                     <?php endif ?>
                 </table>
             </div>
@@ -87,7 +87,7 @@
                         <div cellspacing="0" class="shop_table shop_table_responsive">
                             <div class="cart-subtotal">
                                 <div class="title">Subtotal</div>
-                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $totalPrice ?>.00</bdi></span>
+                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($totalPrice, 2, '.', ','); ?></bdi></span>
                                 </div>
                             </div>
                             <div class="order-total">
@@ -95,7 +95,7 @@
                                 <div data-title="Total"><strong>
                                         <span class="woocommerce-Price-amount amount">
                                             <bdi><span class="woocommerce-Price-currencySymbol">$</span>
-                                                <?php echo $totalPrice ?>.00</bdi></span></strong>
+                                                <?php echo $totalPrice ?></bdi></span></strong>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,18 @@
 <?php
 class User extends Database
-{
+{   
+    //Get all user
+    public function getAllUsers(){
+        $sql = parent::$connection->prepare("SELECT id, firstname, lastname, email, phone, address, postcode_zip FROM `member`;");
+        return parent::select($sql);
+    }
+
+    //Delete user by user id
+    public function deleteUser($user_id){
+        $sql = parent::$connection->prepare("DELETE FROM `member` WHERE id = ?");
+        $sql->bind_param("i", $user_id);
+        return $sql->execute();
+    }
     // Login Account
     public function loginAccount($phone)
     {

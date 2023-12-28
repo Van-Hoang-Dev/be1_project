@@ -38,14 +38,15 @@ if (isset($_COOKIE['recentView'])) {
                             <li>Category: <?php echo $category['name'] ?></li>
                         </ul>
                         <div class="product_option">
-                            <div class="d-grid gap-2">
-                                <form action="cart.php" method="post">
-                                    <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
-                                    <input type="hidden" name="index" value="2">
-                                    <button type="submit" class="btn btn-dark mb-3 btn-buy text-light">Add to cart</button>
-                                </form>
-                                <a href="#" class="btn btn-outline-dark btn-buy text-dark">Buy now</a>
-                            </div>
+                            <form action="cart" method="post">
+                                <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
+                                <input type="hidden" name="index" value="2">
+                                <button type="submit" class="btn btn-dark mb-3 btn-buy text-light" style="width: 100%;">Add to cart</button>
+                            </form>
+                            <form action="checkout.php" method="post">
+                                <input type="hidden" name="product_id" value="<?php echo $product["id"] ?>">
+                                <button class="btn btn-outline-dark btn-buy text-dark" style="width: 100%;">Buy now</button>
+                            </form>
                             <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
                         </div>
                         <div class="mt-4 d-flex">
