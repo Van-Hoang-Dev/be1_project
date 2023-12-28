@@ -12,9 +12,16 @@ $reviewModel = new Review();
 
 $product = "";
 $id = "";
-if (!empty($_POST['id'])) {
-    $id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST['id'])) {
+        $id = $_POST['id'];
+    }
+} else {
+    if (!empty($_GET['id'])) {
+        $id = $_GET['id'];
+    }
 }
+
 
 $product = $productModel->getProductHaveCategoryIDDetail($id);
 
