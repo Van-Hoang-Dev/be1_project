@@ -70,5 +70,5 @@ if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
     $cartModel->addCartToDB($userID, $productID, $quantity);
 }
 
-header('location: viewcart');
+header('location: shop');
 exit;

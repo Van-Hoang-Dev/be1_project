@@ -18,7 +18,6 @@ if (!empty($_GET['id'])) {
 
 $product = $productModel->getProductHaveCategoryIDDetail($id);
 
-
 // var_dump($product);
 $category = $categoryModel->getCategoryByID($product['category_id']);
 $products = $productModel->getAllProduct();
