@@ -14,17 +14,17 @@
                             This was given to you on your receipt and in the confirmation email you should have
                             received.
                         </p>
-                        <form action="detail_order.php" method="post">
+                        <form action="detail_order" method="post">
                         <div class="mb-5">
-                                <label for="billing_method" class="form-label"><b class="text-black">Billing Phone Or Email</b></label>
-                                <input type="text" class="form-control" id="billing_method" name="billing_method" placeholder="Phone number you used during checkout" height="30px">
+                                <label for="billing_email" class="form-label"><b class="text-black">Billing Email</b></label>
+                                <input type="text" class="form-control" id="billing_email" name="billing_email" placeholder="Email you used during checkout" height="50px">
                             </div>
                             <div class="mt-5 mb-5">
                                 <label for="order-id" class="form-label"><b class="text-black">Order Code</b></label>
-                                <input type="text" class="form-control" id="order_code" name="order_code" placeholder="Found in your order confirmation email." height="30px">
+                                <input type="text" class="form-control" id="order_code" name="order_code" placeholder="Found in your order confirmation email." height="50px">
                             </div>
                             <div class="d-grid">
-                                <button class="form-control btn btn-primary button" type="submit" height="30px"><b>Track</b></button>
+                                <button class="form-control btn btn-primary button" type="submit" height="50px"><b>Track</b></button>
                             </div>
                         </form>
                 </div>

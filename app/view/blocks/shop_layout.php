@@ -50,6 +50,7 @@
                                             <div class="tooltip-content">Add to cart</div>
                                             <form action="cart.php" method="post">
                                                 <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
+                                                <input type="hidden" name="index" value="1">
                                                 <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
                                             </form>
                                         </div>
@@ -71,7 +72,10 @@
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title">
-                                            <a href="./detail.php?id=<?php echo $product['id'] ?>"><?php echo $product["name"] ?></a>
+                                            <form action="detail" method="post">
+                                                <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+                                                <input type="submit" class="btn-no-border" value="<?php echo $product["name"] ?>">
+                                            </form>
                                         </h3>
                                         <div class="rating none">
                                             <div class="star-rating none">

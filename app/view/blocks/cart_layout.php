@@ -37,7 +37,7 @@
                                 <a href=""><img width="80" height="80" src="public/images/content/products/<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
                             </td>
                             <td>
-                            <a href="#" class="text-black"><?php echo $item["name"] ?></a>
+                            <a href="./detail.php?id=<?php echo $item['id'] ?>" class="text-black"><?php echo $item["name"] ?></a>
                             </td>
 
                             <td class="product-price" data-title="Price">

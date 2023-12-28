@@ -51,12 +51,12 @@ if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($phone) 
         $user = $userModel->loginAccount($phone);
         $_SESSION['account'] = $user;
         echo "<script>alert('Đăng kí thành công!!!')</script>";
-        header('location: index.php');
+        header('location: index');
     } else {
         echo "<script>alert('Vui lòng nhập lại mật khẩu!!!')</script>";
-        header('location: index.php');
+        header('location: index');
     }
 } else {
     echo "<script>alert('Vui lòng nhập đầy đủ thông tin!!!')</script>";
-    header('location: index.php');
+    header('location: index');
 }

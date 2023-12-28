@@ -33,3 +33,13 @@
 .categories .category-item a span{
   margin-left: 10px;
 }
+.btn-no-border {
+  font-size: 16px !important;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none; /* Optional: Add underline on hover */
+}

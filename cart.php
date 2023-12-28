@@ -12,6 +12,10 @@ $productID = "";
 if(isset($_POST["add_to_cart"])){
     $productID = $_POST["add_to_cart"];
 }
+$index = "";
+if (isset($_POST['index'])) {
+    $index = $_POST['index'];
+}
 
 $productModel = new Product();
 $product = $productModel->getProductByID($productID);
@@ -70,5 +74,9 @@ if(isset($_SESSION['account']) && isset($_SESSION["cart"])){
     $cartModel->addCartToDB($userID, $productID, $quantity);
 }
 
-header('location: shop');
+if ($index == 1) {
+    header('location: shop');
+} else {
+    header('location: detail?id='.$productID);
+}
 exit;

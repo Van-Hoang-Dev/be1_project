@@ -254,21 +254,17 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="phone" class="form-label">Enter your phone number</label>
-                            <input type="text" class="form-control" id="phone" name="phone" autofocus value="<?php if (isset($_COOKIE["member_phone"])) {
-                                                                                                                    echo $_COOKIE["member_phone"];
-                                                                                                                } ?>">
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Enter your password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?php if (isset($_COOKIE["random_password"])) {
-                                                                                                                    echo $_COOKIE["random_password"];
-                                                                                                                } ?>">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
                     <!-- Remember Info -->
                     <div class="col-auto">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="remember-account" <?php if (isset($_COOKIE["random_selector"])) { ?> checked <?php } ?>>
+                            <input class="form-check-input" type="checkbox" id="autoSizingCheck" name="remember-account">
                             <label class="form-check-label" for="autoSizingCheck">
                                 Remember me
                             </label>
@@ -276,7 +272,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="d-grid gap-2 col-6 mx-auto my-3">
-                            <input type="submit" name="login" class="btn btn-primary text-light fw-bolder" style="background-color: #1877F2;" value="Log in">
+                            <input type="submit" name="login" class="btn btn-primary text-light fw-bolder" value="Log in">
                         </div>
                         <div>
                             <p class="login-text">Do not have an account ?</p>
