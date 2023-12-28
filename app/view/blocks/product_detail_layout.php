@@ -38,14 +38,15 @@ if (isset($_COOKIE['recentView'])) {
                             <li>Category: <?php echo $category['name'] ?></li>
                         </ul>
                         <div class="product_option">
-                            <div class="d-grid gap-2">
-                                <form action="cart" method="post">
+                            <form action="cart" method="post">
                                 <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
                                 <input type="hidden" name="index" value="2">
-                                <button type="submit" class="btn btn-dark mb-3 btn-buy text-light">Add to cart</button>
-                                </form>
-                                <a href="#" class="btn btn-outline-dark btn-buy text-dark">Buy now</a>
-                            </div>
+                                <button type="submit" class="btn btn-dark mb-3 btn-buy text-light" style="width: 100%;">Add to cart</button>
+                            </form>
+                            <form action="checkout.php" method="post">
+                                <input type="hidden" name="product_id" value="<?php echo $product["id"] ?>">
+                                <button class="btn btn-outline-dark btn-buy text-dark" style="width: 100%;">Buy now</button>
+                            </form>
                             <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
                         </div>
                         <div class="mt-4 d-flex">
@@ -84,113 +85,113 @@ if (isset($_COOKIE['recentView'])) {
 
                             </div>
                         </div>
-                        <?php if (empty($reviews)) :?>
-                        <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $product['name'] ?></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <form action="detail.php" method="post">
-                                    <div class="d-flex">
-                                        <p>Your rating: </p>
-                                        <div class="star-rating ms-3" id="star-rating">
-                                            <i class="fa-regular fa-star" data-star="1"></i>
-                                            <i class="fa-regular fa-star" data-star="2"></i>
-                                            <i class="fa-regular fa-star" data-star="3"></i>
-                                            <i class="fa-regular fa-star" data-star="4"></i>
-                                            <i class="fa-regular fa-star" data-star="5"></i>
+                        <?php if (empty($reviews)) : ?>
+                            <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $product['name'] ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <form action="detail.php" method="post">
+                                        <div class="d-flex">
+                                            <p>Your rating: </p>
+                                            <div class="star-rating ms-3" id="star-rating">
+                                                <i class="fa-regular fa-star" data-star="1"></i>
+                                                <i class="fa-regular fa-star" data-star="2"></i>
+                                                <i class="fa-regular fa-star" data-star="3"></i>
+                                                <i class="fa-regular fa-star" data-star="4"></i>
+                                                <i class="fa-regular fa-star" data-star="5"></i>
+                                            </div>
+                                            <input type="hidden" id="rating-input" name="rating" readonly>
+                                            <input type="hidden" id="rating-input" name="id" readonly value="<?php echo $product['id'] ?>">
                                         </div>
-                                        <input type="hidden" id="rating-input" name="rating" readonly>
-                                        <input type="hidden" id="rating-input" name="id" readonly value="<?php echo $product['id'] ?>">
-                                    </div>
 
-                                    <div class="box-text">
-                                        <div class="form-group">
-                                            <textarea id="editor" name="comment" class="form-control"></textarea>
+                                        <div class="box-text">
+                                            <div class="form-group">
+                                                <textarea id="editor" name="comment" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="send_review" value="Send Comment" class="btn btn-success mt-3">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="submit" name="send_review" value="Send Comment" class="btn btn-success mt-3">
-                                        </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
                         <?php endif ?>
                     </div>
                 </div>
             </div>
         </div>
         <!-- REview -->
-        <?php if (isset($reviews) && count($reviews) > 0):?>
-        <div class="row mb-5">
-            <div class="col">
-                <div class="container">
-                    <section class="comment-box-layout">
-                        <h2><?php echo count($reviews) ?> review for <span><?php echo $product['name'] ?></span></h2>
-                        <div class="content-comment mt-5">
-                            <?php foreach ($reviews as $item) : ?>
-                            <div class="user-info">
-                                <img src="public/images/avatar/<?php echo 'avatar-'.random_int(1, 6).'.jpg' ?>" alt="">
-                                <div class="box-user">
-                                    <div class="star-rating">
-                                        <?php for ($i = 1; $i <= 5; $i++) {
-                                            if ($i <= $item['rating']) { 
-                                                echo '<i class="fa-solid fa-star"></i>';
-                                            } else { 
-                                                echo '<i class="fa-regular fa-star"></i>';
-                                            }
-                                        } ?>
+        <?php if (isset($reviews) && count($reviews) > 0) : ?>
+            <div class="row mb-5">
+                <div class="col">
+                    <div class="container">
+                        <section class="comment-box-layout">
+                            <h2><?php echo count($reviews) ?> review for <span><?php echo $product['name'] ?></span></h2>
+                            <div class="content-comment mt-5">
+                                <?php foreach ($reviews as $item) : ?>
+                                    <div class="user-info">
+                                        <img src="public/images/avatar/<?php echo 'avatar-' . random_int(1, 6) . '.jpg' ?>" alt="">
+                                        <div class="box-user">
+                                            <div class="star-rating">
+                                                <?php for ($i = 1; $i <= 5; $i++) {
+                                                    if ($i <= $item['rating']) {
+                                                        echo '<i class="fa-solid fa-star"></i>';
+                                                    } else {
+                                                        echo '<i class="fa-regular fa-star"></i>';
+                                                    }
+                                                } ?>
+                                            </div>
+                                            <p class="username"><?php echo $item['firstname'] . ' ' . $item['lastname'] ?></p>
+                                            <p><?php echo  $item['review_date'] ?></p>
+                                        </div>
                                     </div>
-                                    <p class="username"><?php echo $item['firstname'].' '.$item['lastname'] ?></p>
-                                    <p><?php echo  $item['review_date'] ?></p>
+                                    <div class="commnet-content-box">
+                                        <?php echo $item['comment'] ?>
+                                    </div>
+                                    <hr>
+                                <?php endforeach ?>
+                            </div>
+
+                            <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
+
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $product['name'] ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <form action="detail.php" method="post">
+                                        <div class="d-flex">
+                                            <p>Your rating: </p>
+                                            <div class="star-rating ms-3" id="star-rating">
+                                                <i class="fa-regular fa-star" data-star="1"></i>
+                                                <i class="fa-regular fa-star" data-star="2"></i>
+                                                <i class="fa-regular fa-star" data-star="3"></i>
+                                                <i class="fa-regular fa-star" data-star="4"></i>
+                                                <i class="fa-regular fa-star" data-star="5"></i>
+                                            </div>
+                                            <input type="hidden" id="rating-input" name="rating" readonly>
+                                            <input type="hidden" id="rating-input" name="id" readonly value="<?php echo $product['id'] ?>">
+                                        </div>
+
+                                        <div class="box-text">
+                                            <div class="form-group">
+                                                <textarea id="editor" name="comment" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="send_review" value="Send Comment" class="btn btn-success mt-3">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="commnet-content-box">
-                                <?php echo $item['comment'] ?>
-                            </div>
-                            <hr>
-                            <?php endforeach ?>
-                        </div>
-                        
-                        <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
-
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $product['name'] ?></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <form action="detail.php" method="post">
-                                    <div class="d-flex">
-                                        <p>Your rating: </p>
-                                        <div class="star-rating ms-3" id="star-rating">
-                                            <i class="fa-regular fa-star" data-star="1"></i>
-                                            <i class="fa-regular fa-star" data-star="2"></i>
-                                            <i class="fa-regular fa-star" data-star="3"></i>
-                                            <i class="fa-regular fa-star" data-star="4"></i>
-                                            <i class="fa-regular fa-star" data-star="5"></i>
-                                        </div>
-                                        <input type="hidden" id="rating-input" name="rating" readonly>
-                                        <input type="hidden" id="rating-input" name="id" readonly value="<?php echo $product['id'] ?>">
-                                    </div>
-
-                                    <div class="box-text">
-                                        <div class="form-group">
-                                            <textarea id="editor" name="comment" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" name="send_review" value="Send Comment" class="btn btn-success mt-3">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php endif ?>
         <!-- Related Product -->
         <?php if (isset($_COOKIE['recentView'])) : ?>
@@ -264,8 +265,8 @@ if (isset($_COOKIE['recentView'])) {
                     endforeach ?>
                 </div>
             </div>
-            <?php endif ?>
-        </div>
+        <?php endif ?>
+    </div>
 </section>
 <script>
     $(document).ready(function() {
