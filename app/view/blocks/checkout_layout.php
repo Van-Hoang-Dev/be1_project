@@ -149,7 +149,7 @@
                                     <?php
                                     $subTotal = 0;
                                     foreach ($cart as $item) :
-                                        $subTotal = $subTotal + (intval($item["price"]) * intval($item["quantity"]));
+                                        $subTotal = $subTotal + ($item["subtotal"]);
                                     ?>
                                         <div class="cart_item">
                                             <div class="info-product">
@@ -160,7 +160,7 @@
                                                     <?php echo $item["name"] ?>&nbsp; <strong class="product-quantity">QTY : <?php echo $item["quantity"] ?></strong> </div>
                                             </div>
                                             <div class="product-total">
-                                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo intval($item["price"]) * intval($item["quantity"]) ?></bdi></span>
+                                                <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo number_format($item['subtotal'], 2, '.', ',') ?></bdi></span>
                                             </div>
                                         </div>
                                     <?php endforeach ?>

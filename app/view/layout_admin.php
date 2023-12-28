@@ -49,7 +49,12 @@
                                 <li><a class="dropdown-item" href="../products/manage_product">Manage Products</a></li>
                                 <li><a class="dropdown-item"  href="../discounts/manage_discount">Manage Vouchers</a></li>
                                 <li><a class="dropdown-item"  href="../inventory/manage_inventory">Manage Inventory</a></li>
+                                <li><a class="dropdown-item"  href="../order/manage_order">Manage Order</a></li>
+                                <li><a class="dropdown-item"  href="../user/manage_user">Manage User</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item px-md-3">
+                            <a class="nav-link active-color" aria-current="#" href="../email/email.php">Send email</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">

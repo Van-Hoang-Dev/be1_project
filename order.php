@@ -60,7 +60,7 @@ $userID = $userModel->addUserOrder($userOrder);
 //Them userid vao bang order
 $orderID = $orderModel->addOrder($userID);
 //Tao ra ma hoa don
-$order_code = generateInvoiceNumber($orderID);
+$order_code = generateInvoiceNumber($orderID, $userID);
 
 //Thông tin của người dùng
 $customer = [
@@ -94,17 +94,18 @@ foreach ($bill_items as $key => $bill_item) {
     }
 
     unset($_SESSION["cart"]);
+    unset($_SESSION["cart-quantity"]);
 }
 
 header('location: detail_order.php');
 
 // Hàm tạo mã hóa đơn
-function generateInvoiceNumber($orderID) {
+function generateInvoiceNumber($orderID, $userID) {
 
     $prefix = 'ORD';
     // Lấy ngày hiện tại
     $currentDateTime = date('dmYHis');
     // Định dạng mã đơn hàng
-    $invoiceNumber = $prefix . '-' . $currentDateTime . '-' . str_pad($orderID, 3, '0', STR_PAD_LEFT);
+    $invoiceNumber = $prefix . '-' . $currentDateTime . '-' . str_pad($userID, 3, '0', STR_PAD_LEFT) . "-". str_pad($orderID, 3, '0', STR_PAD_LEFT);
     return $invoiceNumber;
 }

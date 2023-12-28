@@ -8,8 +8,8 @@ $orderModel = new Order;
 $orders = $orderModel->getAllOrders();
 
 $data = [
-    "title" => "Product Management",
-    "slot" => $template->render("blocks/manage/products_management", ["products" => $products])
+    "title" => "Order Management",
+    "slot" => $template->render("blocks/manage/order_management", ["orders" => $orders])
 ];
 
 $template->view("layout_admin", $data);
