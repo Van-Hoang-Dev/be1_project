@@ -160,7 +160,7 @@ if (isset($_COOKIE['recentView'])) {
                                             <div class="col-10">
                                                 <?php echo $item['comment'] ?>
                                             </div>
-                                            <?php if ($item['user_phone'] == $_SESSION['account']['phone']) : ?>
+                                            <?php if (isset($_SESSION['account']) &&  $item['user_phone'] == $_SESSION['account']['phone']) : ?>
                                                 <div class="col-2">
                                                     <a href="" data-bs-toggle="modal" data-bs-target="#resetCommentModal" data_id="<?php echo $item['product_id'] ?>" data_id_comment="<?php echo $item['review_id'] ?>"><span style="float: inline-end;"><i class="bi bi-pencil-square"></i></span></a>
 
