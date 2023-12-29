@@ -29,7 +29,6 @@ $productModel = new Product();
 $cartModel = new CartModel();
 
 $product = $productModel->getProductByID($productID);
-var_dump($product);
 $productCurrentQuantity = $productModel->getCurrentQuantityOfProductByProductID($productID);
 
 $cart = array(

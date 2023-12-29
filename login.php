@@ -31,5 +31,5 @@ if (!empty($_POST["login"])) {
     } else {
         setcookie("remember-account", $random_selector, time() - (3600*24*30), "/");
     }
-    header('location: '. $_SERVER['HTTP_REFERER']);
+    header('location: index.php');
 }

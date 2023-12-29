@@ -26,6 +26,5 @@ foreach($_SESSION["cart"] as &$item){
 }
 
 header('location: viewcart.php');
-// var_dump($_SESSION["cart"]);
 
 

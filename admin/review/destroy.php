@@ -7,7 +7,7 @@ $review_id = "";
 if (isset($_POST["review_id"])) {
     $review_id = $_POST["review_id"];
 }
-var_dump($review_id);
+// var_dump($review_id);
 
 
 $reviewModel = new Review();

@@ -75,7 +75,7 @@ if ($chooseUpdate == 1) {
     $productImages = array_merge($productImages, $new);
 }
 
-var_dump($main_image);
+// var_dump($main_image);
 
 
 $productModel = new Product();
