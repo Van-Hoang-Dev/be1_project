@@ -11,5 +11,5 @@ if(isset($_POST["id"])){
 $productModel = new Product();
 if(!empty($productID)){
     $productModel->destroy($productID);
-    header('location: manage_product');
+    header('location: '. $_SERVER['HTTP_REFERER']);
 }

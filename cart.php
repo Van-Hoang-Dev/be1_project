@@ -58,6 +58,9 @@ foreach ($_SESSION["cart"] as &$item) {
             $item["subtotal"] = ($item["price"] * $item["quantity"]);
             $product_exists = true;
         }
+        else{
+            $product_exists = true;
+        }
         break;
     }
 }

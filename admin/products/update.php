@@ -76,12 +76,15 @@ if ($chooseUpdate == 1) {
 }
 
 // var_dump($main_image);
-
+$page = "";
+if(isset($_SESSION["page"])){
+    $page = $_SESSION["page"];
+}
 
 $productModel = new Product();
 if (!empty($productID) && !empty($productName) &&  !empty($productPrice) && !empty($productDescription) && !empty($categoriesID)) {
     $productModel->update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages);
-    header('location: manage_product.php');
+    header('location: manage_product.php?page='.$page);
 }
 
 function uploadFile()

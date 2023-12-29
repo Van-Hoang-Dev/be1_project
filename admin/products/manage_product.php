@@ -27,12 +27,16 @@ if (empty($search)) {
     $paginationBar = "";
     if (isset($_GET["page"])) {
         $currentPage = intval($_GET["page"]);
+        $_SESSION["page"] =  $currentPage;
     }
     //Get pagination bar
     $total = $productModel->getTotalProducts()["COUNT(*)"];
 
     $products = $productModel->getProductWithLimit($currentPage, $perPgae);
     $paginationBar = $productModel->getPaginationBar("manage_product.php", $total, $currentPage, $perPgae, 2);
+
+
+
 
     $data = [
         "title" => "Product Management",
