@@ -17,7 +17,6 @@ if (isset($_POST["add_to_cart"])) {
 $index = "";
 $id = "";
 if(isset($_POST["add_to_cart"])){
-    var_dump($_POST["add_to_cart"]);
     $productID = $_POST["add_to_cart"];
     $id = $_POST["add_to_cart"];
 }
@@ -49,7 +48,6 @@ if (!isset($_SESSION["cart"])) {
     $_SESSION["cart"] = [];
     $_SESSION["cart-quantity"] = 0;
 }
-// var_dump($productCurrentQuantity["current_quantity"]);
 
 // Kiem tra xem san pham da tung co trong gio hang hay chua
 $product_exists = false;
@@ -85,8 +83,9 @@ if (isset($_SESSION['account']) && isset($_SESSION["cart"])) {
    
 }
 if ($index == 1) {
-    header('location: shop.php');
-} else {
+    header('location: '. $_SERVER['HTTP_REFERER']);
+}
+else{
     header('location: detail.php?id='.$productID);
 }
 exit;

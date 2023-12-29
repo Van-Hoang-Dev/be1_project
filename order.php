@@ -73,6 +73,13 @@ $customerJSON = json_encode($customer);
 
 setcookie("customer", $customerJSON, time() + (86400 * 7),"/", "", true, true); // HttpOnly and Secure flags
 
+//Lấy mã giảm giá
+$discount_code = "";
+if(isset($_SESSION["discount"])){
+    $discount_code = $_SESSION["discount"]["discount_code"];
+}
+
+
 $cartModel = new CartModel();
 foreach ($bill_items as $key => $bill_item) {
 
@@ -86,11 +93,12 @@ foreach ($bill_items as $key => $bill_item) {
         "quantity" => $bill_item["quantity"],
         "price_per_unit" => $bill_item["price"],
         "subtotal" => $bill_item["subtotal"],
-        "order_code" => $order_code
+        "order_code" => $order_code,
+        "discount_code" => $discount_code
     ];
 
     if ($orderModel->addOrderDetail($orderDetail)) {
-        $cartModel->removeProductFromCart($bill_item["id"]);
+        $cartModel->removeProductFromCart($bill_item["id"], $userID);
     }
 
     unset($_SESSION["cart"]);

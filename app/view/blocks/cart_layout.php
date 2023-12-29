@@ -9,15 +9,15 @@ foreach ($cart as $item) {
     <div class="container">
         <div class="woocommerce-page-header">
             <ul>
-                <li class="shopping-cart-link"> <a href="./viewcart">Cart</a></li>
-                <li class="checkout-link"><a href="checkout.php">Checkout</a></li>
-                <li class="order-tracking-link active"><a href="odertracking.php">Order Tracking</a></li>
+                <li class="shopping-cart-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 1 ? "active-color" : "" ?>"> <a href="./viewcart?c=1">Cart</a></li>
+                <li class="checkout-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 2 ? "active-color" : "" ?>"><a href="checkout.php?c=2">Checkout</a></li>
+                <li class="order-tracking-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 3 ? "active-color" : "" ?>"><a href="odertracking.php?c=3">Order Tracking</a></li>
             </ul>
         </div>
         <div class="row">
             <div class="col-xl-8 col-lg-12 col-md-12 col-12">
                 <table class="table">
-                    <thead>
+                    <thead style="text-align: center;">
                         <tr>
                             <th class="product-thumbnail">Product</th>
                             <th></th>
@@ -28,27 +28,45 @@ foreach ($cart as $item) {
                         </tr>
                     </thead>
                     <?php if (isset($cart)) : ?>
-                    <tbody>
-                        <?php    
-                        foreach($cart as $item):
-                        ?>
-                        <tr class="woocommerce-cart-form__cart-item cart_item">
-                            <td class="product-thumbnail">
-                                <a href=""><img width="80" height="80" src="public/images/content/products/<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
-                            </td>
-                            <td>
-                            <a href="./detail.php?id=<?php echo $item['id'] ?>" class="text-black"><?php echo $item["name"] ?></a>
-                            </td>
+                        <tbody>
+                            <?php
+                            foreach ($cart as $item) :
+                            ?>
+                                <tr class="woocommerce-cart-form__cart-item cart_item">
+                                    <td class="product-thumbnail">
+                                        <a href=""><img width="80" height="80" src="public/images/content/products/<?php echo $item["image"] ?>" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="" decoding="async" loading="lazy"></a>
+                                    </td>
+                                    <td>
+                                        <a href="./detail.php?id=<?php echo $item['id'] ?>" class="text-black"><?php echo $item["name"] ?></a>
+                                    </td>
 
                                     <td class="product-price" data-title="Price">
                                         <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $item["price"] ?></bdi></span>
                                     </td>
                                     <td class="product-price" data-title="Price">
-                                        <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol"></span><?php echo $item["quantity"] ?></bdi></span>
+                                        <form class="d-inline-block" action="delete-item-cart.php" method="post">
+                                            <input type="hidden" name="idRemove" value="<?php echo $item['id'] ?>">
+                                            <input type="hidden" name="index" value="1">
+                                            <input type="hidden" name="minus" value="1">
+                                            <button type="submit" class="btn btn-outline-warning rounded-start-pill" style="--bs-btn-padding-y: 1px; --bs-btn-padding-x: 10px; --bs-btn-font-size: 14px;"><i class="fa-solid fa-minus"></i></button>
+                                        </form>
+                                        <span class="woocommerce-Price-amount amount mx-4"><bdi><span class="woocommerce-Price-currencySymbol"></span><?php echo $item["quantity"] ?></bdi></span>
+                                        <form class="d-inline-block" action="cart.php" method="post">
+                                            <input type="hidden" name="add_to_cart" value="<?php echo $item['id'] ?>">
+                                            <input type="hidden" name="index" value="1">
+                                            <button type="submit" class="btn btn-outline-warning rounded-end-pill" style="--bs-btn-padding-y: 1px; --bs-btn-padding-x: 10px; --bs-btn-font-size: 14px;"><i class="fa-solid fa-plus"></i></button>
+                                        </form>
                                     </td>
                                     </td>
                                     <td class="product-subtotal" data-title="Subtotal">
+                                    <?php  
+                                    $totalItem = $item["price"] * $item["quantity"];
+                                    if($item["subtotal"] < $totalItem): ?>
+                                        <span class="woocommerce-Price-amount amount d-block text-decoration-line-through"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($totalItem, 2, '.', ','); ?></bdi></span>
                                         <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($item["subtotal"], 2, '.', ','); ?></bdi></span>
+                                    <?php  else: ?>
+                                        <span class="woocommerce-Price-amount amount d-block"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($item["subtotal"], 2, '.', ','); ?></bdi></span>
+                                    <?php endif ?>
                                     </td>
                                     <td class="product-remove">
                                         <form action="delete-item-cart.php" method="post">
@@ -71,6 +89,7 @@ foreach ($cart as $item) {
                                                 </div>
                                                 <button type="submit" class="formbold-btn" style="margin: 0; margin-left: 20px;">Apply voucher</button>
                                             </form>
+
                                         </div>
                                         <h2><a href="./shop">Continue Shopping</a></h2>
                                     </div>
@@ -79,6 +98,14 @@ foreach ($cart as $item) {
                         </tbody>
                     <?php endif ?>
                 </table>
+                <?php if(isset($_SESSION["notify"])): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_SESSION["notify"]; ?>
+                </div>
+                <?php 
+                    endif;
+                    unset($_SESSION["notify"]);
+                ?>
             </div>
             <div class="col-xl-4 col-lg-12 col-md-12 col-12">
                 <div class="cart-collaterals">
@@ -91,11 +118,17 @@ foreach ($cart as $item) {
                                 </div>
                             </div>
                             <div class="order-total">
+                                <div class="title">Discount</div>
+                                <div data-title="Total"><strong>
+                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>
+                                     <?php echo $totalPrice ?></bdi></span></strong>
+                                </div>
+                            </div>
+                            <div class="order-total">
                                 <div class="title">Total</div>
                                 <div data-title="Total"><strong>
-                                        <span class="woocommerce-Price-amount amount">
-                                            <bdi><span class="woocommerce-Price-currencySymbol">$</span>
-                                                <?php echo $totalPrice ?></bdi></span></strong>
+                                    <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>
+                                     <?php echo $totalPrice ?></bdi></span></strong>
                                 </div>
                             </div>
                         </div>

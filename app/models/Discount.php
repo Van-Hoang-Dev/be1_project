@@ -11,17 +11,17 @@ class Discount extends Database
 
 
         $sql = parent::$connection->prepare("INSERT INTO `discounts`
-                                                (`discount_code`, `discount_amount`, `is_active`, `start_date`, `end_date`) 
+                                                (`discount_code`, `discount_amount`, `description`, `start_date`, `end_date`) 
                                                 VALUES (?,?,?,?,?)");
-        $sql->bind_param("siiss",  $discount['discount_code'], $discount['discount_amount'], $discount['is_active'], $startDate, $endDate);
+        $sql->bind_param("sisss",  $discount['discount_code'], $discount['discount_amount'], $discount['description'], $startDate, $endDate);
         return $sql->execute();
     }
 
     //Update ma giam gia
     public function updateDiscount($discount)
     {
-        $sql = parent::$connection->prepare("UPDATE `discounts` SET `discount_code`=? ,`discount_amount`=? ,`is_active`=?,`start_date`=?,`end_date`=? WHERE discount_id = ?");
-        $sql->bind_param("siissi",  $discount['discount_code'], $discount['discount_amount'], $discount['is_active'], $discount["start_date"], $discount["end_date"], $discount["discount_id"]);
+        $sql = parent::$connection->prepare("UPDATE `discounts` SET `discount_code`=? ,`discount_amount`=? ,`description`=?,`start_date`=?,`end_date`=? WHERE discount_id = ?");
+        $sql->bind_param("sisssi",  $discount['discount_code'], $discount['discount_amount'], $discount['description'], $discount["start_date"], $discount["end_date"], $discount["discount_id"]);
         return $sql->execute();
     }
 
@@ -52,6 +52,11 @@ class Discount extends Database
         $sql->bind_param("s", $discount_code);
         return parent::select($sql);
     }
+    public function getAmountOfDiscount($discount_code){
+        $sql= parent::$connection->prepare("SELECT * FROM `discounts`  WHERE discount_code = ?;");
+        $sql->bind_param("s", $discount_code);
+        return parent::select($sql)[0];
+    }
 
     public function checkProductHaveDiscount($discount_code, $product_id){
         $sql= parent::$connection->prepare("SELECT * FROM `discounts` 
@@ -72,6 +77,12 @@ class Discount extends Database
         $sql = parent::$connection->prepare("UPDATE `cart_products` SET `discount_status`= 1 WHERE product_id = ?");
         $sql->bind_param("i", $product_id);
         return $sql->execute();
+    }
+
+    public function checkDiscountCode($discount_code){
+        $sql= parent::$connection->prepare("SELECT CASE WHEN CURDATE() > `end_date` THEN 0 ELSE 1 END AS is_valid FROM `discounts` WHERE discounts.discount_code = ?;");
+        $sql->bind_param("s", $discount_code);
+        return parent::select($sql)[0];
     }
 
 

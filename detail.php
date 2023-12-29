@@ -28,6 +28,7 @@ $product = $productModel->getProductHaveCategoryIDDetail($id);
 // var_dump($product);
 $category = $categoryModel->getCategoryByID($product['category_id']);
 $products = $productModel->getAllProduct();
+$images = $productModel->getImageOfProduct($id);
 
 // var_dump($product);
 
@@ -79,8 +80,9 @@ if (isset($_POST['send_review'])) {
 }
 $reviews = $reviewModel->getReviewByIDProduct($id);
 
+
 $data = [
-    "title" => "Product Detail",
-    "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category, 'products' => $products, 'reviews' => $reviews])
+    "title" => $product["name"],
+    "slot" => $template->render("blocks/product_detail_layout", ['product' => $product, 'category' => $category, 'products' => $products, 'reviews' => $reviews, 'images'=> $images])
 ];
 $template->view("layout", $data);
