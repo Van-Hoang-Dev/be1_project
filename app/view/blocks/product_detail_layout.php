@@ -137,6 +137,7 @@ if (isset($_COOKIE['recentView'])) {
                         <section class="comment-box-layout">
                             <h2><?php echo count($reviews) ?> review for <span><?php echo $product['name'] ?></span></h2>
                             <div class="content-comment mt-5">
+                                <!-- <?php var_dump($reviews) ?> -->
                                 <?php foreach ($reviews as $item) : ?>
                                     <div class="user-info">
                                         <img class="img-fluid" src="public/images/avatar/avatar-1.png" alt="">
@@ -154,15 +155,51 @@ if (isset($_COOKIE['recentView'])) {
                                             <p><?php echo  $item['review_date'] ?></p>
                                         </div>
                                     </div>
-                                    <div class="commnet-content-box">
-                                        <?php echo $item['comment'] ?>
+                                    <div class="commnet-content-box ml-5">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <?php echo $item['comment'] ?>
+                                            </div>
+                                            <?php if ($item['user_phone'] == $_SESSION['account']['phone']) : ?>
+                                                <div class="col-2">
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#resetCommentModal" data_id="<?php echo $item['product_id'] ?>" data_id_comment="<?php echo $item['review_id'] ?>"><span style="float: inline-end;"><i class="bi bi-pencil-square"></i></span></a>
+
+                                                    <!-- Modal Reset Comment -->
+                                                    <div class="modal fade" id="resetCommentModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-4" id="titleModal">Reset Comment </h1>
+                                                                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form method="post" action="detail.php">
+                                                                    <div class="modal-body">
+                                                                        <div class="box-text">
+                                                                            <div class="form-group">
+                                                                                <textarea id="editor" name="text-comment" class="form-control text-comment"></textarea>
+                                                                                <input type="hidden" name="id-comment" value="" readonly>
+                                                                                <input type="hidden" name="id" value="">
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <div class="d-grid col-6 mx-auto my-3">
+                                                                                    <input type="submit" class="btn btn-success text-light fw-bolder" value="Reset Comment">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                     <hr>
                                 <?php endforeach ?>
                             </div>
-
                             <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
-
                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
                                 <div class="offcanvas-header">
                                     <h5 class="offcanvas-title" id="offcanvasRightLabel"><?php echo $product['name'] ?></h5>
@@ -211,74 +248,72 @@ if (isset($_COOKIE['recentView'])) {
                         </div>
                     </div>
                 </div>
-                <div class="related__products__slider owl-carousel">
+                <div class="row">
                     <?php foreach ($recentView as $itemProductRC) :
                         foreach ($products as $item) :
                             if ($itemProductRC == $item['id']) : ?>
-                                <div class="product-emtry">
-                                    <div class="product-thumb">
-                                        <div class="product-label">
-                                            <!-- <div class="onsale">-13%</div> -->
-                                        </div>
-                                        <div class="product-image">
-                                            <img class="img-fluid" src="public/images/content/products/<?php echo $item["image"] ?>" alt="Mac mini M2 2023">
-                                        </div>
-                                    </div>
-                                    <div class="product-button">
-                                        <div class="icon">
-                                            <div class="tooltip-content">Add to cart</div>
-                                            <form action="cart.php" method="post">
-                                                <input type="hidden" name="add_to_cart" value="<?php echo $item["id"] ?>">
-                                                <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="icon">
-                                            <div class="tooltip-content">Wishlist</div>
-                                            <form action="#" method="post">
-                                                <input type="hidden" name="add_to_wishlist" value="<?php echo $item["id"] ?>">
-                                                <button type="submit"><i class="fa-regular fa-star"></i></button>
-                                            </form>
-                                        </div>
-                                        <div class="icon">
-                                            <div class="tooltip-content">Compare</div>
-                                            <a href="#"><i class="fa-solid fa-layer-group"></i></a>
-                                        </div>
-                                        <div class="icon">
-                                            <div class="tooltip-content">Quick view</div>
-                                            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3 class="product-title fs-6">
-                                            <a class="text-dark fw-bolder" href="./detail.php?id=<?php echo $item['id'] ?>"><?php echo $item["name"] ?></a>
-                                        </h3>
-                                        <div class="rating none">
-                                            <div class="star-rating none">
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
-                                                <i class="fa-regular fa-star"></i>
+                                <div class="col-3">
+                                    <div class="product-emtry">
+                                        <div class="product-thumb">
+                                            <div class="product-label">
+                                                <!-- <div class="onsale">-13%</div> -->
+                                            </div>
+                                            <div class="product-image">
+                                                <img class="img-fluid" src="public/images/content/products/<?php echo $item["image"] ?>" alt="Mac mini M2 2023">
                                             </div>
                                         </div>
-                                        <div class="price">
-                                            <span class="cost">$<?php echo $item["price"] ?></span>
+                                        <div class="product-button">
+                                            <div class="icon">
+                                                <div class="tooltip-content">Add to cart</div>
+                                                <form action="cart.php" method="post">
+                                                    <input type="hidden" name="add_to_cart" value="<?php echo $item["id"] ?>">
+                                                    <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
+                                                </form>
+                                            </div>
+                                            <div class="icon">
+                                                <div class="tooltip-content">Wishlist</div>
+                                                <form action="#" method="post">
+                                                    <input type="hidden" name="add_to_wishlist" value="<?php echo $item["id"] ?>">
+                                                    <button type="submit"><i class="fa-regular fa-star"></i></button>
+                                                </form>
+                                            </div>
+                                            <div class="icon">
+                                                <div class="tooltip-content">Compare</div>
+                                                <a href="#"><i class="fa-solid fa-layer-group"></i></a>
+                                            </div>
+                                            <div class="icon">
+                                                <div class="tooltip-content">Quick view</div>
+                                                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3 class="product-title fs-6">
+                                                <a class="text-dark fw-bolder" href="./detail.php?id=<?php echo $item['id'] ?>"><?php echo $item["name"] ?></a>
+                                            </h3>
+                                            <div class="rating none">
+                                                <div class="star-rating none">
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <i class="fa-regular fa-star"></i>
+                                                </div>
+                                            </div>
+                                            <div class="price">
+                                                <span class="cost">$<?php echo $item["price"] ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                     <?php endif;
                         endforeach;
                     endforeach ?>
+
                 </div>
             </div>
         <?php endif ?>
     </div>
 </section>
-<style>
-    .action {
-        border: 2px solid yellow;
-    }
-</style>
 <script>
     let previous;
     let itemPhotos = document.querySelectorAll(".itemPhoto")
@@ -296,24 +331,18 @@ if (isset($_COOKIE['recentView'])) {
     });
 </script>
 <script>
-    $(document).ready(function() {
-        $(".related__products__slider").owlCarousel({
-            items: 4,
-            loop: true,
-            margin: 10,
-            nav: true,
-            dots: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 4
-                }
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        let myModal = new bootstrap.Modal(document.getElementById('resetCommentModal'));
+
+        myModal._element.addEventListener('show.bs.modal', function(event) {
+            let product_id = event.relatedTarget.getAttribute('data_id');
+            let comment_id = event.relatedTarget.getAttribute('data_id_comment');
+
+            console.log();
+            // Cập nhật giá trị cho thẻ input trong modal
+            document.querySelector('input[name="id"]').value = product_id;
+            document.querySelector('input[name="id-comment"]').value = comment_id;
+
         });
     });
 </script>

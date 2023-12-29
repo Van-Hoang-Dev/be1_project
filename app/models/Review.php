@@ -29,6 +29,15 @@ class Review extends Database {
         return $sql->execute();
     }
 
+    // Reset review 
+    public function resetReview($textComment, $idComment)
+    {
+        $sql = parent::$connection->prepare("UPDATE review
+                                                SET comment = ? WHERE review_id =?");
+        $sql->bind_param("si", $textComment, $idComment);
+        return $sql->execute();
+    }
+
     // Lay review cho 1 san pham
     public function getReviewByIDProduct($productID)
     {

@@ -10,11 +10,24 @@ $productModel = new Product();
 $categoryModel = new Category();
 $reviewModel = new Review();
 
-$product = "";
 $id = "";
+$product = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['id'])) {
         $id = $_POST['id'];
+    }
+    $textComment = "";
+    $idComment = "";
+    if (isset($_POST["text-comment"])) {
+        $textComment = $_POST["text-comment"];
+    }
+
+    if (isset($_POST["id-comment"])) {
+        $idComment = $_POST["id-comment"];
+    }
+    if (!empty($textComment) && !empty($idComment)) {
+        // var_dump($textComment, $idComment);
+        $reviewModel->resetReview($textComment, $idComment);
     }
 } else {
     if (!empty($_GET['id'])) {
@@ -22,15 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-
 $product = $productModel->getProductHaveCategoryIDDetail($id);
 
-// var_dump($product);
 $category = $categoryModel->getCategoryByID($product['category_id']);
 $products = $productModel->getAllProduct();
 $images = $productModel->getImageOfProduct($id);
 
-// var_dump($product);
 
 $recentViewID = [];
 if (isset($_COOKIE['recentView'])) {
@@ -78,6 +88,7 @@ if (isset($_POST['send_review'])) {
     ];
     $reviewModel->addReview($review);
 }
+
 $reviews = $reviewModel->getReviewByIDProduct($id);
 
 
