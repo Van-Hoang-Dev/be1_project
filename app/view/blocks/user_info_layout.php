@@ -2,8 +2,8 @@
     <div class="woocommerce">
         <div class="woocommerce-page-header mb-4">
             <ul>
-                <li class="shopping-cart-link"> <a href="user_info.php">Your info</a></li>
-                <li class="checkout-link"><a href="order_history.php">Order history</a></li>
+                <li class="shopping-cart-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 1 ? "active-color" : "" ?>"> <a href="user_info.php?c=1">Your info</a></li>
+                <li class="shopping-cart-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 2 ? "active-color" : "" ?>"> <a href="order_history.php?c=2">Your ordered</a></li>
             </ul>
         </div>
     </div>
@@ -12,7 +12,7 @@
 <div class="info-user">
     <div class="formbold-main-wrapper">
         <div class="formbold-form-wrapper">
-            <img src="public/images/content/comment/53444f91e698c0c7caa2dbc3bdbf93fc.png" alt="">
+            <img src="public/images/avatar/avatar-1.png" alt="">
             <form action="#" method="POST">
                 <div class="formbold-form-title">
                     <h2 class=""><?php echo $user["firstname"] . " " . $user["lastname"] ?> </h2>

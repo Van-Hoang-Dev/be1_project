@@ -5,25 +5,31 @@ if (isset($_COOKIE['recentView'])) {
 }
 
 ?>
-<div class="breadcrumb-option">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="breadcrumb__text">
-                    <h2>detail</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Breadcrumb End -->
 <!-- Shop Details Section Begin -->
 <section class="product-details spad">
     <div class="container">
+        <nav class="my-5" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php?p=1">Home</a></li>
+                <li class="breadcrumb-item"><a href="shop.php?p=2">Shop</a></li>
+                <li class="breadcrumb-item">Detail</li>
+                <li class="breadcrumb-item active-color" aria-current="page"><?php echo $product["name"] ?></li>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-lg-6">
-                <div class="big_img">
-                    <img src="public/images/content/products/<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>" width="500px">
+                <div class="big_img border rounded" style="text-align: center;">
+                    <img id="mainPhoto" src="public/images/content/products/<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?>" width="450px">
+                </div>
+
+                <div class="other-images">
+                    <div class="p-2 border rounded">
+                        <?php 
+                        foreach($images as $image):
+                        ?>
+                        <img class="border rounded itemPhoto m-2" src="public/images/content/products/<?php echo $image["image"] ?>" alt="<?php echo $product['name'] ?>" width="70px">
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -134,7 +140,7 @@ if (isset($_COOKIE['recentView'])) {
                                 <!-- <?php var_dump($reviews) ?> -->
                                 <?php foreach ($reviews as $item) : ?>
                                     <div class="user-info">
-                                        <img src="public/images/avatar/<?php echo 'avatar-' . random_int(1, 6) . '.jpg' ?>" alt="">
+                                        <img class="img-fluid" src="public/images/avatar/avatar-1.png" alt="">
                                         <div class="box-user">
                                             <div class="star-rating">
                                                 <?php for ($i = 1; $i <= 5; $i++) {
@@ -308,7 +314,22 @@ if (isset($_COOKIE['recentView'])) {
         <?php endif ?>
     </div>
 </section>
-
+<script>
+    let previous;
+    let itemPhotos = document.querySelectorAll(".itemPhoto")
+    let mainPhoto = document.querySelector("#mainPhoto");
+    itemPhotos.forEach(itemPhoto => {
+        itemPhoto.addEventListener('click', function() {
+            if (previous) {
+                previous.classList.remove('border-warning-subtle');
+            }
+            console.log(itemPhoto.getAttribute('src'));
+            mainPhoto.setAttribute('src', itemPhoto.getAttribute('src'));
+            itemPhoto.classList.add('border-warning-subtle');
+            previous = itemPhoto;
+        });
+    });
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         let myModal = new bootstrap.Modal(document.getElementById('resetCommentModal'));

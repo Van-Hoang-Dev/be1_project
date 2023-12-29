@@ -59,8 +59,8 @@ class Order extends Database{
 
     //Thêm chi tiết đơn hàng
     public function addOrderDetail($orderDetail){
-        $sql = parent::$connection->prepare("INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `price_per_unit`, `subtotal`, `order_code`) VALUES (?,?,?,?,?,?)");
-        $sql->bind_param("iiiiis", $orderDetail["order_id"], $orderDetail["product_id"], $orderDetail["quantity"], $orderDetail["price_per_unit"], $orderDetail["subtotal"], $orderDetail["order_code"] );
+        $sql = parent::$connection->prepare("INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `price_per_unit`, `subtotal`, `order_code`, `discount_code`) VALUES (?,?,?,?,?,?,?)");
+        $sql->bind_param("iiiiiss", $orderDetail["order_id"], $orderDetail["product_id"], $orderDetail["quantity"], $orderDetail["price_per_unit"], $orderDetail["subtotal"], $orderDetail["order_code"], $orderDetail["discount_code"] );
         return $sql->execute();
     }
 
@@ -106,15 +106,15 @@ class Order extends Database{
     // }
 
     public function getAllOrders(){
-        $sql = parent::$connection->prepare("SELECT orders.order_id, orders.order_status, orders.order_date, order_details.order_code,
-        CONCAT(member.firstname, member.lastname) AS customer_name, member.email, member.phone, member.address,
-        COUNT(*) as total_quantity
-                FROM `orders` 
-                LEFT JOIN member ON member.id = orders.user_id
-                LEFT JOIN order_details ON order_details.order_id = orders.order_id
-                LEFT JOIN products ON products.id = order_details.product_id
-                GROUP BY order_details.order_code
-                ORDER BY order_details.order_code;");
+            $sql = parent::$connection->prepare("SELECT orders.order_id, orders.order_status, orders.order_date, order_details.order_code,
+            CONCAT(member.firstname, member.lastname) AS customer_name, member.email, member.phone, member.address,
+            COUNT(*) as total_quantity
+                    FROM `orders` 
+                    LEFT JOIN member ON member.id = orders.user_id
+                    LEFT JOIN order_details ON order_details.order_id = orders.order_id
+                    LEFT JOIN products ON products.id = order_details.product_id
+                    GROUP BY order_details.order_code
+                    ORDER BY orders.order_date DESC;");
         return parent::select($sql);
     }
 

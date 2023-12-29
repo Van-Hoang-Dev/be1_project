@@ -6,7 +6,7 @@
             <th>Id</th>
             <th>Code</th>
             <th>Amount</th>
-            <th>Is active</th>
+            <th>Description</th>
             <th>Start date</th>
             <th>End date</th>
             <th>Edit</th>
@@ -22,7 +22,7 @@
                 <td><?php echo $discount["discount_id"] ?></td>
                 <td><?php echo $discount["discount_code"] ?></td>
                 <td><?php echo $discount["discount_amount"] ?></td>
-                <td><?php echo $discount["is_active"] ?></td>
+                <td><?php echo $discount["description"] ?></td>
                 <td><?php echo $startDate ?></td>
                 <td><?php echo $endDate ?></td>
                 <td>

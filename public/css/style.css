@@ -50,8 +50,11 @@ header {
     color: var(--color-black);
 }
 
-.navbar .active-color {
-    color: var(--theme-color);
+.active-color a,
+.active-color,
+.navbar .active-color
+ {
+    color: var(--theme-color) !important;
 }
 
 .navbar .nav-link:hover {
@@ -88,8 +91,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 0;
-    right: 0;
+    top: 2px;
+    left: 21px;
 }
 
 /* header- mobile */

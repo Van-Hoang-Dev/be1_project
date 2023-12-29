@@ -67,11 +67,18 @@ class CartModel extends Database
         return $sql->execute();
     }
 
-    //Xoa san pham trong gio hang
-    public function removeProductFromCart($proudctID)
+    public function updateCartQuantityByUserID($productID, $newQuantity, $userID)
     {
-        $sql = parent::$connection->prepare("DELETE FROM `cart_products` WHERE product_id = ?");
-        $sql->bind_param("i", $proudctID);
+        $sql = parent::$connection->prepare("UPDATE `cart_products` SET `quantity`= ? WHERE product_id = ? AND user_id = ? ");
+        $sql->bind_param("iii", $newQuantity, $productID, $userID);
+        return $sql->execute();
+    }
+
+    //Xoa san pham trong gio hang
+    public function removeProductFromCart($proudctID, $userID)
+    {
+        $sql = parent::$connection->prepare("DELETE FROM `cart_products` WHERE product_id = ? AND user_id = ?");
+        $sql->bind_param("ii", $proudctID, $userID);
         return $sql->execute();
     }
 }

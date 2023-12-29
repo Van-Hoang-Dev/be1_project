@@ -17,13 +17,10 @@
             <input type="number" name="discount_amount" id="discount_amount" class="formbold-form-input" required />
         </div>
         <div class="formbold-mb-3">
-            <label for="option1" class="formbold-form-label">
-                Is active
+            <label for="discount_amount" class="formbold-form-label">
+            Description
             </label>
-            <input type="radio" class="btn-check" name="is_active" id="option1" autocomplete="off" value="1" required>
-            <label class="btn btn-outline-success" for="option1">Active</label>
-            <input type="radio" class="btn-check" name="is_active" id="option2" autocomplete="off" value="0" required>
-            <label class="btn btn-outline-warning" for="option2">Inactive</label>
+            <textarea type="number" name="description" id="description" class="formbold-form-input" required></textarea>
         </div>
         <div class="formbold-mb-3">
             <label for="start_date" class="formbold-form-label">

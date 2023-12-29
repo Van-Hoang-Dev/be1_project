@@ -47,7 +47,6 @@ if (empty($product_id)) {
     if (isset($_SESSION['cart'])) {
         $cart = $_SESSION['cart'];
     }
-    var_dump($cart);
 }
 
 $data = [
