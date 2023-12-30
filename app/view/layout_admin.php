@@ -91,13 +91,16 @@
     </header>
     <!-- End Header -->
      <!-- Reset Infomation -->
-     <?php if (isset($_SESSION['account'])) : ?>
+     <?php if (isset($_SESSION['account'])) :
+         $userModel = new User;
+         $userID = $_SESSION["account"]["id"];
+         $_SESSION["account"] = $userModel->getUserByID($userID); ?>
     <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-4" id="titleModal">Reset Infomation </h1>
-                    <img class="logo" src="public/images/logo/Logo.png" alt="logo">
+                    <img class="logo" src="../../public/images/logo/Logo.png" alt="logo">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="post" action="../../reset_info.php">
@@ -113,9 +116,6 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $_SESSION['account']['username'] ?>">
-                        </div>
-                        <div class="mb-3">
                             <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['account']['email'] ?>">
                         </div>
                         <div class="mb-3">
@@ -123,6 +123,9 @@
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $_SESSION['account']['phone'] ?>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="postcode_zip" name="postcode_zip" value="<?php echo $_SESSION['account']['postcode_zip'] ?>">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">New password</label>

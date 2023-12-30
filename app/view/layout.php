@@ -1,3 +1,21 @@
+<?php 
+    //Lấy sản phẩm từ database
+if (isset($_SESSION["account"])) {
+    $cartQuantity = "";
+    $cartModel = new CartModel;
+    $userID = $_SESSION["account"]["id"];
+    $carts =  $cartModel->getAllCartProductByUserID($userID);
+    $cartQuantity = $cartModel->getTotalCartQuantity($userID);
+
+    if (isset($cartQuantity) && isset($userID)) {
+        if (empty($_SESSION["cart"])) {
+            $_SESSION["cart"] = $carts;
+            $_SESSION["cart-quantity"] = $cartQuantity;
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,20 +57,20 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#"><img class="img-fluid nav-logo" src="public/images/logo/Logo.png" alt="Logi"></a>
+                <a class="navbar-brand" href="#"><img class="img-fluid nav-logo" src="public/images/logo/Logo.png" alt="Login"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-md-3">
-                            <a class="nav-link active-color" aria-current="index.php" href="index.php">Home</a>
+                            <a class="nav-link <?php if(isset($_GET["p"])) echo ($_GET["p"] == 1 ? "active-color" : "") ?>" aria-current="index.php" href="index.php?p=1">Home</a>
                         </li>
                         <li class="nav-item px-md-3">
-                            <a class="nav-link" href="shop.php">Shop</a>
+                            <a class="nav-link <?php if(isset($_GET["p"])) echo ($_GET["p"] == 2 ? "active-color" : "") ?>" href="shop.php?p=2">Shop</a>
                         </li>
                         <li class="nav-item px-md-3">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link <?php if(isset($_GET["p"])) echo ($_GET["p"] == 3 ? "active-color" : "") ?>" href="voucher.php?p=3">Voucher</a>
                         </li>
                         <?php if (isset($_SESSION['account']) && $_SESSION['account']['role'] == 1) : ?>
                             <li class="nav-item px-md-3">
@@ -68,7 +86,7 @@
                         </li>
                         <li class="nav-item">
                             <div class="cart-box">
-                                <a class="nav-link icon-header" href="viewcart.php">
+                                <a class="nav-link icon-header <?php if(isset($_GET["c"])) echo ($_GET["c"] == 1 ? "active-color" : "") ?>" href="viewcart.php?c=1">
                                     <i class="fa-solid fa-bag-shopping"></i>
                                 </a>
                                 <?php
@@ -111,7 +129,10 @@
 
     <!-- Modal -->
     <!-- Reset Infomation -->
-    <?php if (isset($_SESSION['account'])) : ?>
+    <?php if (isset($_SESSION['account'])) :
+            $userModel = new User;
+            $userID = $_SESSION["account"]["id"];
+            $_SESSION["account"] = $userModel->getUserByID($userID); ?>
         <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -497,10 +518,11 @@
     <script src="public/js/app.js"></script>
     <script>
         $('.owl-5').owlCarousel({
-            loop: true,
+            loop: false,
             margin: 10,
             nav: false,
             dots: false,
+            autoplay: true,
             responsive: {
                 0: {
                     items: 1

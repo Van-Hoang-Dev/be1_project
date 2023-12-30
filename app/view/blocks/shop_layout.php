@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="product-content">
                                         <h3 class="product-title">
-                                            <form action="detail" method="post">
+                                            <form action="detail.php" method="post">
                                                 <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
                                                 <input type="submit" class="btn-no-border" value="<?php echo $product["name"] ?>">
                                             </form>

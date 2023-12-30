@@ -1,12 +1,28 @@
 <div class="container">
     <h2 class="my-5 title-center">Discount management</h2>
+
+    <!-- Thông báo -->
+    <?php if (isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 1) :
+    ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $_SESSION["notify"]["notify"]; unset($_SESSION["notify"]);?>
+        </div>
+    <?php endif; ?>
+    <?php if(isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 0): ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $_SESSION["notify"]["notify"]; unset($_SESSION["notify"]);?>
+        </div>
+    <?php 
+    endif;
+    ?>
+
     <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add discount</a>
     <table class="table table-hover ">
         <thead>
             <th>Id</th>
             <th>Code</th>
             <th>Amount</th>
-            <th>Is active</th>
+            <th>Description</th>
             <th>Start date</th>
             <th>End date</th>
             <th>Edit</th>
@@ -22,7 +38,7 @@
                 <td><?php echo $discount["discount_id"] ?></td>
                 <td><?php echo $discount["discount_code"] ?></td>
                 <td><?php echo $discount["discount_amount"] ?></td>
-                <td><?php echo $discount["is_active"] ?></td>
+                <td><?php echo $discount["description"] ?></td>
                 <td><?php echo $startDate ?></td>
                 <td><?php echo $endDate ?></td>
                 <td>

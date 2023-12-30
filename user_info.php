@@ -3,8 +3,10 @@ require_once 'config/database.php';
 
 $template = new Template();
 
-$user = $_SESSION['account'];
-// var_dump( $_SESSION['account']);
+$userModel = new User;
+$userID = $_SESSION['account']["id"];
+$user = $userModel->getUserByID($userID);
+
 
 $data = [
     "title" => "User information",

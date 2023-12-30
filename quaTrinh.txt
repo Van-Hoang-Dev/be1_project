@@ -22,7 +22,8 @@ Chức năng bao gồm:
     10. Hiển thị các sản phẩm đã xem gần đây..........done
     5. Duy trì đăng nhập (Sử dụng cookies)..............done
     22. Đổi mật khẩu.............................done  
-    23. Đánh giá sản phẩm (Điều kiện trong detail, người dùng đăng nhập mới có thể đánh giá, comment) 
+    24. Đánh giá sản phẩm (Điều kiện trong detail, người dùng đăng nhập mới có thể đánh giá, comment) 
+    25. QUên mật khẩu người dùng (done)
     
 
     <--------------------Hoàng--------------------->

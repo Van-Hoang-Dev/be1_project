@@ -7,7 +7,6 @@ $order_code = "";
 if (isset($_POST["order_code"])) {
     $order_code = $_POST["order_code"];
 }
-var_dump($order_code);
 
 
 $orderModel = new Order();

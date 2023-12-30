@@ -30,4 +30,6 @@
         </tbody>
     </table>
 
+    <a href="manage_order" class="btn btn-primary">Back</a>
+
 </div>

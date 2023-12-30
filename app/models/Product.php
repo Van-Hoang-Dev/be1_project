@@ -22,6 +22,15 @@ class Product extends Database
         return parent::select($sql)[0];
     }
 
+    //Lấy hình phụ theo id của san phẩm
+    public function getImageOfProduct($product_id){
+        $sql = parent::$connection->prepare("SELECT images.image FROM `products` 
+        LEFT JOIN images ON images.product_id = products.id
+        WHERE products.id = ?;");
+        $sql->bind_param("i", $product_id);
+        return parent::select($sql);
+    }
+
     // Tìm sản phẩm theo tên
     public function getProductsByKeyWord($keyword)
     {

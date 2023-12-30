@@ -28,6 +28,18 @@ class Order extends Database{
         return $sql->execute();
     }
 
+    //Lấy san phản được bán nhiều
+    public function getTopSellingProduct(){
+        $sql= parent::$connection->prepare("SELECT products.* , SUM(order_details.quantity) AS total_product, 
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM order_details
+        INNER JOIN products ON order_details.product_id = products.id
+        GROUP BY order_details.product_id
+        HAVING total_product >= 2;");
+        return parent::select($sql);
+    }
+
     public function deleteOrderByCode($order_code){
 
         $sql = parent::$connection->prepare("SELECT order_id FROM `order_details` WHERE order_code = ?");
@@ -59,8 +71,8 @@ class Order extends Database{
 
     //Thêm chi tiết đơn hàng
     public function addOrderDetail($orderDetail){
-        $sql = parent::$connection->prepare("INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `price_per_unit`, `subtotal`, `order_code`) VALUES (?,?,?,?,?,?)");
-        $sql->bind_param("iiiiis", $orderDetail["order_id"], $orderDetail["product_id"], $orderDetail["quantity"], $orderDetail["price_per_unit"], $orderDetail["subtotal"], $orderDetail["order_code"] );
+        $sql = parent::$connection->prepare("INSERT INTO `order_details`(`order_id`, `product_id`, `quantity`, `price_per_unit`, `subtotal`, `order_code`, `discount_code`) VALUES (?,?,?,?,?,?,?)");
+        $sql->bind_param("iiiiiss", $orderDetail["order_id"], $orderDetail["product_id"], $orderDetail["quantity"], $orderDetail["price_per_unit"], $orderDetail["subtotal"], $orderDetail["order_code"], $orderDetail["discount_code"] );
         return $sql->execute();
     }
 
@@ -106,15 +118,15 @@ class Order extends Database{
     // }
 
     public function getAllOrders(){
-        $sql = parent::$connection->prepare("SELECT orders.order_id, orders.order_status, orders.order_date, order_details.order_code,
-        CONCAT(member.firstname, member.lastname) AS customer_name, member.email, member.phone, member.address,
-        COUNT(*) as total_quantity
-                FROM `orders` 
-                LEFT JOIN member ON member.id = orders.user_id
-                LEFT JOIN order_details ON order_details.order_id = orders.order_id
-                LEFT JOIN products ON products.id = order_details.product_id
-                GROUP BY order_details.order_code
-                ORDER BY order_details.order_code;");
+            $sql = parent::$connection->prepare("SELECT orders.order_id, orders.order_status, orders.order_date, order_details.order_code,
+            CONCAT(member.firstname, member.lastname) AS customer_name, member.email, member.phone, member.address,
+            COUNT(*) as total_quantity
+                    FROM `orders` 
+                    LEFT JOIN member ON member.id = orders.user_id
+                    LEFT JOIN order_details ON order_details.order_id = orders.order_id
+                    LEFT JOIN products ON products.id = order_details.product_id
+                    GROUP BY order_details.order_code
+                    ORDER BY orders.order_date DESC;");
         return parent::select($sql);
     }
 

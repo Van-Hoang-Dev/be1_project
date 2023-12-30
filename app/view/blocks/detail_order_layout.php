@@ -10,15 +10,17 @@
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0" style="color: #ffb300;">Receipt</p>
-              <p class="small text-muted mb-0">Receipt Voucher : 1KAU9-84UIL</p>
             </div>
             <!-- Show the info order here -->
             <?php
             $total = 0;
             $order_status = 0;
+            $discount_code = "";
+            $discountModel = new Discount;
             foreach ($orderDetails as $orderDetail) :
               $total = $total +  $orderDetail["subtotal"];
-              $order_status = $orderDetail["order_status"]
+              $order_status = $orderDetail["order_status"];
+              $discount_code = $orderDetail["discount_code"];
             ?>
               <div class="card shadow-0 border mb-4">
                 <div class="card-body">
@@ -41,10 +43,10 @@
                     </div>
                     <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
                       <?php  if($orderDetail["subtotal"] < $orderDetail["price_per_unit"] * $orderDetail["quantity"]): ?>
-                      <p class="text-muted mb-0 small" style="text-decoration: line-through; margin-right: 10px;"><?php echo $orderDetail["price_per_unit"] * $orderDetail["quantity"] ?></p>
-                      <p class="text-muted mb-0 small"><?php echo $orderDetail["subtotal"] ?></p>
+                      <p class="text-muted mb-0 small" style="text-decoration: line-through; margin-right: 10px;"><?php $price  = $orderDetail["price_per_unit"] * $orderDetail["quantity"]; echo number_format($price, 2, '.', ',');?></p>
+                      <p class="text-muted mb-0 small">$<?php echo $orderDetail["subtotal"] ?></p>
                       <?php else : ?>
-                        <p class="text-muted mb-0 small"><?php echo $orderDetail["subtotal"] ?></p>
+                        <p class="text-muted mb-0 small">$<?php echo $orderDetail["subtotal"] ?></p>
                         <?php  endif?>
                     </div>
                   </div>
@@ -72,8 +74,17 @@
 
             <div class="d-flex justify-content-between pt-2">
               <p class="fw-bold mb-2">Order Details</p>
-              <p class="text-muted mb-2"><span class="fw-bold me-4">Total: </span> <?php echo $total ?></p>
+              <p class="text-muted mb-2"><span class="fw-bold me-4">Total: </span>$ <?php echo number_format($total, 2, '.', ',') ?></p>
             </div>
+            <?php 
+            if($discount_code != "none"):
+            $discount_amount = $discountModel->getAmountOfDiscount($discount_code)["discount_amount"];
+            ?>
+            <div class="d-flex justify-content-between pt-2">
+            <p class="small text-muted mb-0">Apply Voucher : <?php echo $discount_code ?></p>
+            <p class="small text-muted mb-0">Amount: <?php echo $discount_amount ?>%</p>
+            </div>
+            <?php endif ?>
             <hr>
 
             <!-- <div class="d-flex justify-content-between pt-2">
@@ -91,12 +102,10 @@
             <hr>
             <div class="d-flex justify-content-between">
               <p class="text-muted mb-2">Invoice Date : <?php echo date('d/m/Y', strtotime($orderDetail["order_date"])); ?></p>
-              <p class="text-muted mb-2"><span class="fw-bold me-4">GST 18%</span> 123</p>
             </div>
 
             <div class="d-flex justify-content-between mb-3">
               <p class="text-muted mb-0">Recepits Voucher : <?php echo $orderDetail["order_code"] ?></p>
-              <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges: </span> Free</p>
             </div>
             <div class="d-flex justify-content-between">
               <p class="text-muted mb-2">Status : <?php
@@ -114,7 +123,7 @@
           </div>
           <div class="card-footer border-0 px-4 py-5" style="background-color: #ffb300; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
             <h5 class="d-flex align-items-center justify-content-end text-black text-uppercase mb-0">Total
-              paid: <span class="h4 mb-0 ms-2"><?php echo $total ?></span></h5>
+              paid: <span class="h4 mb-0 ms-2">$<?php echo number_format($total, 2, '.', ',') ?></span></h5>
           </div>
         </div>
         <?php if($order_status == 0): ?>

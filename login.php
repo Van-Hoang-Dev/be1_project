@@ -19,6 +19,7 @@ if (!empty($_POST["login"])) {
     $user = $userModel->loginAccount($phone);
     if (password_verify($password, $user["password"])) {
         $_SESSION['account'] = $user;
+        unset($_SESSION['cart']);
     }
 
     if (!empty($_POST["remember-account"])) {

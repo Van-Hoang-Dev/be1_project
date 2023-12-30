@@ -17,14 +17,12 @@
             <input type="number" name="discount_amount" id="discount_amount" class="formbold-form-input" value="<?php echo $discount["discount_amount"] ?>" required />
         </div>
         <div class="formbold-mb-3">
-            <label for="option1" class="formbold-form-label">
-                Is active
+            <label for="description" class="formbold-form-label">
+                Description
             </label>
-            <input type="radio" class="btn-check" name="is_active" id="option1" autocomplete="off" value="1" <?php echo $discount["is_active"] = 1 ? "checked" : "" ?> required>
-            <label class="btn btn-outline-success" for="option1">Active</label>
-            <input type="radio" class="btn-check" name="is_active" id="option2" autocomplete="off" value="0" <?php echo $discount["is_active"] = 0 ? "checked" : "" ?> required>
-            <label class="btn btn-outline-warning" for="option2">Inactive</label>
+            <textarea name="description" id="discount_amount" class="formbold-form-input" required><?php echo $discount["description"] ?></textarea>
         </div>
+       
         <div class="formbold-mb-3">
             <label for="start_date" class="formbold-form-label">
                 Start date

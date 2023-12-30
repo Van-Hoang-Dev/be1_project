@@ -9,6 +9,7 @@
             <th>Phone</th>
             <th>Address</th>
             <th>Postcode zip</th>
+            <th>Role</th>
             <th>Delete</th>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                     <td><?php echo $user["phone"] ?></td>
                     <td><?php echo $user["address"] ?></td>
                     <td><?php echo $user["postcode_zip"] ?></td>
+                    <td><?php echo $user["role"] ?></td>
                     <td>
                         <form action="destroy.php" method="post" onsubmit="return confirm('Are you sure delete?')">
                             <button type="submit" class="btn btn-outline-danger" name="user_id" value="<?php echo $user["id"] ?>"><i class="fa-solid fa-trash-can"></i></button>
