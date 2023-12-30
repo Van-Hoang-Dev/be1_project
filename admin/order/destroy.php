@@ -12,6 +12,10 @@ var_dump($order_id);
 
 $orderModel = new Order();
 if (!empty($order_id)) {
-    $orderModel->deleteOrder($order_id);
+    if($orderModel->deleteOrder($order_id)){
+        $_SESSION["notify"] = ["check" => 1, "notify" => "Delete order successful!"];
+    } else {
+        $_SESSION["notify"] = ["check" => 0, "notify" => "Delete order unsuccessful!"];
+    }
     header('location: manage_order.php');
 }

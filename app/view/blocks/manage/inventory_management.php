@@ -1,5 +1,21 @@
 <div class="container">
     <h2 class="my-5 title-center">Inventory management</h2>
+
+    <!-- Thông báo -->
+    <?php if (isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 1) :
+    ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $_SESSION["notify"]["notify"]; unset($_SESSION["notify"]);?>
+        </div>
+    <?php endif; ?>
+    <?php if(isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 0): ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $_SESSION["notify"]["notify"]; unset($_SESSION["notify"]);?>
+        </div>
+    <?php 
+    endif;
+    ?>
+
     <a href="create.php" class="btn btn-outline-primary my-3"><i class="fa-regular fa-plus"></i>  Add Inventory</a>
     <table class="table table-hover ">
         <thead>

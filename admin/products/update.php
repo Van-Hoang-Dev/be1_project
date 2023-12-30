@@ -83,7 +83,12 @@ if(isset($_SESSION["page"])){
 
 $productModel = new Product();
 if (!empty($productID) && !empty($productName) &&  !empty($productPrice) && !empty($productDescription) && !empty($categoriesID)) {
-    $productModel->update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages);
+    if($productModel->update($productID, $productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages)){
+        $_SESSION["notify"] = ["check" => 1, "notify"=>"Update $productName successful!"];
+    }
+    else{
+        $_SESSION["notify"] = ["check" => 0, "notify"=>"Update $productName unsuccessful!"];
+    }
     header('location: manage_product.php?page='.$page);
 }
 

@@ -483,10 +483,11 @@ if (isset($_SESSION["account"])) {
     <script src="public/js/app.js"></script>
     <script>
         $('.owl-5').owlCarousel({
-            loop: true,
+            loop: false,
             margin: 10,
             nav: false,
             dots: false,
+            autoplay: true,
             responsive: {
                 0: {
                     items: 1

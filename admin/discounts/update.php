@@ -40,5 +40,10 @@ $discount = [
 
 // var_dump($discount);
 $discountModel = new Discount();
-$discountModel->updateDiscount($discount);
+if($discountModel->updateDiscount($discount)){
+    $_SESSION["notify"] = ["check" => 1, "notify"=>"Update discount successful!"];
+}
+else{
+    $_SESSION["notify"] = ["check" => 0, "notify"=>"Update discount unsuccessful!"];
+}
 header('location: manage_discount.php');

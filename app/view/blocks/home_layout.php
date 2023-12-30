@@ -111,7 +111,6 @@
                 <li class="active"><span>All Products</span></li>
                 <li><span>New Arrivals</span></li>
                 <li><span>Popular Products</span></li>
-                <li><span>On Sale</span></li>
               </ul>
             </div>
           </div>
@@ -217,75 +216,34 @@
         Top Selling Products
       </h2>
       <div class="owl-5 owl-carousel owl-theme">
-        <div class="product-items">
-          <div class="product-emtry">
-            <div class="product-thumb">
-              <div class="product-label">
-                <div class="onsale">-13%</div>
-                <div class="onHot"> Hot </div>
-              </div>
-              <div class="product-image">
-                <img class="img-fluid" src="public/images/content/top-selling/product1.jpg" alt="24‑Mac with Apple M1 chip">
-              </div>
-            </div>
-            <div class="product-button">
-              <div class="icon">
-                <div class="tooltip-content">Add to cart</div>
-                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Wishlist</div>
-                <a href="#"><i class="fa-regular fa-star"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Compare</div>
-                <a href="#"><i class="fa-solid fa-layer-group"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Quick view</div>
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">
-                <a href="#">24‑Mac with Apple M1 chip</a>
-              </h3>
-              <div class="rating none">
-                <div class="star-rating none">
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-              <div class="price">
-                <span class="cost">$200.00</span>
-                <span class="discount">$250.00</span>
-              </div>
-
-            </div>
-          </div>
-        </div>
+        <?php
+        foreach($topSells as $product):
+        ?>
         <div class="product-items">
           <div class="product-emtry">
             <div class="product-thumb">
               <div class="product-label">
                 <!-- <div class="onsale">-13%</div> -->
-                <div class="onHot">Hot</div>
               </div>
               <div class="product-image">
-                <img class="img-fluid" src="public/images/content/top-selling/product2.jpg" alt="A9 Gold Series 8 GPS">
+                <img class="img-fluid" src="public/images/content/products/<?php echo $product["image"] ?>" alt="<?php echo $product["name"] ?>" alt="Mac mini M2 2023">
               </div>
             </div>
             <div class="product-button">
               <div class="icon">
                 <div class="tooltip-content">Add to cart</div>
-                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+                <form action="cart.php" method="post">
+                  <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
+                  <input type="hidden" name="index" value="1">
+                  <button type="submit"><i class="fa-solid fa-bag-shopping"></i></button>
+                </form>
               </div>
               <div class="icon">
                 <div class="tooltip-content">Wishlist</div>
-                <a href="#"><i class="fa-regular fa-star"></i></a>
+                <form action="#" method="post">
+                  <input type="hidden" name="add_to_wishlist" value="<?php echo $product["id"] ?>">
+                  <button type="submit"><i class="fa-regular fa-star"></i></button>
+                </form>
               </div>
               <div class="icon">
                 <div class="tooltip-content">Compare</div>
@@ -298,407 +256,267 @@
             </div>
             <div class="product-content">
               <h3 class="product-title">
-                <a href="#">A9 Gold Series 8 GPS</a>
+                <form action="detail" method="post">
+                  <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
+                  <input type="submit" class="btn-no-border" value="<?php echo $product["name"] ?>">
+                </form>
               </h3>
               <div class="rating none">
                 <div class="star-rating none">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
+                  <i class="fa-regular fa-star"></i>
                   <i class="fa-regular fa-star"></i>
                 </div>
               </div>
               <div class="price">
-                <span class="cost">$250.00</span>
+                <span class="cost">$<?php echo $product["price"] ?></span>
               </div>
 
             </div>
           </div>
         </div>
-        <div class="product-items">
-          <div class="product-emtry">
-            <div class="product-thumb">
-              <div class="product-label">
-                <div class="onsale">-25%</div>
-                <!-- <div class="onHot"> Hot </div> -->
-              </div>
-              <div class="product-image">
-                <img class="img-fluid" src="public/images/content/top-selling/product3.jpg" alt="A9 Gold with Apple M1">
-              </div>
-            </div>
-            <div class="product-button">
-              <div class="icon">
-                <div class="tooltip-content">Add to cart</div>
-                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Wishlist</div>
-                <a href="#"><i class="fa-regular fa-star"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Compare</div>
-                <a href="#"><i class="fa-solid fa-layer-group"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Quick view</div>
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">
-                <a href="#">A9 Gold with Apple M1</a>
-              </h3>
-              <div class="rating none">
-                <div class="star-rating none">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-              <div class="price">
-                <span class="cost">$150.00 - $200.00</span>
-                <!-- <span class="discount">$250.00</span> -->
-              </div>
+        <?php endforeach; ?>
 
-            </div>
-          </div>
-        </div>
-        <div class="product-items">
-          <div class="product-emtry">
-            <div class="product-thumb">
-              <div class="product-label">
-                <!-- <div class="onsale">-13%</div> -->
-                <div class="onHot">Hot</div>
-              </div>
-              <div class="product-image">
-                <img class="img-fluid" src="public/images/content/top-selling/product4.jpg" alt="Air Cooler With A-RGB">
-              </div>
-            </div>
-            <div class="product-button">
-              <div class="icon">
-                <div class="tooltip-content">Add to cart</div>
-                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Wishlist</div>
-                <a href="#"><i class="fa-regular fa-star"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Compare</div>
-                <a href="#"><i class="fa-solid fa-layer-group"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Quick view</div>
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">
-                <a href="#">Air Cooler With A-RGB</a>
-              </h3>
-              <div class="rating none">
-                <div class="star-rating none">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-              <div class="price">
-                <span class="cost">$150.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-items">
-          <div class="product-emtry">
-            <div class="product-thumb">
-              <div class="product-label">
-                <div class="onsale">-33%</div>
-                <!-- <div class="onHot"> Hot </div> -->
-              </div>
-              <div class="product-image">
-                <img class="img-fluid" src="public/images/content/top-selling/product5.jpg" alt="Apple 11 iPad Pro 128GB">
-              </div>
-            </div>
-            <div class="product-button">
-              <div class="icon">
-                <div class="tooltip-content">Add to cart</div>
-                <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Wishlist</div>
-                <a href="#"><i class="fa-regular fa-star"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Compare</div>
-                <a href="#"><i class="fa-solid fa-layer-group"></i></a>
-              </div>
-              <div class="icon">
-                <div class="tooltip-content">Quick view</div>
-                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></i></a>
-              </div>
-            </div>
-            <div class="product-content">
-              <h3 class="product-title">
-                <a href="#">Apple 11 iPad Pro 128GB</a>
-              </h3>
-              <div class="rating none">
-                <div class="star-rating none">
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-                </div>
-              </div>
-              <div class="price">
-                <span class="cost">$100.00</span>
-                <span class="discount">$150.00</span>
-              </div>
+      </div>
+    </div>
+  </div>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="type-items">
-      <div class="row">
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item1.jpg" alt="">
-            <div class="item-title">
-              <h3>Watches</h3>
-            </div>
-            <div class="item-content">
-              <span>ChromeOS</span>
-              <span>Linux</span>
-              <span>macOS</span>
-              <span>Smarthome</span>
-              <span>Windows</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item2.jpg" alt="item2">
-            <div class="item-title">
-              <h3>Computers</h3>
-            </div>
-            <div class="item-content">
-              <span>Keybord</span>
-              <span>Linux</span>
-              <span>Mouse</span>
-              <span>Storage</span>
-              <span>Windows</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item3.jpg" alt="item3">
-            <div class="item-title">
-              <h3>SmartPhones</h3>
-            </div>
-            <div class="item-content">
-              <span>CellPhones</span>
-              <span>Google pixel</span>
-              <span>Iphone</span>
-              <span>Phone Cases</span>
-              <span>Sumsung</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item4.jpg" alt="Game & Video">
-            <div class="item-title">
-              <h3>Game & Video</h3>
-            </div>
-            <div class="item-content">
-              <span>Linux</span>
-              <span>Mouse</span>
-              <span>Phone Casese</span>
-              <span>Smart Home</span>
-              <span>Storage</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item5.jpg" alt="TV/Audio">
-            <div class="item-title">
-              <h3>TV/Audio</h3>
-            </div>
-            <div class="item-content">
-              <span>ChromeOS</span>
-              <span>Linux</span>
-              <span>macOS</span>
-              <span>Smarthome</span>
-              <span>Windows</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 col-sm-6">
-          <div class="item">
-            <img class="img-fluid" src="public/images/content/type-items/item6.jpg" alt="Home Smart">
-            <div class="item-title">
-              <h3>Watches</h3>
-            </div>
-            <div class="item-content">
-              <span>Keyboard</span>
-              <span>macOS</span>
-              <span>Phone Cases</span>
-              <span>Storage</span>
-              <span>Windows</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="banner">
-      <div class="row">
-        <div class="col-md-4 p-0">
-          <div class="banners">
-            <div class="banner-image">
-              <a href="#">
-                <img class="img-fluid" src="public/images/content/banner/banner-15.jpg" alt="Camera">
-              </a>
-            </div>
-            <div class="banner-info">
-              <span class="banner-image-sub">Flat Deal To 70%</span>
-              <h3 class="banner-title">Camera</h3>
-              <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 p-0">
-          <div class="banners">
-            <div class="banner-image">
-              <a href="#">
-                <img src="public/images/content/banner/banner-16.jpg" alt="banner" class="img-fluid">
-              </a>
-            </div>
-            <div class="banner-info">
-              <span class="banner-image-sub">Hot Sale 2023</span>
-              <h3 class="banner-title">Smart Phone</h3>
-              <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 p-0">
-          <div class="banners">
-            <div class="banner-image">
-              <a href="#">
-                <img src="public/images/content/banner/banner-17.jpg" alt="banner" class="img-fluid">
-              </a>
-            </div>
-            <div class="banner-info">
-              <span class="banner-image-sub black">Shop Brands Xbox</span>
-              <h3 class="banner-title black">Gamepad</h3>
-              <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="content-logo">
-      <div class="owl-4 owl-carousel owl-theme">
-        <div class="img-logo">
-          <a href="">
-            <img src="public/images/logo/feedly-logo.png" alt="feedly-logo">
-          </a>
-        </div>
-        <div class="img-logo">
-          <a href="">
-            <img src="public/images/logo/hopin-logo.png" alt="hopin-logo">
-          </a>
-        </div>
-        <div class="img-logo">
-          <a href="">
-            <img src="public/images/logo/lattice-logo.png" alt="lattice-logo">
-          </a>
-        </div>
-        <div class="img-logo">
-          <a href="">
-            <img src="public/images/logo/spotifi-logo.png" alt="spotifi-logo">
-          </a>
-        </div>
-        <div class="img-logo">
-          <a href="">
-            <img src="public/images/logo/upwork-logo.png" alt="upwork-logo">
-          </a>
-        </div>
-      </div>
 
-    </div>
-    <div class="comment-boxs">
-      <div class="owl-3 owl-carousel owl-theme">
-        <div class="comment-box">
-          <div class="icon-quotes">
-            <i class="fa-solid fa-quote-right"></i>
+  <div class="type-items">
+    <div class="row">
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item1.jpg" alt="">
+          <div class="item-title">
+            <h3>Watches</h3>
           </div>
-          <p>Their customer service is also outstanding, providing quick and helpful support whenever I’ve had questions or issues.</p>
-          <div class="testimonial-image">
-            <div class="customer-image">
-              <img class="img-fluid" src="public/images/content/comment/customer1.jpg" alt="">
-            </div>
-            <div class="testimonial-info">
-              <div class="customer-name">Edison</div>
-              <div class="cuscomer-job">Design</div>
-            </div>
+          <div class="item-content">
+            <span>ChromeOS</span>
+            <span>Linux</span>
+            <span>macOS</span>
+            <span>Smarthome</span>
+            <span>Windows</span>
           </div>
         </div>
-        <div class="comment-box">
-          <div class="icon-quotes">
-            <i class="fa-solid fa-quote-right"></i>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item2.jpg" alt="item2">
+          <div class="item-title">
+            <h3>Computers</h3>
           </div>
-          <p>The software and user interfaces are intuitive and user-friendly, making it easy for me to stay connected and productive.</p>
-          <div class="testimonial-image">
-            <div class="customer-image">
-              <img class="img-fluid" src="public/images/content/comment/customer2.jpg" alt="custumer 2">
-            </div>
-            <div class="testimonial-info">
-              <div class="customer-name">Ann Smith</div>
-              <div class="cuscomer-job">CEO & Founder</div>
-            </div>
-          </div>
-        </div>
-        <div class="comment-box">
-          <div class="icon-quotes">
-            <i class="fa-solid fa-quote-right"></i>
-          </div>
-          <p>Tablets to laptops and gaming systems, their products have consistently delivered top-notch performance and reliability.</p>
-          <div class="testimonial-image">
-            <div class="customer-image">
-              <img class="img-fluid" src="public/images/content/comment/customer3.jpg" alt="custumer 3">
-            </div>
-            <div class="testimonial-info">
-              <div class="customer-name">Annan</div>
-              <div class="cuscomer-job">Photographer</div>
-            </div>
+          <div class="item-content">
+            <span>Keybord</span>
+            <span>Linux</span>
+            <span>Mouse</span>
+            <span>Storage</span>
+            <span>Windows</span>
           </div>
         </div>
-        <div class="comment-box">
-          <div class="icon-quotes">
-            <i class="fa-solid fa-quote-right"></i>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item3.jpg" alt="item3">
+          <div class="item-title">
+            <h3>SmartPhones</h3>
           </div>
-          <p>The software and user interfaces are intuitive and user-friendly, making it easy for me to stay connected and productive.</p>
-          <div class="testimonial-image">
-            <div class="customer-image">
-              <img class="img-fluid" src="public/images/content/comment/customer4.jpg" alt="custumer 4">
-            </div>
-            <div class="testimonial-info">
-              <div class="customer-name">Linda</div>
-              <div class="cuscomer-job">Design</div>
-            </div>
+          <div class="item-content">
+            <span>CellPhones</span>
+            <span>Google pixel</span>
+            <span>Iphone</span>
+            <span>Phone Cases</span>
+            <span>Sumsung</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item4.jpg" alt="Game & Video">
+          <div class="item-title">
+            <h3>Game & Video</h3>
+          </div>
+          <div class="item-content">
+            <span>Linux</span>
+            <span>Mouse</span>
+            <span>Phone Casese</span>
+            <span>Smart Home</span>
+            <span>Storage</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item5.jpg" alt="TV/Audio">
+          <div class="item-title">
+            <h3>TV/Audio</h3>
+          </div>
+          <div class="item-content">
+            <span>ChromeOS</span>
+            <span>Linux</span>
+            <span>macOS</span>
+            <span>Smarthome</span>
+            <span>Windows</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <div class="item">
+          <img class="img-fluid" src="public/images/content/type-items/item6.jpg" alt="Home Smart">
+          <div class="item-title">
+            <h3>Watches</h3>
+          </div>
+          <div class="item-content">
+            <span>Keyboard</span>
+            <span>macOS</span>
+            <span>Phone Cases</span>
+            <span>Storage</span>
+            <span>Windows</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="banner">
+    <div class="row">
+      <div class="col-md-4 p-0">
+        <div class="banners">
+          <div class="banner-image">
+            <a href="#">
+              <img class="img-fluid" src="public/images/content/banner/banner-15.jpg" alt="Camera">
+            </a>
+          </div>
+          <div class="banner-info">
+            <span class="banner-image-sub">Flat Deal To 70%</span>
+            <h3 class="banner-title">Camera</h3>
+            <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 p-0">
+        <div class="banners">
+          <div class="banner-image">
+            <a href="#">
+              <img src="public/images/content/banner/banner-16.jpg" alt="banner" class="img-fluid">
+            </a>
+          </div>
+          <div class="banner-info">
+            <span class="banner-image-sub">Hot Sale 2023</span>
+            <h3 class="banner-title">Smart Phone</h3>
+            <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 p-0">
+        <div class="banners">
+          <div class="banner-image">
+            <a href="#">
+              <img src="public/images/content/banner/banner-17.jpg" alt="banner" class="img-fluid">
+            </a>
+          </div>
+          <div class="banner-info">
+            <span class="banner-image-sub black">Shop Brands Xbox</span>
+            <h3 class="banner-title black">Gamepad</h3>
+            <a href="#" class="btn-icon"><i class="fa-solid fa-circle-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-logo">
+    <div class="owl-4 owl-carousel owl-theme">
+      <div class="img-logo">
+        <a href="">
+          <img src="public/images/logo/feedly-logo.png" alt="feedly-logo">
+        </a>
+      </div>
+      <div class="img-logo">
+        <a href="">
+          <img src="public/images/logo/hopin-logo.png" alt="hopin-logo">
+        </a>
+      </div>
+      <div class="img-logo">
+        <a href="">
+          <img src="public/images/logo/lattice-logo.png" alt="lattice-logo">
+        </a>
+      </div>
+      <div class="img-logo">
+        <a href="">
+          <img src="public/images/logo/spotifi-logo.png" alt="spotifi-logo">
+        </a>
+      </div>
+      <div class="img-logo">
+        <a href="">
+          <img src="public/images/logo/upwork-logo.png" alt="upwork-logo">
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="comment-boxs">
+    <div class="owl-3 owl-carousel owl-theme">
+      <div class="comment-box">
+        <div class="icon-quotes">
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+        <p>Their customer service is also outstanding, providing quick and helpful support whenever I’ve had questions or issues.</p>
+        <div class="testimonial-image">
+          <div class="customer-image">
+            <img class="img-fluid" src="public/images/content/comment/customer1.jpg" alt="">
+          </div>
+          <div class="testimonial-info">
+            <div class="customer-name">Edison</div>
+            <div class="cuscomer-job">Design</div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-box">
+        <div class="icon-quotes">
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+        <p>The software and user interfaces are intuitive and user-friendly, making it easy for me to stay connected and productive.</p>
+        <div class="testimonial-image">
+          <div class="customer-image">
+            <img class="img-fluid" src="public/images/content/comment/customer2.jpg" alt="custumer 2">
+          </div>
+          <div class="testimonial-info">
+            <div class="customer-name">Ann Smith</div>
+            <div class="cuscomer-job">CEO & Founder</div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-box">
+        <div class="icon-quotes">
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+        <p>Tablets to laptops and gaming systems, their products have consistently delivered top-notch performance and reliability.</p>
+        <div class="testimonial-image">
+          <div class="customer-image">
+            <img class="img-fluid" src="public/images/content/comment/customer3.jpg" alt="custumer 3">
+          </div>
+          <div class="testimonial-info">
+            <div class="customer-name">Annan</div>
+            <div class="cuscomer-job">Photographer</div>
+          </div>
+        </div>
+      </div>
+      <div class="comment-box">
+        <div class="icon-quotes">
+          <i class="fa-solid fa-quote-right"></i>
+        </div>
+        <p>The software and user interfaces are intuitive and user-friendly, making it easy for me to stay connected and productive.</p>
+        <div class="testimonial-image">
+          <div class="customer-image">
+            <img class="img-fluid" src="public/images/content/comment/customer4.jpg" alt="custumer 4">
+          </div>
+          <div class="testimonial-info">
+            <div class="customer-name">Linda</div>
+            <div class="cuscomer-job">Design</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

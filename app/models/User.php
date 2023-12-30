@@ -3,7 +3,7 @@ class User extends Database
 {   
     //Get all user
     public function getAllUsers(){
-        $sql = parent::$connection->prepare("SELECT id, firstname, lastname, email, phone, address, postcode_zip FROM `member`;");
+        $sql = parent::$connection->prepare("SELECT id, firstname, lastname, email, phone, address, postcode_zip, role FROM `member`;");
         return parent::select($sql);
     }
 

@@ -77,12 +77,14 @@
               <p class="text-muted mb-2"><span class="fw-bold me-4">Total: </span>$ <?php echo number_format($total, 2, '.', ',') ?></p>
             </div>
             <?php 
+            if($discount_code != "none"):
             $discount_amount = $discountModel->getAmountOfDiscount($discount_code)["discount_amount"];
             ?>
             <div class="d-flex justify-content-between pt-2">
             <p class="small text-muted mb-0">Apply Voucher : <?php echo $discount_code ?></p>
             <p class="small text-muted mb-0">Amount: <?php echo $discount_amount ?>%</p>
             </div>
+            <?php endif ?>
             <hr>
 
             <!-- <div class="d-flex justify-content-between pt-2">

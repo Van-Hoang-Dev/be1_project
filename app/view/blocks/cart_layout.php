@@ -91,7 +91,7 @@ foreach ($cart as $item) {
                                             </form>
 
                                         </div>
-                                        <h2><a href="./shop">Continue Shopping</a></h2>
+                                        <h2><a href="shop.php?p=2">Continue Shopping</a></h2>
                                     </div>
                                 </td>
                             </tr>

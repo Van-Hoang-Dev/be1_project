@@ -28,6 +28,18 @@ class Order extends Database{
         return $sql->execute();
     }
 
+    //Lấy san phản được bán nhiều
+    public function getTopSellingProduct(){
+        $sql= parent::$connection->prepare("SELECT products.* , SUM(order_details.quantity) AS total_product, 
+        (SELECT image FROM images 
+         WHERE images.product_id = products.id AND images.main = 1) AS 'image'
+        FROM order_details
+        INNER JOIN products ON order_details.product_id = products.id
+        GROUP BY order_details.product_id
+        HAVING total_product >= 2;");
+        return parent::select($sql);
+    }
+
     public function deleteOrderByCode($order_code){
 
         $sql = parent::$connection->prepare("SELECT order_id FROM `order_details` WHERE order_code = ?");

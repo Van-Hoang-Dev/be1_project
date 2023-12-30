@@ -84,7 +84,12 @@ if (!empty($_FILES["image"]["tmp_name"][0])) {
 if ($uploadOk) {
     $productModel = new Product();
     if (!empty($productName) &&  !empty($productPrice) && !empty($productDescription) && !empty($categoriesID)) {
-    $productModel->store($productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages);
+    if($productModel->store($productName, $productPrice, $productDescription, $categoriesID, $discount_id, $main_image, $productImages)){
+        $_SESSION["notify"] = ["check" => 1, "notify"=>"Add $productName successful!"];
+    }
+    else{
+        $_SESSION["notify"] = ["check" => 0, "notify"=>"Add $productName unsuccessful!"];
+    }
     header('location: manage_product.php');
     }
 } else {

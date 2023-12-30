@@ -50,7 +50,12 @@ if(!empty($product_id) && !empty($date_add) && !empty($input_quantity) && !empty
     ];
 
     var_dump($inventoryItem);
-    $inventoryModel->updateInventory($inventoryItem, $date_update);
+    if($inventoryModel->updateInventory($inventoryItem, $date_update)){
+        $_SESSION["notify"] = ["check" => 1, "notify" => "Update inventory successful!"];
+    } else {
+        $_SESSION["notify"] = ["check" => 0, "notify" => "Update inventory unsuccessful!"];
+    }
+    
     header('location: manage_inventory.php');
 }
 

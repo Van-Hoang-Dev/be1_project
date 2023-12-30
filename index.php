@@ -1,4 +1,5 @@
 <?php
+try {
 require_once 'config/database.php';
 //Autoloading spl NOT sql
 spl_autoload_register(function ($classname) {
@@ -42,9 +43,17 @@ $total = $productModel->getTotalProducts()["COUNT(*)"];
 $products =$productModel ->getProductWithLimit($currentPage, $perPgae);
 $paginationBar = $productModel->getPaginationBar("index.php", $total, $currentPage, $perPgae, 2);
 
+
+//Get top selling product
+$orderModel = new Order;
+$topSells = $orderModel->getTopSellingProduct();
+
 $data = [
     "title" => "Home",
-    "slot" => $template->render("blocks/home_layout", ["products" => $products,"paginationBar" => $paginationBar])
+    "slot" => $template->render("blocks/home_layout", ["products" => $products,"paginationBar" => $paginationBar, "topSells" => $topSells])
 ];
 
 $template->view("layout", $data);
+} catch (\Throwable $th) {
+    echo $th;
+}

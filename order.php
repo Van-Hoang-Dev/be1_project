@@ -74,7 +74,7 @@ $customerJSON = json_encode($customer);
 setcookie("customer", $customerJSON, time() + (86400 * 7),"/", "", true, true); // HttpOnly and Secure flags
 
 //Lấy mã giảm giá
-$discount_code = "";
+$discount_code = "none";
 if(isset($_SESSION["discount"])){
     $discount_code = $_SESSION["discount"]["discount_code"];
 }

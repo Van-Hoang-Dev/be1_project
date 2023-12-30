@@ -34,5 +34,10 @@ $discount = ["discount_code" => $discount_code,
 
 
 $discountModel = new Discount();
-$discountModel->addDiscount($discount);
+if($discountModel->addDiscount($discount)){
+    $_SESSION["notify"] = ["check" => 1, "notify"=>"Add discount successful!"];
+}
+else{
+    $_SESSION["notify"] = ["check" => 0, "notify"=>"Add discount unsuccessful!"];
+}
 header('location: manage_discount.php');

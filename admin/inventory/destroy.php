@@ -15,7 +15,11 @@ if(isset($_POST["date_add"])){
 
 $inventoryModel = new Inventory();
 if(!empty($product_id) && !empty($date_add)){
-   $inventoryModel->deleteInventory($product_id, $date_add);
+   if($inventoryModel->deleteInventory($product_id, $date_add)){
+    $_SESSION["notify"] = ["check" => 1, "notify" => "Delete inventory successful!"];
+} else {
+    $_SESSION["notify"] = ["check" => 0, "notify" => "Delete inventory unsuccessful!"];
+}
     header('location: manage_inventory.php');
 }
 
