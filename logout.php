@@ -6,6 +6,6 @@ spl_autoload_register(function ($classname) {
 });
 
 session_destroy();
-setcookie("remember-account", $random_selector, time() - (3600*24*30), "/");
+setcookie("remember-account", "", time() - 1, "/");
 
-header('location: index');
+header('location: index.php');

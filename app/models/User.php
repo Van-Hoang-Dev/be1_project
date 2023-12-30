@@ -86,6 +86,15 @@ class User extends Database
         return $sql->execute();
     }
 
+    public function updatePassword($phone, $email, $password)
+    {
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = parent::$connection->prepare("UPDATE member 
+                                            SET `password` =? WHERE `phone`= ? AND 'email' = ?");
+        $sql->bind_param("sss", $password, $phone, $email);
+        return $sql->execute();
+    }
+
     // Get token
     public function getToken($token)
     {

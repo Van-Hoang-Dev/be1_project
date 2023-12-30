@@ -74,7 +74,7 @@ if (isset($_SESSION["account"])) {
                         </li>
                         <?php if (isset($_SESSION['account']) && $_SESSION['account']['role'] == 1) : ?>
                             <li class="nav-item px-md-3">
-                                <a class="nav-link" href="./admin/products/manage_product">Manage</a>
+                                <a class="nav-link" href="./admin/products/manage_product.php">Manage</a>
                             </li>
                         <?php endif ?>
                     </ul>
@@ -220,7 +220,7 @@ if (isset($_SESSION["account"])) {
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="search/php">
+                <form method="post" action="search.php">
                     <div class="modal-body just-align-center">
                         <div class="wrapper">
                             <header>
@@ -291,13 +291,45 @@ if (isset($_SESSION["account"])) {
                             </label>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer pt-5">
                         <div class="d-grid gap-2 col-6 mx-auto my-3">
                             <input type="submit" name="login" class="btn btn-primary text-light fw-bolder" value="Log in">
                         </div>
                         <div>
+                            <a href="#" class="register_link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" >forgot password</a>
+                        </div>
+                        <div>
                             <p class="login-text">Do not have an account ?</p>
                             <a href="#" class="register_link" data-bs-toggle="modal" data-bs-target="#signinModal" data-bs-whatever="@mdo">Register now!</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
+        <div class=" modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-4" id="titleModal">Forgot Password </h1>
+                    <img class="logo" src="./public/images/logo/Logo.png" alt="logo">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="forgot_password.php">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Enter your email</label>
+                            <input type="text" class="form-control" id="email" name="email" autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Enter your phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" autofocus>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto my-3">
+                            <button type="submit" name="forgot_pass" class="btn btn-success text-light fw-bolder">Send</button>
                         </div>
                     </div>
                 </form>
