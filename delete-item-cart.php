@@ -87,5 +87,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    header('location: viewcart.p');
+    header('location: viewcart.php?c=1');
 }

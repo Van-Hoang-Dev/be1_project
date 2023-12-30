@@ -90,8 +90,8 @@ class User extends Database
     {
         $hashPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = parent::$connection->prepare("UPDATE member 
-                                            SET `password` =? WHERE `phone`= ? AND 'email' = ?");
-        $sql->bind_param("sss", $password, $phone, $email);
+                                            SET `password` =? WHERE `phone`= ? AND email = ?");
+        $sql->bind_param("sss", $hashPassword, $phone, $email);
         return $sql->execute();
     }
 
