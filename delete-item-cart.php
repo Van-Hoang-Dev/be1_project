@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($item["quantity"] > 0) {
                     $item["quantity"]--;
                     $_SESSION["cart-quantity"]--;
+                    $item['discount_status'] = 0;
                     $item["subtotal"] = ($item["price"] * $item["quantity"]);
                     $cartModel->updateCartQuantityByUserID($idRemove, $item["quantity"], $userID);
                 }
@@ -65,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if ($item["quantity"] > 0) {
                         $item["quantity"]--;
                         $_SESSION["cart-quantity"]--;
+                        $item['discount_status'] = 0;
                         $item["subtotal"] = ($item["price"] * $item["quantity"]);
                     }
                     if ($item["quantity"] == 0) {

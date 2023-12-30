@@ -89,7 +89,12 @@ if (!empty($productID) && !empty($productName) &&  !empty($productPrice) && !emp
     else{
         $_SESSION["notify"] = ["check" => 0, "notify"=>"Update $productName unsuccessful!"];
     }
-    header('location: manage_product.php?page='.$page);
+    if(!empty($page)){
+        header('location: manage_product.php?page='.$page);
+    }
+    else{
+        header('location: manage_product.php');
+    }
 }
 
 function uploadFile()

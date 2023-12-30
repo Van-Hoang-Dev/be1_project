@@ -56,6 +56,7 @@ try {
             if ($item["quantity"] < $productCurrentQuantity["current_quantity"] && $productCurrentQuantity["current_quantity"] != 0) {
                 $item["quantity"]++;
                 $_SESSION["cart-quantity"]++;
+                $item['discount_status'] = 0;
                 $item["subtotal"] = ($item["price"] * $item["quantity"]);
                 $product_exists = true;
             } else {
@@ -83,6 +84,7 @@ try {
             }
         }
     }
+
     if ($index == 1) {
         header('location: ' . $_SERVER['HTTP_REFERER']);
     } else {
