@@ -165,12 +165,6 @@
                                         </div>
                                     <?php endforeach ?>
 
-                                    <div class="cart-subtotal">
-                                        <h2 class="text">Subtotal</h2>
-                                        <div class="subtotal-price">
-                                            <p class="text-price">$<?php echo $subTotal ?></p>
-                                        </div>
-                                    </div>
                                     <div class="order-total">
                                         <h2 class="text">Total</h2>
                                         <div class="total-price">

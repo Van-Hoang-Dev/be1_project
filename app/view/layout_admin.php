@@ -38,19 +38,19 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-md-3">
-                            <a class="nav-link active-color" aria-current="#" href="../../index">Home</a>
+                            <a class="nav-link active-color" aria-current="#" href="../../index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Management
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../categories/manage_category">Manage Categories</a></li>
-                                <li><a class="dropdown-item" href="../products/manage_product">Manage Products</a></li>
-                                <li><a class="dropdown-item"  href="../discounts/manage_discount">Manage Vouchers</a></li>
-                                <li><a class="dropdown-item"  href="../inventory/manage_inventory">Manage Inventory</a></li>
-                                <li><a class="dropdown-item"  href="../order/manage_order">Manage Order</a></li>
-                                <li><a class="dropdown-item"  href="../user/manage_user">Manage User</a></li>
+                                <li><a class="dropdown-item" href="../categories/manage_category.php">Manage Categories</a></li>
+                                <li><a class="dropdown-item" href="../products/manage_product.php">Manage Products</a></li>
+                                <li><a class="dropdown-item"  href="../discounts/manage_discount.php">Manage Vouchers</a></li>
+                                <li><a class="dropdown-item"  href="../inventory/manage_inventory.php">Manage Inventory</a></li>
+                                <li><a class="dropdown-item"  href="../order/manage_order.php">Manage Order</a></li>
+                                <li><a class="dropdown-item"  href="../user/manage_user.php">Manage User</a></li>
                             </ul>
                         </li>
                         <li class="nav-item px-md-3">

@@ -1,8 +1,11 @@
 <?php
 // Tính totalPrice
 $totalPrice = 0;
+$totalItem = 0;
+$subtotals = 0;
 foreach ($cart as $item) {
     $totalPrice += $item['subtotal'];
+    $subtotals += ($item["price"] * $item["quantity"]);
 }
 ?>
 <div class="cart my-5">
@@ -114,21 +117,21 @@ foreach ($cart as $item) {
                         <div cellspacing="0" class="shop_table shop_table_responsive">
                             <div class="cart-subtotal">
                                 <div class="title">Subtotal</div>
-                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo $formattedSubtotal = number_format($totalPrice, 2, '.', ','); ?></bdi></span>
+                                <div data-title="Subtotal"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo number_format($subtotals, 2, '.', ','); ?></bdi></span>
                                 </div>
                             </div>
                             <div class="order-total">
                                 <div class="title">Discount</div>
                                 <div data-title="Total"><strong>
                                     <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>
-                                     <?php echo $totalPrice ?></bdi></span></strong>
+                                     <?php $discount = $subtotals - $totalPrice; echo number_format($discount, 2, '.', ','); ?></bdi></span></strong>
                                 </div>
                             </div>
                             <div class="order-total">
                                 <div class="title">Total</div>
                                 <div data-title="Total"><strong>
                                     <span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">$</span>
-                                     <?php echo $totalPrice ?></bdi></span></strong>
+                                     <?php echo number_format($totalPrice, 2, '.', ','); ?></bdi></span></strong>
                                 </div>
                             </div>
                         </div>

@@ -64,9 +64,9 @@ class Discount extends Database
         WHERE discount_code = ? AND discount_product.product_id = ?;");
         $sql->bind_param("si", $discount_code, $product_id);
         
-        $result = parent::select($sql)[0];
+        $result = parent::select($sql);
         if(!empty($result)){
-            return $result;
+            return $result[0];
         }
         else{
             return 0;
