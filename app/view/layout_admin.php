@@ -91,7 +91,10 @@
     </header>
     <!-- End Header -->
      <!-- Reset Infomation -->
-     <?php if (isset($_SESSION['account'])) : ?>
+     <?php if (isset($_SESSION['account'])) :
+         $userModel = new User;
+         $userID = $_SESSION["account"]["id"];
+         $_SESSION["account"] = $userModel->getUserByID($userID); ?>
     <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

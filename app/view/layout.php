@@ -129,7 +129,10 @@ if (isset($_SESSION["account"])) {
 
     <!-- Modal -->
     <!-- Reset Infomation -->
-    <?php if (isset($_SESSION['account'])) : ?>
+    <?php if (isset($_SESSION['account'])) :
+            $userModel = new User;
+            $userID = $_SESSION["account"]["id"];
+            $_SESSION["account"] = $userModel->getUserByID($userID); ?>
         <div class="modal fade" id="updateInfoModal" tabindex="-1" aria-labelledby="titleModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -186,7 +189,7 @@ if (isset($_SESSION["account"])) {
                     <img class="logo" src="./public/images/logo/Logo.png" alt="logo">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="./search">
+                <form method="post" action="search.php">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="key" class="form-label"><i class="bi bi-search fs-3 fw-bolder"></i></label>
@@ -217,7 +220,7 @@ if (isset($_SESSION["account"])) {
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="./search">
+                <form method="post" action="search/php">
                     <div class="modal-body just-align-center">
                         <div class="wrapper">
                             <header>

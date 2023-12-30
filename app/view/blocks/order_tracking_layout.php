@@ -14,9 +14,9 @@
                         This was given to you on your receipt and in the confirmation email you should have
                         received.
                     </p>
-                    <form action="detail_order" method="post">
+                    <form action="detail_order.php" method="post">
                         <div class="mb-5">
-                            <label for="billing_email" class="form-label"><b class="text-black">Billing Email</b></label>
+                            <label for="billing_email" class="form-label"><b class="text-black">Billing Email Or Phone</b></label>
                             <input type="text" class="form-control" id="billing_email" name="billing_email" placeholder="Email you used during checkout" height="50px">
                         </div>
                         <div class="mt-5 mb-5">

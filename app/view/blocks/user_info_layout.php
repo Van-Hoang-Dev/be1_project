@@ -13,13 +13,14 @@
     <div class="formbold-main-wrapper">
         <div class="formbold-form-wrapper">
             <img src="public/images/avatar/avatar-1.png" alt="">
-            <form action="#" method="POST">
+            <form action="update_user_info.php" method="POST">
                 <div class="formbold-form-title">
                     <h2 class=""><?php echo $user["firstname"] . " " . $user["lastname"] ?> </h2>
                     <p>
                     </p>
                 </div>
 
+                <input type="hidden" name="id" value="<?php echo $user["id"] ?>">
                 <div class="formbold-input-flex">
                     <div>
                         <label for="firstname" class="formbold-form-label">
@@ -53,11 +54,28 @@
 
                 <div class="formbold-mb-3">
                     <label for="post" class="formbold-form-label"> Post/Zip code </label>
-                    <input type="text" name="post" id="post" class="formbold-form-input" value="<?php echo $user["postcode_zip"] ?>" />
+                    <input type="text" name="postcode_zip" id="post" class="formbold-form-input" value="<?php echo $user["postcode_zip"] ?>" />
                 </div>
 
                 <button type="submit" class="formbold-btn">Save</button>
             </form>
+
+            <!-- Thông báo -->
+            <?php if (isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 1) :
+            ?>
+                <div class="alert alert-success mt-4" role="alert">
+                    <?php echo $_SESSION["notify"]["notify"];
+                    unset($_SESSION["notify"]); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (isset($_SESSION["notify"]) && $_SESSION["notify"]["check"] == 0) : ?>
+                <div class="alert alert-danger mt-4" role="alert">
+                    <?php echo $_SESSION["notify"]["notify"];
+                    unset($_SESSION["notify"]); ?>
+                </div>
+            <?php
+            endif;
+            ?>
         </div>
     </div>
 </div>

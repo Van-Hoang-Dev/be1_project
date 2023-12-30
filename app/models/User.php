@@ -13,6 +13,14 @@ class User extends Database
         $sql->bind_param("i", $user_id);
         return $sql->execute();
     }
+
+    //Update user 
+    public function updateUser($user){
+        $sql = parent::$connection->prepare("UPDATE `member` SET `firstname`=?,`lastname`=?,`email`=?,`phone`=?,`address`=?,`postcode_zip`=? WHERE id = ?");
+        $sql->bind_param("ssssssi", $user["firstname"], $user["lastname"], $user["email"], $user["phone"], $user["address"], $user["postcode_zip"], $user["id"]);
+        return $sql->execute();
+    }
+
     // Login Account
     public function loginAccount($phone)
     {
