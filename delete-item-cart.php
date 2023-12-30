@@ -20,6 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break; 
         }
     }
-    header('location: viewcart');
+    header('location: viewcart.php');
 }
 

@@ -6,7 +6,8 @@
     require_once '../../public/phpmailer/src/PHPMailer.php';
     require_once '../../public/phpmailer/src/SMTP.php';
 
-    if(isset($_POST["send"])){
+    if(isset($_POST["send"])) {
+
         $mail = new PHPMailer(true);
 
         $mail->isSMTP();
@@ -23,15 +24,15 @@
 
         $mail->isHTML(true);
 
-        $mail->Subject = $_POST['subject'];
-        $mail->Body = $_POST['message'];
+        $random = random_int(1,8);
+        $mail->Body = $random;
 
         $mail->send();
 
         echo "
         <script>
-        alert('Send email success!');
-        document.location.href = 'email.php';
+        alert('Resend OTP success!');
+        document.location.href = 'index';
         </script>   
         ";
 

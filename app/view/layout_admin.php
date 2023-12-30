@@ -79,7 +79,7 @@
                                 </a>
                             </li>
                             <li class="nav-item px-3">
-                                <a class="nav-link icon-header" href="../../logout">
+                                <a class="nav-link icon-header" href="../../logout.php">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -148,7 +148,7 @@
                     <img class="logo" src="../../public/images/logo/Logo.png" alt="logo">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="../../search">
+                <form method="post" action="../../search.php">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="key" class="form-label"><i class="bi bi-search fs-3 fw-bolder"></i></label>
@@ -179,7 +179,7 @@
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="../../search">
+                <form method="post" action="../../search.php">
                     <div class="modal-body just-align-center">
                         <div class="wrapper">
                             <header>

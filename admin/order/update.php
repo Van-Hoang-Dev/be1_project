@@ -1,7 +1,6 @@
 <?php 
 require_once '../../config/database.php';
 
-
 $order_status = "";
 $order_id = "";
 

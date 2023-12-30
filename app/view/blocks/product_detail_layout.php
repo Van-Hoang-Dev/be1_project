@@ -38,7 +38,7 @@ if (isset($_COOKIE['recentView'])) {
                             <li>Category: <?php echo $category['name'] ?></li>
                         </ul>
                         <div class="product_option">
-                            <form action="cart" method="post">
+                            <form action="cart.php" method="post">
                                 <input type="hidden" name="add_to_cart" value="<?php echo $product["id"] ?>">
                                 <input type="hidden" name="index" value="2">
                                 <button type="submit" class="btn btn-dark mb-3 btn-buy text-light" style="width: 100%;">Add to cart</button>

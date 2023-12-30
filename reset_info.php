@@ -53,8 +53,8 @@ $userModel = new User();
 $user = $userModel->resetAccount($firstname, $lastname, $email, $phone, $address, $postcode_zip, $password);
 
 if ($user == true) {
-    header('location: index');
+    header('location: index.php');
 } else {
-    echo "<script>alert('Cập nhật không thành công!!!'); window.location.href='index';</script>";
+    echo "<script>alert('Cập nhật không thành công!!!'); window.location.href='index.php';</script>";
 }
 

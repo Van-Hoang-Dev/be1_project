@@ -28,7 +28,7 @@ if (!empty($_POST["login"])) {
 
         $userModel->addToken($user['phone'], $random_selector);
     } else {
-        setcookie("remember-account", $random_selector, time() - (3600*24*30), "/");
+        setcookie("remember-account", "", time() - (1), "/");
     }
-    header('location: index');
+    header('location: index.php');
 }
