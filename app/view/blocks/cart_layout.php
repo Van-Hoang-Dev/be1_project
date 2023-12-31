@@ -12,7 +12,7 @@ foreach ($cart as $item) {
     <div class="container">
         <div class="woocommerce-page-header">
             <ul>
-                <li class="shopping-cart-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 1 ? "active-color" : "" ?>"> <a href="./viewcart?c=1">Cart</a></li>
+                <li class="shopping-cart-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 1 ? "active-color" : "" ?>"> <a href="viewcart.php?c=1">Cart</a></li>
                 <li class="checkout-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 2 ? "active-color" : "" ?>"><a href="checkout.php?c=2">Checkout</a></li>
                 <li class="order-tracking-link <?php if (isset($_GET['c'])) echo $_GET['c'] == 3 ? "active-color" : "" ?>"><a href="odertracking.php?c=3">Order Tracking</a></li>
             </ul>

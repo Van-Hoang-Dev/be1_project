@@ -91,7 +91,7 @@ if (isset($_COOKIE['recentView'])) {
 
                             </div>
                         </div>
-                        <?php if (empty($reviews)) : ?>
+                        <?php if (isset($_SESSION['account'])) : ?>
                             <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
                                 <div class="offcanvas-header">
@@ -199,6 +199,7 @@ if (isset($_COOKIE['recentView'])) {
                                     <hr>
                                 <?php endforeach ?>
                             </div>
+                            <?php if (empty($reviews) && isset($_SESSION["account"])) : ?>
                             <button class="btn-write-comment" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Write a comment</button>
                             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel" style="width: 700px;">
                                 <div class="offcanvas-header">
@@ -231,6 +232,7 @@ if (isset($_COOKIE['recentView'])) {
                                     </form>
                                 </div>
                             </div>
+                            <?php  endif; ?>
                         </section>
                     </div>
                 </div>
